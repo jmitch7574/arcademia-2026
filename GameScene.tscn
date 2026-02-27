@@ -6,9 +6,12 @@
 [ext_resource type="Texture2D" uid="uid://cvjjdojnal7o7" path="res://Assets/Kenney/Cursor.png" id="2_k77ap"]
 [ext_resource type="Script" uid="uid://bklrncyxf57w" path="res://Scripts/FocusManager.gd" id="4_hvuor"]
 [ext_resource type="Script" uid="uid://ba6qwy5xsj3t7" path="res://mouse_sprite.gd" id="6_i2arf"]
-[ext_resource type="Texture2D" uid="uid://o3khn45cxn88" path="res://Assets/Units/thor.png" id="7_1kil2"]
+[ext_resource type="Script" uid="uid://cosr4qrn1kb71" path="res://Scripts/Unit.gd" id="7_0exr2"]
 [ext_resource type="Material" uid="uid://dlhhnx45g42ri" path="res://Materials/unit.tres" id="7_5cvvu"]
-[ext_resource type="Script" uid="uid://w8c1iwl35m6i" path="res://scripts/state_machine.gd" id="9_ed8b8"]
+[ext_resource type="Texture2D" uid="uid://d2pt1mbl2w1jx" path="res://Assets/Units.png" id="9_0exr2"]
+[ext_resource type="Script" uid="uid://w8c1iwl35m6i" path="res://Scripts/StateMachine.gd" id="10_0exr2"]
+[ext_resource type="Script" uid="uid://d0byqe8nfg7jb" path="res://WalkState.gd" id="10_l6ya2"]
+[ext_resource type="Script" uid="uid://bdu8lj42wuild" path="res://Scripts/ClosestTarget.gd" id="11_oieil"]
 
 [node name="GameScene" type="Node2D" unique_id=1309565388]
 
@@ -77,13 +80,12 @@ anchor_mode = 0
 [node name="P1MouseSprite" type="Sprite2D" parent="." unique_id=445692134 node_paths=PackedStringArray("mouse_control")]
 z_index = 1
 texture_filter = 1
-position = Vector2(500, 75)
+position = Vector2(507.00003, -101)
 scale = Vector2(5, 5)
 texture = ExtResource("2_k77ap")
 offset = Vector2(6, 6)
 script = ExtResource("6_i2arf")
 mouse_control = NodePath("../P1Mouse")
-metadata/_edit_lock_ = true
 
 [node name="P1Mouse" type="Node2D" parent="." unique_id=362869788]
 position = Vector2(500, 75)
@@ -93,17 +95,45 @@ script = ExtResource("4_hvuor")
 mouse_object = NodePath("..")
 reroll_item = NodePath("../../Screen/Shop/MarginContainer/ShopElements/Reroll")
 
-[node name="Thor" type="Node2D" parent="." unique_id=575788619]
-position = Vector2(-846, 145)
+[node name="Thor" type="Node2D" parent="." unique_id=575788619 groups=["Units"]]
+position = Vector2(500, 76)
+script = ExtResource("7_0exr2")
 
 [node name="Sprite" type="Sprite2D" parent="Thor" unique_id=1224326328]
 texture_filter = 1
 material = ExtResource("7_5cvvu")
-position = Vector2(1349.5, -70)
 scale = Vector2(5, 5)
-texture = ExtResource("7_1kil2")
+texture = ExtResource("9_0exr2")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+metadata/_edit_lock_ = true
 
-[node name="StateMachine" type="Node" parent="Thor" unique_id=210056005]
-script = ExtResource("9_ed8b8")
+[node name="StateMachine" type="Node" parent="Thor" unique_id=210056005 node_paths=PackedStringArray("states")]
+script = ExtResource("10_0exr2")
+states = [NodePath("WalkState")]
 
-[node name="WalkState" type="Node" parent="Thor/StateMachine" unique_id=664966387]
+[node name="WalkState" type="Node" parent="Thor/StateMachine" unique_id=664966387 node_paths=PackedStringArray("target_system", "parent", "sprite")]
+script = ExtResource("10_l6ya2")
+target_system = NodePath("../../TargetingSystem")
+parent = NodePath("../..")
+move_speed = 100.0
+sprite = NodePath("../../Sprite")
+
+[node name="TargetingSystem" type="Node2D" parent="Thor" unique_id=1340057393]
+script = ExtResource("11_oieil")
+
+[node name="TargetDummy" type="Node2D" parent="." unique_id=1008819936 groups=["Units"]]
+position = Vector2(1321, 486)
+script = ExtResource("7_0exr2")
+
+[node name="Sprite" type="Sprite2D" parent="TargetDummy" unique_id=1195982391]
+texture_filter = 1
+material = ExtResource("7_5cvvu")
+scale = Vector2(-5, 5)
+texture = ExtResource("9_0exr2")
+region_enabled = true
+region_rect = Rect2(0, 16, 16, 16)
+metadata/_edit_lock_ = true
+
+[node name="TargetingSystem" type="Node2D" parent="TargetDummy" unique_id=2053272396]
+script = ExtResource("11_oieil")

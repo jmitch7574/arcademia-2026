@@ -22,6 +22,10 @@ window/size/mode=4
 window/stretch/mode="viewport"
 window/stretch/aspect="keep_width"
 
+[global_group]
+
+Units="Character Units on game board"
+
 [input]
 
 p1_move_up={

@@ -12,7 +12,12 @@ func state_entry_condition() -> bool:
 func _ready() -> void:
 	pass # Replace with function body.
 
+func _enter_state() -> void:
+	pass
+
+func _exit_state() -> void:
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _state_update(delta: float) -> void:
 	pass
