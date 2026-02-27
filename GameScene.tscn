@@ -2,42 +2,27 @@
 
 [ext_resource type="Texture2D" uid="uid://cddq2pqfiyia4" path="res://Assets/Kenney/Grid.svg" id="1_eqhe0"]
 [ext_resource type="Theme" uid="uid://gaki48q5hftc" path="res://Themes/GameTheme.tres" id="1_haeiw"]
-[ext_resource type="Texture2D" uid="uid://cnt3r3llbks88" path="res://Assets/Kenney/Reroll.png" id="2_b5kf5"]
+[ext_resource type="PackedScene" uid="uid://b2n21l6pwilj3" path="res://Scenes/UI Elements/reroll.tscn" id="2_b5kf5"]
 [ext_resource type="Texture2D" uid="uid://cvjjdojnal7o7" path="res://Assets/Kenney/Cursor.png" id="2_k77ap"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_haeiw"]
-bg_color = Color(0.2079, 0.33, 0.27302, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0.078431375, 0.72156864, 0.16470589, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b5kf5"]
-bg_color = Color(0.107099995, 0.21, 0.16540998, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0.079200014, 0.72, 0.16464008, 1)
+[ext_resource type="Script" uid="uid://bklrncyxf57w" path="res://Scripts/FocusManager.gd" id="4_hvuor"]
+[ext_resource type="Script" uid="uid://ba6qwy5xsj3t7" path="res://mouse_sprite.gd" id="6_i2arf"]
+[ext_resource type="Texture2D" uid="uid://o3khn45cxn88" path="res://Assets/Units/thor.png" id="7_1kil2"]
+[ext_resource type="Material" uid="uid://dlhhnx45g42ri" path="res://Materials/unit.tres" id="7_5cvvu"]
+[ext_resource type="Script" uid="uid://w8c1iwl35m6i" path="res://scripts/state_machine.gd" id="9_ed8b8"]
 
 [node name="GameScene" type="Node2D" unique_id=1309565388]
 
-[node name="UI" type="CanvasLayer" parent="." unique_id=642158115]
-
-[node name="Screen" type="Control" parent="UI" unique_id=1412506660]
+[node name="Screen" type="Control" parent="." unique_id=1412506660]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 21.333374
-offset_top = 12.0
-offset_right = -21.333374
-offset_bottom = -12.0
+offset_right = 1921.0
+offset_bottom = 1080.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Shop" type="PanelContainer" parent="UI/Screen" unique_id=117144800]
+[node name="Shop" type="PanelContainer" parent="Screen" unique_id=117144800]
 custom_minimum_size = Vector2(1000, 300)
 layout_mode = 1
 anchors_preset = 7
@@ -52,74 +37,29 @@ grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("1_haeiw")
 
-[node name="MarginContainer" type="MarginContainer" parent="UI/Screen/Shop" unique_id=730343077]
+[node name="MarginContainer" type="MarginContainer" parent="Screen/Shop" unique_id=730343077]
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="ShopElements" type="HBoxContainer" parent="UI/Screen/Shop/MarginContainer" unique_id=2107210662]
+[node name="ShopElements" type="HBoxContainer" parent="Screen/Shop/MarginContainer" unique_id=2107210662]
 layout_mode = 2
 
-[node name="Reroll" type="Panel" parent="UI/Screen/Shop/MarginContainer/ShopElements" unique_id=426356715]
+[node name="Reroll" parent="Screen/Shop/MarginContainer/ShopElements" unique_id=1309589322 instance=ExtResource("2_b5kf5")]
 layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_haeiw")
 
-[node name="RerollBottom" type="Panel" parent="UI/Screen/Shop/MarginContainer/ShopElements/Reroll" unique_id=417946034]
-custom_minimum_size = Vector2(0, 100)
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_b5kf5")
-
-[node name="RerollText" type="RichTextLabel" parent="UI/Screen/Shop/MarginContainer/ShopElements/Reroll/RerollBottom" unique_id=1912140616]
-texture_filter = 2
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/normal_font_size = 32
-text = "Reroll
-"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="TextureRect" type="TextureRect" parent="UI/Screen/Shop/MarginContainer/ShopElements/Reroll" unique_id=1737864760]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 0.637
-offset_left = 64.000015
-offset_top = 27.999996
-offset_right = -56.0
-offset_bottom = -20.315948
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_b5kf5")
-
-[node name="PanelContainer2" type="PanelContainer" parent="UI/Screen/Shop/MarginContainer/ShopElements" unique_id=813519677]
+[node name="Reroll2" parent="Screen/Shop/MarginContainer/ShopElements" unique_id=494437214 instance=ExtResource("2_b5kf5")]
 layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_haeiw")
 
-[node name="PanelContainer3" type="PanelContainer" parent="UI/Screen/Shop/MarginContainer/ShopElements" unique_id=767040014]
+[node name="Reroll3" parent="Screen/Shop/MarginContainer/ShopElements" unique_id=770670001 instance=ExtResource("2_b5kf5")]
 layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_haeiw")
 
-[node name="PanelContainer4" type="PanelContainer" parent="UI/Screen/Shop/MarginContainer/ShopElements" unique_id=502146297]
+[node name="Reroll4" parent="Screen/Shop/MarginContainer/ShopElements" unique_id=254454987 instance=ExtResource("2_b5kf5")]
 layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_haeiw")
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=642158115]
 
 [node name="Board" type="Sprite2D" parent="." unique_id=1255175370]
 modulate = Color(0.6654342, 0.4226154, 0.74744385, 1)
@@ -134,14 +74,36 @@ region_rect = Rect2(2, 2, 2540, 1792)
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1568371280]
 anchor_mode = 0
 
-[node name="P1Mouse" type="Node2D" parent="." unique_id=362869788]
-position = Vector2(514, 88)
-
-[node name="P1FocusManager" type="Node" parent="P1Mouse" unique_id=269751576]
-
-[node name="P1MouseSprite" type="Sprite2D" parent="P1Mouse" unique_id=445692134]
+[node name="P1MouseSprite" type="Sprite2D" parent="." unique_id=445692134 node_paths=PackedStringArray("mouse_control")]
+z_index = 1
 texture_filter = 1
+position = Vector2(500, 75)
 scale = Vector2(5, 5)
 texture = ExtResource("2_k77ap")
 offset = Vector2(6, 6)
+script = ExtResource("6_i2arf")
+mouse_control = NodePath("../P1Mouse")
 metadata/_edit_lock_ = true
+
+[node name="P1Mouse" type="Node2D" parent="." unique_id=362869788]
+position = Vector2(500, 75)
+
+[node name="P1FocusManager" type="Node" parent="P1Mouse" unique_id=269751576 node_paths=PackedStringArray("mouse_object", "reroll_item")]
+script = ExtResource("4_hvuor")
+mouse_object = NodePath("..")
+reroll_item = NodePath("../../Screen/Shop/MarginContainer/ShopElements/Reroll")
+
+[node name="Thor" type="Node2D" parent="." unique_id=575788619]
+position = Vector2(-846, 145)
+
+[node name="Sprite" type="Sprite2D" parent="Thor" unique_id=1224326328]
+texture_filter = 1
+material = ExtResource("7_5cvvu")
+position = Vector2(1349.5, -70)
+scale = Vector2(5, 5)
+texture = ExtResource("7_1kil2")
+
+[node name="StateMachine" type="Node" parent="Thor" unique_id=210056005]
+script = ExtResource("9_ed8b8")
+
+[node name="WalkState" type="Node" parent="Thor/StateMachine" unique_id=664966387]

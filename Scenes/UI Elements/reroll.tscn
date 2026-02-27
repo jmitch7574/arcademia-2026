@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://b2n21l6pwilj3"]
+
+[ext_resource type="Texture2D" uid="uid://cnt3r3llbks88" path="res://Assets/Kenney/Reroll.png" id="1_dcpjo"]
+[ext_resource type="Theme" uid="uid://cna40ld11lpj5" path="res://Themes/Shop.tres" id="1_ujn45"]
+
+[node name="Reroll" type="Panel" unique_id=1309589322]
+size_flags_horizontal = 3
+theme = ExtResource("1_ujn45")
+theme_type_variation = &"Reroll"
+
+[node name="RerollBottom" type="Panel" parent="." unique_id=1533650933]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_type_variation = &"RerollBottom"
+
+[node name="RerollText" type="RichTextLabel" parent="RerollBottom" unique_id=909360508]
+texture_filter = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 32
+text = "Reroll
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=267335884]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -56.0
+offset_top = -106.0
+offset_right = 56.0
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_dcpjo")

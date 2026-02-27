@@ -1,0 +1,43 @@
+[gd_resource type="Theme" format=3 uid="uid://cna40ld11lpj5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_haeiw"]
+bg_color = Color(0.2079, 0.33, 0.27302, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.078431375, 0.72156864, 0.16470589, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b5kf5"]
+bg_color = Color(0.107099995, 0.21, 0.16540998, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.079200014, 0.72, 0.16464008, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sj118"]
+bg_color = Color(0.1764, 0.18330666, 0.28, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.079200014, 0.47435996, 0.72, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hxabr"]
+bg_color = Color(0.08189999, 0.08510666, 0.13, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.079200014, 0.47435996, 0.72, 1)
+
+[resource]
+Reroll/base_type = &"Panel"
+Reroll/styles/panel = SubResource("StyleBoxFlat_haeiw")
+RerollBottom/base_type = &"Reroll"
+RerollBottom/styles/panel = SubResource("StyleBoxFlat_b5kf5")
+ShopItem/base_type = &"Panel"
+ShopItem/styles/panel = SubResource("StyleBoxFlat_sj118")
+ShopItemBottom/base_type = &"Panel"
+ShopItemBottom/styles/panel = SubResource("StyleBoxFlat_hxabr")
