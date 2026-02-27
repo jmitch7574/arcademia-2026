@@ -1,0 +1,24 @@
+[gd_resource type="Theme" format=3 uid="uid://gaki48q5hftc"]
+
+[ext_resource type="FontFile" uid="uid://36x3jhw1acdx" path="res://Assets/Kenney/Kenney High.ttf" id="1_hbba5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sdplq"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.19793725, 0.19793722, 0.19793722, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.08468992, 0.08468994, 0.08468986, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[resource]
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_sdplq")
+RichTextLabel/fonts/normal_font = ExtResource("1_hbba5")

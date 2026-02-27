@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://bdn1mhchgwvkm"]
+
+[ext_resource type="Texture2D" uid="uid://y75wrrab03k2" path="res://icon.svg" id="1_8qjam"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tayhw"]
+
+[node name="Node2D" type="Node2D" unique_id=1910647675]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=749237502]
+position = Vector2(280, 148)
+texture = ExtResource("1_8qjam")
+
+[node name="Button" type="Button" parent="Sprite2D" unique_id=312208210]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -64.0
+offset_right = -64.0
+offset_bottom = -64.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_right = NodePath("../../Sprite2D2/Button")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_tayhw")
+button_mask = 5
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1899537191]
+position = Vector2(440, 149)
+texture = ExtResource("1_8qjam")
+
+[node name="Button" type="Button" parent="Sprite2D2" unique_id=1949502604]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -61.0
+offset_top = -59.0
+offset_right = -61.0
+offset_bottom = -59.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_tayhw")
