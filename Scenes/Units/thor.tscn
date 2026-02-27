@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://v65uuesc36kj"]
+
+[ext_resource type="Script" uid="uid://cosr4qrn1kb71" path="res://Scripts/Unit.gd" id="1_xspdb"]
+[ext_resource type="Resource" uid="uid://xdj3ayk30444" path="res://Units/Thor.tres" id="2_3f7ei"]
+[ext_resource type="Material" uid="uid://dlhhnx45g42ri" path="res://Materials/unit.tres" id="2_ytsjf"]
+[ext_resource type="Texture2D" uid="uid://o3khn45cxn88" path="res://Assets/Units/thor.png" id="3_g70i3"]
+[ext_resource type="Script" uid="uid://w8c1iwl35m6i" path="res://Scripts/StateMachine.gd" id="4_q1uhi"]
+[ext_resource type="Script" uid="uid://d0byqe8nfg7jb" path="res://Scripts/States/WalkState.gd" id="5_74l43"]
+[ext_resource type="Script" uid="uid://bjxb0ag1ry4ws" path="res://Scripts/States/AttackState.gd" id="6_0f6ju"]
+[ext_resource type="Script" uid="uid://doxoedc1l1jg2" path="res://Scripts/ThorThunderStrike.gd" id="7_sp4f5"]
+[ext_resource type="Script" uid="uid://bdu8lj42wuild" path="res://Scripts/ClosestTarget.gd" id="8_aaj72"]
+
+[node name="Thor" type="Node2D" unique_id=1703226469 groups=["Units"]]
+script = ExtResource("1_xspdb")
+unit_resource = ExtResource("2_3f7ei")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1543214580]
+texture_filter = 1
+material = ExtResource("2_ytsjf")
+scale = Vector2(5, 5)
+texture = ExtResource("3_g70i3")
+region_rect = Rect2(0, 0, 16, 16)
+metadata/_edit_lock_ = true
+
+[node name="StateMachine" type="Node" parent="." unique_id=943529181 node_paths=PackedStringArray("states")]
+script = ExtResource("4_q1uhi")
+states = [NodePath("SpecialAttackState"), NodePath("AttackState"), NodePath("WalkState")]
+
+[node name="WalkState" type="Node" parent="StateMachine" unique_id=624709180 node_paths=PackedStringArray("target_system", "parent", "sprite")]
+script = ExtResource("5_74l43")
+target_system = NodePath("../../TargetingSystem")
+parent = NodePath("../..")
+move_speed = 100.0
+sprite = NodePath("../../Sprite")
+interruptible = true
+
+[node name="AttackState" type="Node" parent="StateMachine" unique_id=747475448 node_paths=PackedStringArray("target_system", "parent", "sprite")]
+script = ExtResource("6_0f6ju")
+target_system = NodePath("../../TargetingSystem")
+parent = NodePath("../..")
+sprite = NodePath("../../Sprite")
+attack_speed = 1.0
+attack_range = 64.0
+
+[node name="SpecialAttackState" type="Node" parent="StateMachine" unique_id=2008884350 node_paths=PackedStringArray("target_system")]
+script = ExtResource("7_sp4f5")
+target_system = NodePath("../../TargetingSystem")
+
+[node name="TargetingSystem" type="Node2D" parent="." unique_id=701804326]
+script = ExtResource("8_aaj72")
+
+[connection signal="attacked" from="StateMachine/AttackState" to="StateMachine/SpecialAttackState" method="_on_attack_state_attacked"]

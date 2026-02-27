@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://bn4s7iijx68dg"]
+
+[ext_resource type="Texture2D" uid="uid://dgnsu4u6dbioc" path="res://VFX/Lightning/spark_05_a.png" id="1_yfmkt"]
+[ext_resource type="Script" uid="uid://gtuyy4l15kvx" path="res://Scripts/PlayAnimOnAwake.gd" id="2_a7x4o"]
+
+[sub_resource type="Animation" id="Animation_yfmkt"]
+resource_name = "Lightning"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_a7x4o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a7x4o"]
+_data = {
+&"Lightning": SubResource("Animation_yfmkt"),
+&"RESET": SubResource("Animation_a7x4o")
+}
+
+[node name="LightningVFX" type="Node2D" unique_id=1741486299]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1190736295]
+modulate = Color(0.24000001, 0.8479998, 1, 1)
+position = Vector2(34, 1)
+scale = Vector2(2.4, 3)
+texture = ExtResource("1_yfmkt")
+offset = Vector2(0, -256)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=967608382]
+libraries/ = SubResource("AnimationLibrary_a7x4o")
+script = ExtResource("2_a7x4o")
+anim_name = "Lightning"

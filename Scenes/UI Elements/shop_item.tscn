@@ -1,12 +1,15 @@
 [gd_scene format=3 uid="uid://uu0p10ftnw1r"]
 
 [ext_resource type="Theme" uid="uid://cna40ld11lpj5" path="res://Themes/Shop.tres" id="1_22joc"]
-[ext_resource type="Texture2D" uid="uid://cnt3r3llbks88" path="res://Assets/Kenney/Reroll.png" id="2_0vh5g"]
+[ext_resource type="Material" uid="uid://dlhhnx45g42ri" path="res://Materials/unit.tres" id="2_0vh5g"]
+[ext_resource type="Texture2D" uid="uid://o3khn45cxn88" path="res://Assets/Units/thor.png" id="2_22joc"]
+[ext_resource type="Script" uid="uid://pq757rnhscxh" path="res://Scripts/ShopItem.gd" id="2_onf8e"]
 
 [node name="ShopItem" type="Panel" unique_id=1357183532]
 size_flags_horizontal = 3
 theme = ExtResource("1_22joc")
 theme_type_variation = &"ShopItem"
+script = ExtResource("2_onf8e")
 
 [node name="ShopBottom" type="Panel" parent="." unique_id=2076200836]
 custom_minimum_size = Vector2(0, 100)
@@ -25,16 +28,20 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = -5.0
+offset_right = 10.0
+offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 32
-text = "Reroll
-"
+text = "Thor"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="UnitTexture" type="TextureRect" parent="." unique_id=668461033]
 texture_filter = 1
+material = ExtResource("2_0vh5g")
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -47,4 +54,4 @@ offset_right = 56.0
 offset_bottom = 6.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_0vh5g")
+texture = ExtResource("2_22joc")

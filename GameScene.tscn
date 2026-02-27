@@ -1,29 +1,42 @@
 [gd_scene format=3 uid="uid://wd0trlkmus3"]
 
+[ext_resource type="Script" uid="uid://c3thlbfirpi83" path="res://Scripts/PlayerStats.gd" id="1_0exr2"]
 [ext_resource type="Texture2D" uid="uid://cddq2pqfiyia4" path="res://Assets/Kenney/Grid.svg" id="1_eqhe0"]
 [ext_resource type="Theme" uid="uid://gaki48q5hftc" path="res://Themes/GameTheme.tres" id="1_haeiw"]
-[ext_resource type="PackedScene" uid="uid://b2n21l6pwilj3" path="res://Scenes/UI Elements/reroll.tscn" id="2_b5kf5"]
+[ext_resource type="Script" uid="uid://drbithaitpukd" path="res://Scripts/Shop.gd" id="2_4fxa8"]
+[ext_resource type="Script" uid="uid://bilyoutardbvk" path="res://Scripts/ShopQueue.gd" id="2_ex6dp"]
 [ext_resource type="Texture2D" uid="uid://cvjjdojnal7o7" path="res://Assets/Kenney/Cursor.png" id="2_k77ap"]
+[ext_resource type="Script" uid="uid://drwphox75l0em" path="res://Scripts/UnitResource.gd" id="3_ex6dp"]
+[ext_resource type="Resource" uid="uid://xdj3ayk30444" path="res://Units/Thor.tres" id="4_cg2kh"]
 [ext_resource type="Script" uid="uid://bklrncyxf57w" path="res://Scripts/FocusManager.gd" id="4_hvuor"]
 [ext_resource type="Script" uid="uid://ba6qwy5xsj3t7" path="res://mouse_sprite.gd" id="6_i2arf"]
 [ext_resource type="Script" uid="uid://cosr4qrn1kb71" path="res://Scripts/Unit.gd" id="7_0exr2"]
 [ext_resource type="Material" uid="uid://dlhhnx45g42ri" path="res://Materials/unit.tres" id="7_5cvvu"]
-[ext_resource type="Texture2D" uid="uid://d2pt1mbl2w1jx" path="res://Assets/Units.png" id="9_0exr2"]
-[ext_resource type="Script" uid="uid://w8c1iwl35m6i" path="res://Scripts/StateMachine.gd" id="10_0exr2"]
-[ext_resource type="Script" uid="uid://d0byqe8nfg7jb" path="res://WalkState.gd" id="10_l6ya2"]
-[ext_resource type="Script" uid="uid://bdu8lj42wuild" path="res://Scripts/ClosestTarget.gd" id="11_oieil"]
+[ext_resource type="Script" uid="uid://h45001on6p0r" path="res://Scripts/ShopManager.gd" id="7_cg2kh"]
+[ext_resource type="PackedScene" uid="uid://v65uuesc36kj" path="res://Scenes/Units/thor.tscn" id="7_oieil"]
+[ext_resource type="Texture2D" uid="uid://d301wn0llt2ct" path="res://Assets/Units/dummy.png" id="13_4fxa8"]
 
 [node name="GameScene" type="Node2D" unique_id=1309565388]
+
+[node name="PlayerStats" type="Node" parent="." unique_id=1776936839]
+script = ExtResource("1_0exr2")
+
+[node name="ShopQueue" type="Node" parent="." unique_id=1354138094]
+script = ExtResource("2_ex6dp")
+units = Array[ExtResource("3_ex6dp")]([ExtResource("4_cg2kh")])
 
 [node name="Screen" type="Control" parent="." unique_id=1412506660]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 1921.0
-offset_bottom = 1080.0
+offset_left = 54.13977
+offset_top = 34.0
+offset_right = 1864.8602
+offset_bottom = 1052.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("2_4fxa8")
 
 [node name="Shop" type="PanelContainer" parent="Screen" unique_id=117144800]
 custom_minimum_size = Vector2(1000, 300)
@@ -39,6 +52,7 @@ offset_right = 20.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("1_haeiw")
+script = ExtResource("7_cg2kh")
 
 [node name="MarginContainer" type="MarginContainer" parent="Screen/Shop" unique_id=730343077]
 layout_mode = 2
@@ -48,18 +62,6 @@ theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
 [node name="ShopElements" type="HBoxContainer" parent="Screen/Shop/MarginContainer" unique_id=2107210662]
-layout_mode = 2
-
-[node name="Reroll" parent="Screen/Shop/MarginContainer/ShopElements" unique_id=1309589322 instance=ExtResource("2_b5kf5")]
-layout_mode = 2
-
-[node name="Reroll2" parent="Screen/Shop/MarginContainer/ShopElements" unique_id=494437214 instance=ExtResource("2_b5kf5")]
-layout_mode = 2
-
-[node name="Reroll3" parent="Screen/Shop/MarginContainer/ShopElements" unique_id=770670001 instance=ExtResource("2_b5kf5")]
-layout_mode = 2
-
-[node name="Reroll4" parent="Screen/Shop/MarginContainer/ShopElements" unique_id=254454987 instance=ExtResource("2_b5kf5")]
 layout_mode = 2
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=642158115]
@@ -90,50 +92,22 @@ mouse_control = NodePath("../P1Mouse")
 [node name="P1Mouse" type="Node2D" parent="." unique_id=362869788]
 position = Vector2(500, 75)
 
-[node name="P1FocusManager" type="Node" parent="P1Mouse" unique_id=269751576 node_paths=PackedStringArray("mouse_object", "reroll_item")]
+[node name="P1FocusManager" type="Node" parent="P1Mouse" unique_id=269751576 node_paths=PackedStringArray("mouse_object", "shop_elements")]
 script = ExtResource("4_hvuor")
 mouse_object = NodePath("..")
-reroll_item = NodePath("../../Screen/Shop/MarginContainer/ShopElements/Reroll")
+shop_elements = NodePath("../../Screen/Shop/MarginContainer/ShopElements")
 
-[node name="Thor" type="Node2D" parent="." unique_id=575788619 groups=["Units"]]
+[node name="Thor" parent="." unique_id=1703226469 instance=ExtResource("7_oieil")]
 position = Vector2(500, 76)
-script = ExtResource("7_0exr2")
-
-[node name="Sprite" type="Sprite2D" parent="Thor" unique_id=1224326328]
-texture_filter = 1
-material = ExtResource("7_5cvvu")
-scale = Vector2(5, 5)
-texture = ExtResource("9_0exr2")
-region_enabled = true
-region_rect = Rect2(0, 0, 16, 16)
-metadata/_edit_lock_ = true
-
-[node name="StateMachine" type="Node" parent="Thor" unique_id=210056005 node_paths=PackedStringArray("states")]
-script = ExtResource("10_0exr2")
-states = [NodePath("WalkState")]
-
-[node name="WalkState" type="Node" parent="Thor/StateMachine" unique_id=664966387 node_paths=PackedStringArray("target_system", "parent", "sprite")]
-script = ExtResource("10_l6ya2")
-target_system = NodePath("../../TargetingSystem")
-parent = NodePath("../..")
-move_speed = 100.0
-sprite = NodePath("../../Sprite")
-
-[node name="TargetingSystem" type="Node2D" parent="Thor" unique_id=1340057393]
-script = ExtResource("11_oieil")
 
 [node name="TargetDummy" type="Node2D" parent="." unique_id=1008819936 groups=["Units"]]
-position = Vector2(1321, 486)
+position = Vector2(1420, 382)
 script = ExtResource("7_0exr2")
 
 [node name="Sprite" type="Sprite2D" parent="TargetDummy" unique_id=1195982391]
 texture_filter = 1
 material = ExtResource("7_5cvvu")
 scale = Vector2(-5, 5)
-texture = ExtResource("9_0exr2")
-region_enabled = true
+texture = ExtResource("13_4fxa8")
 region_rect = Rect2(0, 16, 16, 16)
 metadata/_edit_lock_ = true
-
-[node name="TargetingSystem" type="Node2D" parent="TargetDummy" unique_id=2053272396]
-script = ExtResource("11_oieil")
