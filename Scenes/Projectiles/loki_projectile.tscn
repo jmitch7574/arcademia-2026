@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bkgxxgy4aj38f"]
+
+[ext_resource type="Script" uid="uid://dr4r6d0hiabm3" path="res://Scripts/LokiProjectile.gd" id="1_ma6lg"]
+[ext_resource type="PackedScene" uid="uid://bar7nvfyyjnjq" path="res://Scenes/Particle Systems/loki_projectile_particles_trail.tscn" id="2_gm0ja"]
+[ext_resource type="PackedScene" uid="uid://levqg6qlcxh6" path="res://Scenes/Particle Systems/loki_projectile_particles_hit.tscn" id="3_ooqs6"]
+
+[node name="LokiProjectile" type="Node2D" unique_id=768164927]
+script = ExtResource("1_ma6lg")
+projectile_speed = 200.0
+projectile_damage = 5.0
+
+[node name="ParticleTrail" parent="." unique_id=1098845346 instance=ExtResource("2_gm0ja")]
+
+[node name="ParticleHit" parent="." unique_id=1366613433 instance=ExtResource("3_ooqs6")]
+script = null

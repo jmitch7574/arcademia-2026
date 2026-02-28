@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://w8c1iwl35m6i" path="res://Scripts/States/StateMachine.gd" id="5_40ea1"]
 [ext_resource type="Script" uid="uid://d0byqe8nfg7jb" path="res://Scripts/States/WalkState.gd" id="6_cqxbx"]
 [ext_resource type="Script" uid="uid://bh3fkcxmm5vc" path="res://Scripts/States/ShootProjectile.gd" id="7_vq3b6"]
-[ext_resource type="PackedScene" uid="uid://bkgxxgy4aj38f" path="res://Scenes/loki_projectile.tscn" id="8_mcy1e"]
+[ext_resource type="PackedScene" uid="uid://bkgxxgy4aj38f" path="res://Scenes/Projectiles/loki_projectile.tscn" id="8_mcy1e"]
 [ext_resource type="Script" uid="uid://cyva8f81wouo8" path="res://Scripts/States/LokiDuplicate.gd" id="9_vq3b6"]
 [ext_resource type="PackedScene" uid="uid://b42iaqce3h8w8" path="res://Scenes/unit_audio.tscn" id="10_w56o8"]
 [ext_resource type="Script" uid="uid://bdu8lj42wuild" path="res://Scripts/ClosestTarget.gd" id="11_emfp8"]
@@ -42,9 +42,7 @@ parent = NodePath("../..")
 sprite = NodePath("../../Sprite")
 attack_speed = 0.5
 attack_range = 10000.0
-damage = 5
 projectile = ExtResource("8_mcy1e")
-projectile_speed = 200.0
 
 [node name="SpecialAttackState" type="Node" parent="StateMachine" unique_id=2008884350]
 script = ExtResource("9_vq3b6")

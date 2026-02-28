@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://d0byqe8nfg7jb" path="res://Scripts/States/WalkState.gd" id="6_gxl84"]
 [ext_resource type="Script" uid="uid://bjxb0ag1ry4ws" path="res://Scripts/States/AttackState.gd" id="7_p1a2r"]
 [ext_resource type="Script" uid="uid://cukpese4y8oec" path="res://Scripts/States/InShopState.gd" id="8_v661t"]
-[ext_resource type="PackedScene" uid="uid://13pluik5kytw" path="res://Scenes/pandora_particles.tscn" id="10_ywp0r"]
+[ext_resource type="PackedScene" uid="uid://13pluik5kytw" path="res://Scenes/Particle Systems/pandora_particles.tscn" id="10_ywp0r"]
 [ext_resource type="Script" uid="uid://bdu8lj42wuild" path="res://Scripts/ClosestTarget.gd" id="11_8ma5j"]
 [ext_resource type="PackedScene" uid="uid://b42iaqce3h8w8" path="res://Scenes/unit_audio.tscn" id="11_q5hwp"]
 

@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://b261w0eheva7f"]
+
+[ext_resource type="Script" uid="uid://dr4r6d0hiabm3" path="res://Scripts/LokiProjectile.gd" id="1_jihij"]
+
+[node name="Arrow" type="Node2D" unique_id=768164927]
+script = ExtResource("1_jihij")
+projectile_speed = 200.0
+projectile_damage = 5.0

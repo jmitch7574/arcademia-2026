@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://d0byqe8nfg7jb" path="res://Scripts/States/WalkState.gd" id="7_x2fkh"]
 [ext_resource type="Script" uid="uid://bjxb0ag1ry4ws" path="res://Scripts/States/AttackState.gd" id="8_xapli"]
 [ext_resource type="Script" uid="uid://bdu8lj42wuild" path="res://Scripts/ClosestTarget.gd" id="9_65f1g"]
-[ext_resource type="PackedScene" uid="uid://13pluik5kytw" path="res://Scenes/pandora_particles.tscn" id="10_s7qc5"]
+[ext_resource type="PackedScene" uid="uid://13pluik5kytw" path="res://Scenes/Particle Systems/pandora_particles.tscn" id="10_s7qc5"]
 [ext_resource type="PackedScene" uid="uid://b42iaqce3h8w8" path="res://Scenes/unit_audio.tscn" id="11_27a6f"]
 [ext_resource type="Script" uid="uid://b1bbh72omc80q" path="res://Scripts/WebbedApplicator.gd" id="12_lojwx"]
 
