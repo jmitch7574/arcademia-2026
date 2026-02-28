@@ -6,6 +6,8 @@ var projectile_speed : float
 
 var projectile_damage : float
 
+var source_unit : Unit
+
 @onready var particle_trail: GPUParticles2D = $ParticleTrail
 @onready var particle_hit: GPUParticles2D = $ParticleHit
 
@@ -22,7 +24,7 @@ func _process(delta: float) -> void:
 		
 		particle_hit.reparent(get_tree().current_scene)
 		
-		targeting_system.get_target().take_damage(projectile_damage)
+		targeting_system.get_target().take_damage(projectile_damage, source_unit)
 		
 		queue_free()
 		

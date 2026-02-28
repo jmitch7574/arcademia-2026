@@ -6,10 +6,9 @@
 [ext_resource type="Script" uid="uid://w8c1iwl35m6i" path="res://Scripts/States/StateMachine.gd" id="5_40ea1"]
 [ext_resource type="Script" uid="uid://d0byqe8nfg7jb" path="res://Scripts/States/WalkState.gd" id="6_cqxbx"]
 [ext_resource type="Script" uid="uid://bh3fkcxmm5vc" path="res://Scripts/States/ShootProjectile.gd" id="7_vq3b6"]
-[ext_resource type="Script" uid="uid://cukpese4y8oec" path="res://Scripts/States/InShopState.gd" id="8_bo4g1"]
 [ext_resource type="PackedScene" uid="uid://bkgxxgy4aj38f" path="res://Scenes/loki_projectile.tscn" id="8_mcy1e"]
 [ext_resource type="Script" uid="uid://cyva8f81wouo8" path="res://Scripts/States/LokiDuplicate.gd" id="9_vq3b6"]
-[ext_resource type="Script" uid="uid://bgm0othjow4am" path="res://Scripts/States/DeathState.gd" id="10_twwqs"]
+[ext_resource type="PackedScene" uid="uid://b42iaqce3h8w8" path="res://Scenes/unit_audio.tscn" id="10_w56o8"]
 [ext_resource type="Script" uid="uid://bdu8lj42wuild" path="res://Scripts/ClosestTarget.gd" id="11_emfp8"]
 
 [node name="Loki" type="Node2D" unique_id=1703226469 groups=["Units"]]
@@ -26,7 +25,7 @@ metadata/_edit_lock_ = true
 
 [node name="StateMachine" type="Node" parent="." unique_id=943529181 node_paths=PackedStringArray("states")]
 script = ExtResource("5_40ea1")
-states = [NodePath("DeathState"), NodePath("InShopState"), NodePath("SpecialAttackState"), NodePath("AttackState"), NodePath("WalkState")]
+states = [NodePath("SpecialAttackState"), NodePath("AttackState"), NodePath("WalkState")]
 
 [node name="WalkState" type="Node" parent="StateMachine" unique_id=624709180 node_paths=PackedStringArray("target_system", "parent", "sprite")]
 script = ExtResource("6_cqxbx")
@@ -47,20 +46,13 @@ damage = 5
 projectile = ExtResource("8_mcy1e")
 projectile_speed = 200.0
 
-[node name="InShopState" type="Node" parent="StateMachine" unique_id=1257102412]
-script = ExtResource("8_bo4g1")
-interruptible = true
-
 [node name="SpecialAttackState" type="Node" parent="StateMachine" unique_id=2008884350]
 script = ExtResource("9_vq3b6")
-
-[node name="DeathState" type="Node" parent="StateMachine" unique_id=2043398551 node_paths=PackedStringArray("sprite_renderer")]
-script = ExtResource("10_twwqs")
-sprite_renderer = NodePath("../../Sprite")
-interruptible = true
 
 [node name="TargetingSystem" type="Node2D" parent="." unique_id=701804326 node_paths=PackedStringArray("parent")]
 script = ExtResource("11_emfp8")
 parent = NodePath("..")
+
+[node name="UnitAudio" parent="." unique_id=1661030395 instance=ExtResource("10_w56o8")]
 
 [connection signal="attacked" from="StateMachine/AttackState" to="StateMachine/SpecialAttackState" method="_on_attack_state_attacked"]

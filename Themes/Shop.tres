@@ -1,5 +1,21 @@
 [gd_resource type="Theme" format=3 uid="uid://cna40ld11lpj5"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5y5h7"]
+bg_color = Color(0.33, 0.2079, 0.2079, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.72, 0.079200014, 0.079200014, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pkf7j"]
+bg_color = Color(0.21, 0.107099995, 0.107099995, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.72, 0.079200014, 0.079200014, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_haeiw"]
 bg_color = Color(0.2079, 0.33, 0.27302, 1)
 border_width_left = 4
@@ -33,6 +49,10 @@ border_width_bottom = 4
 border_color = Color(0.079200014, 0.47435996, 0.72, 1)
 
 [resource]
+LevelUp/base_type = &"Panel"
+LevelUp/styles/panel = SubResource("StyleBoxFlat_5y5h7")
+LevelUpBottom/base_type = &"Panel"
+LevelUpBottom/styles/panel = SubResource("StyleBoxFlat_pkf7j")
 Reroll/base_type = &"Panel"
 Reroll/styles/panel = SubResource("StyleBoxFlat_haeiw")
 RerollBottom/base_type = &"Reroll"

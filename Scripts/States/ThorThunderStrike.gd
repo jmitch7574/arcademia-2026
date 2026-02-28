@@ -14,7 +14,7 @@ func _enter_state() -> void:
 	charges = 0
 	if target_system.get_target():
 		var position = target_system.get_target().global_position
-		target_system.get_target().take_damage(damage)
+		target_system.get_target().take_damage(damage, unit)
 
 		var newVFX = LIGHTNING_VFX.instantiate()
 		newVFX.global_position = position

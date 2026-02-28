@@ -1,13 +1,13 @@
 extends RichTextLabel
 
 @export var game_manager : GameStateManager
-@export var target_player : FocusManager.PLAYER
+@export var target_player : PlayerStats.PLAYER
 
 func _ready() -> void:
-	game_manager.buy_time_begin.connect(func(): text = "Buy Phase")
-	game_manager.buy_time_end.connect(func(): text = "Get Ready...")
-	game_manager.battle_begin.connect(func(): text = "FIGHT")
-	game_manager.battle_end.connect(func(winner : FocusManager.PLAYER): 
+	GameEvents.buy_time_begin.connect(func(): text = "Buy Phase")
+	GameEvents.buy_time_end.connect(func(): text = "Get Ready...")
+	GameEvents.battle_begin.connect(func(): text = "FIGHT")
+	GameEvents.battle_end.connect(func(winner : PlayerStats.PLAYER): 
 		if winner == target_player:
 			text = "Good Job!"
 		else:

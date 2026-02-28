@@ -6,11 +6,12 @@ extends Node2D
 @export var tier_two_enemies : Array[PackedScene]
 
 @export var tier_two_chance : Curve
+@export var slots_curve : Curve
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 func spawn_enemies():
-	var slots = state_manager.round
+	var slots = floor(slots_curve.sample(state_manager.round))
 	
 	while slots > 0:
 		var chosen_enemy
@@ -56,7 +57,7 @@ func on_battle_about_to_begin():
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	animation_player.play("idle")
-	state_manager.buy_time_end.connect(on_battle_about_to_begin)
+	GameEvents.buy_time_end.connect(on_battle_about_to_begin)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

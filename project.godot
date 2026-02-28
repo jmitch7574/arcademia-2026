@@ -14,6 +14,10 @@ config/name="Arcademia-2026"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GameEvents="*uid://cew3lk85vbsm4"
+
 [display]
 
 window/size/viewport_width=1920
@@ -21,6 +25,10 @@ window/size/viewport_height=1080
 window/size/mode=4
 window/stretch/mode="viewport"
 window/stretch/aspect="keep_width"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/script-ide/plugin.cfg")
 
 [global_group]
 

@@ -16,8 +16,8 @@ func _ready() -> void:
 
 func bootstrap(unit: UnitResource):
 	if unit == null:
-		unit_name.text = "SOLD OUT"
-		unit_texture.texture = CROSS
+		unit_name.text = ""
+		unit_texture.texture = null
 		return
 	
 	unit_name.text = unit.unit_name + " [img]res://Assets/money.png[/img][color=#ffd24b]" + str(unit.unit_cost) + "[/color]"

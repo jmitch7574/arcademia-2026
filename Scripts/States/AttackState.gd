@@ -12,7 +12,7 @@ extends State
 var offset_tween : Tween
 var skew_tween : Tween
 
-signal attacked
+signal attacked(target : Unit)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _state_update(delta: float) -> void:
@@ -30,9 +30,9 @@ func _enter_state() -> void:
 	
 	offset_tween.tween_property(sprite, "offset", Vector2(5, 0),  0.25 / attack_speed).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	offset_tween.tween_property(sprite, "offset", Vector2(0, 0),  0.25 / attack_speed).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT).finished.connect(func(): 
-		attacked.emit()
 		if target_system.get_target():
-			target_system.get_target().take_damage(damage)
+			attacked.emit(target_system.get_target())
+			target_system.get_target().take_damage(damage, unit)
 	)
 	
 	skew_tween.tween_property(sprite, "skew", 0.5,  0.25 / attack_speed).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)

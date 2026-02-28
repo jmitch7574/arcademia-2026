@@ -9,10 +9,6 @@ enum GAMESTATE
 	BATTLE_END
 }
 
-signal buy_time_begin
-signal buy_time_end
-signal battle_begin
-signal battle_end(winner : FocusManager.PLAYER)
 
 @onready var buy_time_timer: Timer = $BuyTimeTimer
 @onready var pre_round_timer: Timer = $PreRoundTimer
@@ -30,7 +26,7 @@ func _ready() -> void:
 	current_state = GAMESTATE.BUY_TIME
 	
 	buy_time_timer.start()
-	buy_time_begin.emit()
+	GameEvents.buy_time_begin.emit()
 	current_timer = buy_time_timer
 
 func get_faction_counts() -> Array[int]:
@@ -42,11 +38,11 @@ func get_faction_counts() -> Array[int]:
 		if unit is Unit:
 			if unit.health > 0:
 				match unit.player_owner:
-					FocusManager.PLAYER.ONE:
+					PlayerStats.PLAYER.ONE:
 						player_one_count += 1
-					FocusManager.PLAYER.TWO:
+					PlayerStats.PLAYER.TWO:
 						player_two_count += 1
-					FocusManager.PLAYER.PANDORA:
+					PlayerStats.PLAYER.PANDORA:
 						pandora_count += 1
 	
 	return [player_one_count, player_two_count, pandora_count]
@@ -65,37 +61,37 @@ func early_exit() -> void:
 func calculate_winner() -> void:
 	var factions = get_faction_counts()
 	print(factions)
-	var winner : FocusManager.PLAYER
+	var winner : PlayerStats.PLAYER
 	
 	if factions[0] > (factions[1] + factions[2]):
-		winner = FocusManager.PLAYER.ONE
+		winner = PlayerStats.PLAYER.ONE
 	else:
 		if (factions[1] > factions[2]):
-			winner = FocusManager.PLAYER.TWO
+			winner = PlayerStats.PLAYER.TWO
 		else:
-			winner = FocusManager.PLAYER.PANDORA
+			winner = PlayerStats.PLAYER.PANDORA
 	
-	battle_end.emit(winner)
+	GameEvents.battle_end.emit(winner)
 
 func _on_buy_time_timer_timeout() -> void:
 	current_state = GAMESTATE.PRE_BATTLE
 	
 	pre_round_timer.start()
-	buy_time_end.emit()
+	GameEvents.buy_time_end.emit()
 	current_timer = pre_round_timer
 
 func _on_pre_round_timer_timeout() -> void:
 	current_state = GAMESTATE.BATTLE
 	
 	round_timer.start()
-	battle_begin.emit()
+	GameEvents.battle_begin.emit()
 	current_timer = round_timer
 
 func _on_round_timer_timeout() -> void:
 	current_state = GAMESTATE.BATTLE_END
 	
 	battle_end_timer.start()
-	battle_end.emit()
+	calculate_winner()
 	current_timer = battle_end_timer
 
 func _on_post_round_timer_timeout() -> void:
@@ -103,5 +99,5 @@ func _on_post_round_timer_timeout() -> void:
 	current_state = GAMESTATE.BUY_TIME
 	
 	buy_time_timer.start()
-	buy_time_begin.emit()
+	GameEvents.buy_time_begin.emit()
 	current_timer = buy_time_timer

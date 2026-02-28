@@ -7,22 +7,17 @@ enum POSITION{
 	PERKS
 }
 
-## Available Player Options
-enum PLAYER{
-	ONE,
-	TWO,
-	PANDORA
-}
-
 ## The Node 2D this script is managing
 @export var mouse_object : Node2D
 
 ## Which player this mouse is for
-@export var player : PLAYER
+@export var player : PlayerStats.PLAYER
 var input_prefix : String
 
 ## Which area in the game the pointer is currently focused on
 var location : POSITION = POSITION.BOARD
+
+var picked_up_unit : Unit
 
 ## The start position of the mouse (Top Left Corner for now)
 static var START_POSITION = Vector2(500, 75)
@@ -40,21 +35,45 @@ var focused_control : Control
 ## Time Between Movement Commands
 var movement_cooldown : float
 
+var enabled : bool
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	enabled = true
+	
+	GameEvents.buy_time_begin.connect(func(): enabled = true)
+	GameEvents.buy_time_end.connect(func(): enabled = false)
+	
 	move_mouse(START_POSITION)
-	input_prefix = "p1" if player == PLAYER.ONE else "p2"
+	input_prefix = "p1" if player == PlayerStats.PLAYER.ONE else "p2"
+	GameEvents.buy_time_end.connect(drop_unit)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if not enabled: return
+	
+	if picked_up_unit != null:
+		picked_up_unit.grid_coords = grid_position
+		picked_up_unit.global_position = START_POSITION + (picked_up_unit.grid_coords * 102)
+	
 	if Input.is_action_just_pressed(input_prefix + "_accept") and focused_control is InteractableControl:
 		focused_control._on_press()
 	
+	if Input.is_action_just_pressed(input_prefix + "_accept"):
+		if (picked_up_unit != null):
+			drop_unit()
+			return
+		
+		for node in get_tree().get_nodes_in_group("Units"):
+			if node is Unit and location == POSITION.BOARD:
+				if node.grid_coords == grid_position:
+					pick_up_unit(node)
+	
 	movement_cooldown -= delta
-	var movement : Vector2 = Input.get_vector(input_prefix + "_move_left", 
-											  input_prefix + "_move_right", 
-											  input_prefix + "_move_up", 
-											  input_prefix + "_move_down")
+	var movement : Vector2
+	
+	movement.x = Input.get_axis(input_prefix + "_move_left", input_prefix + "_move_right")
+	movement.y = Input.get_axis(input_prefix + "_move_up", input_prefix + "_move_down")
 	
 	if movement.length() != 0 and movement_cooldown <= 0:
 		movement_cooldown = 0.2
@@ -97,10 +116,21 @@ func move_mouse_grid(newPosition : Vector2):
 func move_mouse_to_control(control : Control):
 	move_mouse(control.get_global_rect().get_center())
 	focused_control = control
+	drop_unit()
 	
 func move_to_shop():
 	location = POSITION.SHOP
 	move_mouse_to_control(shop_elements.get_child(0))
+	drop_unit()
+
+func pick_up_unit(unit : Unit):
+	picked_up_unit = unit
+
+func drop_unit():
+	if picked_up_unit == null:
+		return
+	
+	picked_up_unit = null
 
 func move_to_perks():
 	pass

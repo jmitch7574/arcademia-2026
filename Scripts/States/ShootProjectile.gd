@@ -39,6 +39,7 @@ func _enter_state() -> void:
 		projectile_instance.projectile_damage = damage
 		projectile_instance.targeting_system = target_system
 		projectile_instance.global_position = unit.global_position
+		projectile_instance.source_unit = unit
 		
 		get_tree().current_scene.add_child(projectile_instance)
 	)

@@ -5,6 +5,7 @@
 [ext_resource type="Theme" uid="uid://gaki48q5hftc" path="res://Themes/GameTheme.tres" id="1_haeiw"]
 [ext_resource type="Script" uid="uid://drbithaitpukd" path="res://Scripts/Shop.gd" id="2_4fxa8"]
 [ext_resource type="Script" uid="uid://bilyoutardbvk" path="res://Scripts/ShopQueue.gd" id="2_ex6dp"]
+[ext_resource type="AudioStream" uid="uid://d3or0c28j36nh" path="res://Sound/pickupCoin.wav" id="2_igvw6"]
 [ext_resource type="Texture2D" uid="uid://cvjjdojnal7o7" path="res://Assets/Kenney/Cursor.png" id="2_k77ap"]
 [ext_resource type="Script" uid="uid://drwphox75l0em" path="res://Scripts/UnitResource.gd" id="3_ex6dp"]
 [ext_resource type="Resource" uid="uid://xdj3ayk30444" path="res://Units/Thor.tres" id="4_cg2kh"]
@@ -15,17 +16,32 @@
 [ext_resource type="Script" uid="uid://h45001on6p0r" path="res://Scripts/ShopManager.gd" id="7_cg2kh"]
 [ext_resource type="Script" uid="uid://dma5ow0mpynxh" path="res://Scripts/GameTimer.gd" id="9_icjtl"]
 [ext_resource type="Script" uid="uid://c86217m1sekx4" path="res://Scripts/SectionDisplay.gd" id="9_sao6o"]
+[ext_resource type="Script" uid="uid://cm8plam3lsmhj" path="res://Scripts/ShopSFXManager.gd" id="11_n1fdl"]
 [ext_resource type="Script" uid="uid://cu606eit2hnd6" path="res://Scripts/MoneyLabel.gd" id="11_sao6o"]
+[ext_resource type="Script" uid="uid://j4vrpkdjrry3" path="res://Scripts/UnitText.gd" id="13_0p1ba"]
+[ext_resource type="Script" uid="uid://h7au6xuybg48" path="res://Scripts/Camera.gd" id="14_k8u5j"]
 [ext_resource type="Texture2D" uid="uid://ct7ahocabdtbm" path="res://Assets/PandorasBox/base.png" id="19_6qjax"]
 [ext_resource type="Script" uid="uid://bbjt63v3jqfil" path="res://Scripts/PandorasBox.gd" id="19_k8u5j"]
 [ext_resource type="PackedScene" uid="uid://8barv47wqjcm" path="res://Scenes/Pandoras Units/decay.tscn" id="20_0p1ba"]
 [ext_resource type="Texture2D" uid="uid://b4xwgpu7ew32e" path="res://Assets/PandorasBox/lid.png" id="20_88a4u"]
 [ext_resource type="Texture2D" uid="uid://cwf2mfxnots3" path="res://Assets/PandorasBox/eyes.png" id="21_0ptlf"]
+[ext_resource type="PackedScene" uid="uid://d3mfkh7jwepl2" path="res://Scenes/Pandoras Units/spider.tscn" id="23_redr1"]
+[ext_resource type="Script" uid="uid://dgfx10t1vmvs8" path="res://Scripts/VictoryAndLossThemePlayer.gd" id="26_0axbu"]
+[ext_resource type="Script" uid="uid://b8p74f0ukwe7s" path="res://Scripts/MusicManager.gd" id="27_4puv8"]
+[ext_resource type="AudioStream" uid="uid://cx5u1utjh3ooc" path="res://Sound/bass_loop.wav" id="27_agx0x"]
+[ext_resource type="AudioStream" uid="uid://cj22ugkd4tji" path="res://Sound/melody.wav" id="28_jvwnh"]
 
 [sub_resource type="Curve" id="Curve_k8u5j"]
 _limits = [0.0, 1.0, 0.0, 9.0]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(9, 0.3404163), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(9, 0.38551605), 0.0, 0.0, 0, 0]
 point_count = 2
+
+[sub_resource type="Curve" id="Curve_0ptlf"]
+_limits = [0.0, 20.0, 0.0, 30.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(2.4, 1.2), 0.0, 0.0, 0, 0, Vector2(9, 6), -0.080152065, -0.080152065, 0, 0, Vector2(19.5, 13), 0.0, 0.0, 0, 0, Vector2(30, 20), 0.0, 0.0, 0, 0]
+point_count = 5
+metadata/_snap_enabled = true
+metadata/_snap_count = 50
 
 [sub_resource type="Animation" id="Animation_0p1ba"]
 length = 0.001
@@ -273,6 +289,9 @@ _data = {
 [node name="PlayerStats" type="Node" parent="." unique_id=1776936839]
 script = ExtResource("1_0exr2")
 
+[node name="MoneySFX" type="AudioStreamPlayer2D" parent="PlayerStats" unique_id=855459625]
+stream = ExtResource("2_igvw6")
+
 [node name="ShopQueue" type="Node" parent="." unique_id=1354138094]
 script = ExtResource("2_ex6dp")
 units = Array[ExtResource("3_ex6dp")]([ExtResource("4_cg2kh"), ExtResource("5_0ptlf")])
@@ -281,7 +300,7 @@ units = Array[ExtResource("3_ex6dp")]([ExtResource("4_cg2kh"), ExtResource("5_0p
 script = ExtResource("5_rb7ul")
 
 [node name="BuyTimeTimer" type="Timer" parent="GameStateManager" unique_id=754912126]
-wait_time = 5.0
+wait_time = 15.0
 one_shot = true
 
 [node name="PreRoundTimer" type="Timer" parent="GameStateManager" unique_id=1396043593]
@@ -296,20 +315,21 @@ one_shot = true
 wait_time = 5.0
 one_shot = true
 
-[node name="Screen" type="Control" parent="." unique_id=1412506660]
+[node name="ShopContainer" type="Control" parent="." unique_id=1412506660]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 54.13977
+offset_left = 50.0
 offset_top = 34.0
-offset_right = 1864.8602
-offset_bottom = 1052.0
+offset_right = 1870.0
+offset_bottom = 1058.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(910, 512)
 script = ExtResource("2_4fxa8")
 
-[node name="Shop" type="PanelContainer" parent="Screen" unique_id=117144800 node_paths=PackedStringArray("shop_queue", "player_stats")]
+[node name="Shop" type="PanelContainer" parent="ShopContainer" unique_id=117144800 node_paths=PackedStringArray("shop_queue", "player_stats")]
 custom_minimum_size = Vector2(1000, 300)
 layout_mode = 1
 anchors_preset = 7
@@ -327,17 +347,32 @@ script = ExtResource("7_cg2kh")
 shop_queue = NodePath("../../ShopQueue")
 player_stats = NodePath("../../PlayerStats")
 
-[node name="MarginContainer" type="MarginContainer" parent="Screen/Shop" unique_id=730343077]
+[node name="MarginContainer" type="MarginContainer" parent="ShopContainer/Shop" unique_id=730343077]
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="ShopElements" type="HBoxContainer" parent="Screen/Shop/MarginContainer" unique_id=2107210662]
+[node name="ShopElements" type="HBoxContainer" parent="ShopContainer/Shop/MarginContainer" unique_id=2107210662]
 layout_mode = 2
 
-[node name="SectionContainer" type="PanelContainer" parent="Screen" unique_id=203383172]
+[node name="ShopSFXManager" type="AudioStreamPlayer2D" parent="ShopContainer/Shop" unique_id=1600939729]
+script = ExtResource("11_n1fdl")
+
+[node name="PlayerStatsContainer" type="Control" parent="." unique_id=1858020564]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 54.13977
+offset_top = 34.0
+offset_right = 1864.8602
+offset_bottom = 1052.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SectionContainer" type="PanelContainer" parent="PlayerStatsContainer" unique_id=1959297522]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -352,17 +387,17 @@ grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("1_haeiw")
 
-[node name="SectionLabel" type="RichTextLabel" parent="Screen/SectionContainer" unique_id=653674044 node_paths=PackedStringArray("game_manager")]
+[node name="SectionLabel" type="RichTextLabel" parent="PlayerStatsContainer/SectionContainer" unique_id=211525174 node_paths=PackedStringArray("game_manager")]
 texture_filter = 1
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 32
-text = "Game STATE"
+text = "Buy Phase"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("9_sao6o")
 game_manager = NodePath("../../../GameStateManager")
 
-[node name="ClockContainer" type="PanelContainer" parent="Screen" unique_id=798945036]
+[node name="ClockContainer" type="PanelContainer" parent="PlayerStatsContainer" unique_id=1529515175]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -377,7 +412,7 @@ grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("1_haeiw")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Screen/ClockContainer" unique_id=1755572858]
+[node name="RichTextLabel" type="RichTextLabel" parent="PlayerStatsContainer/ClockContainer" unique_id=1802380600]
 texture_filter = 1
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 64
@@ -386,7 +421,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("9_icjtl")
 
-[node name="MoneyContainer" type="PanelContainer" parent="Screen" unique_id=1909392381]
+[node name="MoneyContainer" type="PanelContainer" parent="PlayerStatsContainer" unique_id=456746939]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -401,7 +436,7 @@ grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("1_haeiw")
 
-[node name="MoneyLabel" type="RichTextLabel" parent="Screen/MoneyContainer" unique_id=1752711861 node_paths=PackedStringArray("player_stats")]
+[node name="MoneyLabel" type="RichTextLabel" parent="PlayerStatsContainer/MoneyContainer" unique_id=1593765542 node_paths=PackedStringArray("player_stats")]
 texture_filter = 1
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 64
@@ -410,6 +445,54 @@ text = "money"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("11_sao6o")
+player_stats = NodePath("../../../PlayerStats")
+
+[node name="SlotsNumberContainer" type="PanelContainer" parent="PlayerStatsContainer" unique_id=1551635139]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -805.5
+offset_top = -437.0
+offset_right = -629.5
+offset_bottom = -386.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("1_haeiw")
+
+[node name="SectionLabel" type="RichTextLabel" parent="PlayerStatsContainer/SlotsNumberContainer" unique_id=2137857006]
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 32
+text = "Units"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SlotsDescription" type="PanelContainer" parent="PlayerStatsContainer" unique_id=136213461]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -813.5
+offset_top = -515.0
+offset_right = -621.5
+offset_bottom = -428.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("1_haeiw")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PlayerStatsContainer/SlotsDescription" unique_id=1078636193 node_paths=PackedStringArray("player_stats")]
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 64
+text = "3 / 10"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("13_0p1ba")
 player_stats = NodePath("../../../PlayerStats")
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=642158115]
@@ -426,6 +509,7 @@ region_rect = Rect2(2, 2, 2540, 1792)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1568371280]
 anchor_mode = 0
+script = ExtResource("14_k8u5j")
 
 [node name="P1MouseSprite" type="Sprite2D" parent="." unique_id=445692134 node_paths=PackedStringArray("mouse_control")]
 z_index = 1
@@ -443,15 +527,16 @@ position = Vector2(500, 75)
 [node name="P1FocusManager" type="Node" parent="P1Mouse" unique_id=269751576 node_paths=PackedStringArray("mouse_object", "shop_elements")]
 script = ExtResource("4_hvuor")
 mouse_object = NodePath("..")
-shop_elements = NodePath("../../Screen/Shop/MarginContainer/ShopElements")
+shop_elements = NodePath("../../ShopContainer/Shop/MarginContainer/ShopElements")
 
 [node name="PandorasBox" type="Node2D" parent="." unique_id=934045646 node_paths=PackedStringArray("state_manager")]
 position = Vector2(1688, 393)
 script = ExtResource("19_k8u5j")
 state_manager = NodePath("../GameStateManager")
-tier_one_enemies = Array[PackedScene]([ExtResource("20_0p1ba")])
+tier_one_enemies = Array[PackedScene]([ExtResource("23_redr1"), ExtResource("20_0p1ba")])
 tier_two_enemies = Array[PackedScene]([ExtResource("20_0p1ba")])
 tier_two_chance = SubResource("Curve_k8u5j")
+slots_curve = SubResource("Curve_0ptlf")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="PandorasBox" unique_id=944654250]
 root_node = NodePath("../..")
@@ -473,6 +558,21 @@ texture_filter = 1
 position = Vector2(-13, -27.999992)
 scale = Vector2(8, 8)
 texture = ExtResource("21_0ptlf")
+
+[node name="VictoryAndLossThemes" type="AudioStreamPlayer2D" parent="." unique_id=1335489374]
+script = ExtResource("26_0axbu")
+
+[node name="MusicManager" type="Node2D" parent="." unique_id=1095050228]
+script = ExtResource("27_4puv8")
+
+[node name="Bassline" type="AudioStreamPlayer2D" parent="MusicManager" unique_id=893811297]
+stream = ExtResource("27_agx0x")
+autoplay = true
+
+[node name="Melody" type="AudioStreamPlayer2D" parent="MusicManager" unique_id=899949984]
+stream = ExtResource("28_jvwnh")
+volume_db = -50.0
+autoplay = true
 
 [connection signal="timeout" from="GameStateManager/BuyTimeTimer" to="GameStateManager" method="_on_buy_time_timer_timeout"]
 [connection signal="timeout" from="GameStateManager/PreRoundTimer" to="GameStateManager" method="_on_pre_round_timer_timeout"]

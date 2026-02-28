@@ -4,6 +4,8 @@ extends Sprite2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	GameEvents.buy_time_begin.connect(func(): visible = true)
+	GameEvents.buy_time_end.connect(func(): visible = false)
 	pass # Replace with function body.
 
 

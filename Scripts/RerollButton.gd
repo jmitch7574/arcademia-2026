@@ -1,7 +1,7 @@
 class_name RerollButton
 extends InteractableControl
 
-signal reroll_requested(source : RerollButton)
+signal reroll_requested
 
 @onready var texture_rect: TextureRect = $TextureRect
 @onready var reroll_text: RichTextLabel = $RerollBottom/RerollText
@@ -11,15 +11,17 @@ var reroll_price = 3
 var rotation_anim : Tween
 
 func _ready() -> void:
-	get_tree().get_first_node_in_group("GameManager").buy_time_begin.connect(func(): 
+	GameEvents.buy_time_begin.connect(func(): 
 		reroll_price = 3
 		update_price_text()
 	)
 	update_price_text()
 
 func _on_press() -> void:
-	reroll_requested.emit(self)
-	
+	reroll_requested.emit()
+
+func reroll_successful() -> void:
+	reroll_price += 2
 	if rotation_anim: rotation_anim.stop()
 	texture_rect.rotation_degrees = 0
 	rotation_anim = create_tween()

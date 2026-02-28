@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://cukpese4y8oec" path="res://Scripts/States/InShopState.gd" id="8_v661t"]
 [ext_resource type="PackedScene" uid="uid://13pluik5kytw" path="res://Scenes/pandora_particles.tscn" id="10_ywp0r"]
 [ext_resource type="Script" uid="uid://bdu8lj42wuild" path="res://Scripts/ClosestTarget.gd" id="11_8ma5j"]
+[ext_resource type="PackedScene" uid="uid://b42iaqce3h8w8" path="res://Scenes/unit_audio.tscn" id="11_q5hwp"]
 
 [node name="Decay" type="Node2D" unique_id=1703226469 groups=["Units"]]
 script = ExtResource("1_ed6gx")
@@ -55,3 +56,5 @@ script = ExtResource("11_8ma5j")
 parent = NodePath("..")
 
 [node name="PandoraParticles" parent="." unique_id=1098845346 instance=ExtResource("10_ywp0r")]
+
+[node name="UnitAudio" parent="." unique_id=1661030395 instance=ExtResource("11_q5hwp")]
