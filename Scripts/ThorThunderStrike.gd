@@ -1,6 +1,7 @@
 extends State
 
 @export var target_system : TargetSystem
+@export var damage : int = 20
 const LIGHTNING_VFX = preload("uid://bn4s7iijx68dg")
 
 var charges = 0

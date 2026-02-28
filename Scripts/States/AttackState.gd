@@ -7,6 +7,7 @@ extends State
 
 @export var attack_speed : float
 @export var attack_range : float
+@export var damage : int = 10
 
 var offset_tween : Tween
 var skew_tween : Tween

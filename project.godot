@@ -25,6 +25,8 @@ window/stretch/aspect="keep_width"
 [global_group]
 
 Units="Character Units on game board"
+ShopItems="The slots units are purchasable from"
+GameManager="GameManager"
 
 [input]
 
@@ -66,3 +68,4 @@ p1_decline={
 [rendering]
 
 rendering_device/driver.windows="d3d12"
+environment/defaults/default_clear_color=Color(0.068346664, 0.043199997, 0.08, 1)

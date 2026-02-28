@@ -10,7 +10,8 @@ enum POSITION{
 ## Available Player Options
 enum PLAYER{
 	ONE,
-	TWO
+	TWO,
+	PANDORA
 }
 
 ## The Node 2D this script is managing
@@ -24,7 +25,7 @@ var input_prefix : String
 var location : POSITION = POSITION.BOARD
 
 ## The start position of the mouse (Top Left Corner for now)
-var START_POSITION = Vector2(525, 75)
+static var START_POSITION = Vector2(500, 75)
 var grid_position = Vector2(0, 0)
 
 ## The first element in the shop, the reroll
@@ -46,6 +47,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if Input.is_action_just_pressed(input_prefix + "_accept") and focused_control is InteractableControl:
+		focused_control._on_press()
+	
 	movement_cooldown -= delta
 	var movement : Vector2 = Input.get_vector(input_prefix + "_move_left", 
 											  input_prefix + "_move_right", 
@@ -86,7 +90,7 @@ func move_mouse(newPosition : Vector2):
 ## Move the grid to the grid tile
 func move_mouse_grid(newPosition : Vector2):
 	grid_position = newPosition
-	mouse_object.position = START_POSITION + (grid_position * 100)
+	mouse_object.position = START_POSITION + (grid_position * 102)
 	location = POSITION.BOARD
 	focused_control = null
 

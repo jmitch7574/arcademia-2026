@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://o3khn45cxn88" path="res://Assets/Units/thor.png" id="2_22joc"]
 [ext_resource type="Script" uid="uid://pq757rnhscxh" path="res://Scripts/ShopItem.gd" id="2_onf8e"]
 
-[node name="ShopItem" type="Panel" unique_id=1357183532]
+[node name="ShopItem" type="Panel" unique_id=1357183532 groups=["ShopItems"]]
 size_flags_horizontal = 3
 theme = ExtResource("1_22joc")
 theme_type_variation = &"ShopItem"
@@ -35,6 +35,7 @@ offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
 text = "Thor"
 horizontal_alignment = 1
 vertical_alignment = 1
