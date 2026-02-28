@@ -9,6 +9,8 @@ signal health_changed(amount, new_health)
 
 var grid_coords
 
+var is_loki_clone = false
+
 @export var player_owner : FocusManager.PLAYER
 
 func _ready() -> void:
@@ -16,7 +18,20 @@ func _ready() -> void:
 	get_tree().get_first_node_in_group("GameManager").buy_time_begin.connect(on_round_end)
 	
 	if (player_owner == FocusManager.PLAYER.PANDORA):
-		return
+		var valid_coord = false
+		
+		var coord = Vector2(0, 0)
+		
+		while not valid_coord:
+			valid_coord = true
+			coord = Vector2(randi_range(5, 9), randi_range(0, 7))
+			for node in get_tree().get_nodes_in_group("Units"):
+				if node is Unit:
+					if node == self:
+						continue
+					if node.grid_coords == coord:
+						valid_coord = false
+			
 	
 	var taken_grid_coords : Array[Vector2] = []
 	for node in get_tree().get_nodes_in_group("Units"):
@@ -39,9 +54,13 @@ func _ready() -> void:
 func take_damage(damage : float) -> void:
 	health -= damage
 	health_changed.emit(damage, health)
+	
+	
+	if player_owner == FocusManager.PLAYER.PANDORA and health <= 0:
+		queue_free()
 
 func on_round_end() -> void:
-	if player_owner == FocusManager.PLAYER.PANDORA:
+	if player_owner == FocusManager.PLAYER.PANDORA or is_loki_clone:
 		queue_free()
 
 	health = max_health

@@ -1,7 +1,6 @@
 extends State
 
 @export var sprite_renderer : Sprite2D
-@export var unit : Unit
 
 const GRAVE = preload("uid://x17adh6lqoyx")
 var regular_sprite : Texture

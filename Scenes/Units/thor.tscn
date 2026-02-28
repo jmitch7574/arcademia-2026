@@ -1,20 +1,18 @@
 [gd_scene format=3 uid="uid://v65uuesc36kj"]
 
 [ext_resource type="Script" uid="uid://cosr4qrn1kb71" path="res://Scripts/Unit.gd" id="1_xspdb"]
-[ext_resource type="Resource" uid="uid://xdj3ayk30444" path="res://Units/Thor.tres" id="2_3f7ei"]
 [ext_resource type="Material" uid="uid://dlhhnx45g42ri" path="res://Materials/unit.tres" id="2_ytsjf"]
 [ext_resource type="Texture2D" uid="uid://o3khn45cxn88" path="res://Assets/Units/thor.png" id="3_g70i3"]
-[ext_resource type="Script" uid="uid://w8c1iwl35m6i" path="res://Scripts/StateMachine.gd" id="4_q1uhi"]
+[ext_resource type="Script" uid="uid://w8c1iwl35m6i" path="res://Scripts/States/StateMachine.gd" id="4_q1uhi"]
 [ext_resource type="Script" uid="uid://d0byqe8nfg7jb" path="res://Scripts/States/WalkState.gd" id="5_74l43"]
 [ext_resource type="Script" uid="uid://bjxb0ag1ry4ws" path="res://Scripts/States/AttackState.gd" id="6_0f6ju"]
-[ext_resource type="Script" uid="uid://doxoedc1l1jg2" path="res://Scripts/ThorThunderStrike.gd" id="7_sp4f5"]
+[ext_resource type="Script" uid="uid://doxoedc1l1jg2" path="res://Scripts/States/ThorThunderStrike.gd" id="7_sp4f5"]
 [ext_resource type="Script" uid="uid://cukpese4y8oec" path="res://Scripts/States/InShopState.gd" id="8_3mpmt"]
 [ext_resource type="Script" uid="uid://bdu8lj42wuild" path="res://Scripts/ClosestTarget.gd" id="8_aaj72"]
-[ext_resource type="Script" uid="uid://bgm0othjow4am" path="res://Scripts/DeathState.gd" id="10_y3l4i"]
+[ext_resource type="Script" uid="uid://bgm0othjow4am" path="res://Scripts/States/DeathState.gd" id="10_y3l4i"]
 
 [node name="Thor" type="Node2D" unique_id=1703226469 groups=["Units"]]
 script = ExtResource("1_xspdb")
-unit_resource = ExtResource("2_3f7ei")
 max_health = 100.0
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1543214580]
@@ -44,7 +42,7 @@ parent = NodePath("../..")
 sprite = NodePath("../../Sprite")
 attack_speed = 1.0
 attack_range = 64.0
-damage = 8
+damage = 14
 
 [node name="InShopState" type="Node" parent="StateMachine" unique_id=1257102412]
 script = ExtResource("8_3mpmt")
@@ -53,12 +51,12 @@ interruptible = true
 [node name="SpecialAttackState" type="Node" parent="StateMachine" unique_id=2008884350 node_paths=PackedStringArray("target_system")]
 script = ExtResource("7_sp4f5")
 target_system = NodePath("../../TargetingSystem")
-damage = 15
+damage = 22
 
-[node name="DeathState" type="Node" parent="StateMachine" unique_id=2043398551 node_paths=PackedStringArray("sprite_renderer", "unit")]
+[node name="DeathState" type="Node" parent="StateMachine" unique_id=2043398551 node_paths=PackedStringArray("sprite_renderer")]
 script = ExtResource("10_y3l4i")
 sprite_renderer = NodePath("../../Sprite")
-unit = NodePath("../..")
+interruptible = true
 
 [node name="TargetingSystem" type="Node2D" parent="." unique_id=701804326 node_paths=PackedStringArray("parent")]
 script = ExtResource("8_aaj72")

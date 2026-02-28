@@ -2,20 +2,20 @@ class_name TargetSystem
 extends Node2D
 
 @export var parent : Unit
-var current_target : Node2D = null
+var current_target : Unit = null
 
 func _process(delta: float) -> void:
 	if (current_target):
 		if (current_target.global_position.x < global_position.x):
-			parent.global_scale.x = -abs(parent.global_scale.x)
+			parent.scale.x = -abs(parent.scale.x)
 		else:
-			parent.global_scale.x = abs(parent.global_scale.x)
+			parent.scale.x = abs(parent.scale.x)
 
-func get_target() -> Node2D:
-	if current_target == null:
+func get_target() -> Unit:
+	if current_target == null or current_target.health <= 0:
 		current_target = get_new_target()
 		
 	return current_target
 
-func get_new_target():
-	pass
+func get_new_target() -> Unit:
+	return null

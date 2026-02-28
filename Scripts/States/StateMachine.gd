@@ -9,6 +9,7 @@ var current_state : State
 func _ready() -> void:
 	for state in states:
 		state.state_concluded.connect(on_state_self_ended)
+		state.unit = get_parent()
 	
 	swap_state(get_next_state())
 

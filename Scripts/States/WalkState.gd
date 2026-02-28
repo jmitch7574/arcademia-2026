@@ -13,7 +13,8 @@ var walk_tween : Tween
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _state_update(delta: float) -> void:
-	parent.global_position = parent.global_position.move_toward(target_system.get_target().global_position, delta * move_speed)
+	if target_system.get_target():
+		parent.global_position = parent.global_position.move_toward(target_system.get_target().global_position, delta * move_speed)
 
 ## Function that decides whether or not this state can be transitioned to
 func state_entry_condition() -> bool:

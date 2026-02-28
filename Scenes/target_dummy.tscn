@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://ct82b63pxk4x2"]
+
+[ext_resource type="Script" uid="uid://cosr4qrn1kb71" path="res://Scripts/Unit.gd" id="1_oe3qq"]
+[ext_resource type="Material" uid="uid://dlhhnx45g42ri" path="res://Materials/unit.tres" id="2_ucqa6"]
+[ext_resource type="Texture2D" uid="uid://d301wn0llt2ct" path="res://Assets/Units/dummy.png" id="3_xvxfa"]
+
+[node name="TargetDummy" type="Node2D" unique_id=1744152451 groups=["Units"]]
+script = ExtResource("1_oe3qq")
+player_owner = 2
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1855614450]
+texture_filter = 1
+material = ExtResource("2_ucqa6")
+scale = Vector2(-5, 5)
+texture = ExtResource("3_xvxfa")
+region_rect = Rect2(0, 16, 16, 16)
+metadata/_edit_lock_ = true

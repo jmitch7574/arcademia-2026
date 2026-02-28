@@ -11,14 +11,15 @@ func state_entry_condition() -> bool:
 	return charges >= 3
 	
 func _enter_state() -> void:
-	## TODO: Damage Enemy
-	
 	charges = 0
-	
-	var newVFX = LIGHTNING_VFX.instantiate()
-	newVFX.global_position = target_system.get_target().global_position
-	get_tree().current_scene.add_child(newVFX)
-	
+	if target_system.get_target():
+		var position = target_system.get_target().global_position
+		target_system.get_target().take_damage(damage)
+
+		var newVFX = LIGHTNING_VFX.instantiate()
+		newVFX.global_position = position
+		get_tree().current_scene.add_child(newVFX)
+		
 	self_end_state()
 
 func _exit_state() -> void:

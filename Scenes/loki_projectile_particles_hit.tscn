@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://levqg6qlcxh6"]
+
+[ext_resource type="Script" uid="uid://drjy7setdnbu8" path="res://Scripts/PlayParticlesOnAwake.gd" id="1_8umhs"]
+
+[sub_resource type="Curve" id="Curve_t2xnb"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_m1anv"]
+curve = SubResource("Curve_t2xnb")
+
+[sub_resource type="Curve" id="Curve_m1anv"]
+_limits = [0.0, 412.77, 0.0, 1.0]
+_data = [Vector2(0, 412.77), 0.0, 0.0, 0, 0, Vector2(0.57258064, 13.831055), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ywp0r"]
+curve = SubResource("Curve_m1anv")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_t2xnb"]
+particle_flag_disable_z = true
+radial_velocity_min = 49.999977
+radial_velocity_max = 199.99997
+velocity_limit_curve = SubResource("CurveTexture_ywp0r")
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -2.2351742e-06
+radial_accel_max = -2.2351742e-06
+scale_min = 25.0
+scale_max = 25.0
+color = Color(0.122400016, 0.72, 0.15228, 1)
+alpha_curve = SubResource("CurveTexture_m1anv")
+
+[node name="LokiProjectileParticles" type="GPUParticles2D" unique_id=1098845346]
+emitting = false
+amount = 30
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_t2xnb")
+script = ExtResource("1_8umhs")

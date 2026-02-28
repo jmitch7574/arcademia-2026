@@ -1,9 +1,6 @@
-class_name State
-extends Node
+extends State
 
-@export var interruptible : bool
-
-signal state_concluded
+var charges = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -11,10 +8,22 @@ func _ready() -> void:
 
 ## Function that decides whether or not this state can be transitioned to
 func state_entry_condition() -> bool:
-	return false
+	return charges >= 3
 	
 func _enter_state() -> void:
-	pass
+	charges = 0
+	if unit.is_loki_clone: 
+		self_end_state()
+		return
+	
+	var new_node = unit.duplicate(DUPLICATE_SIGNALS | DUPLICATE_GROUPS | DUPLICATE_SCRIPTS)
+	get_tree().current_scene.add_child(new_node)
+	new_node.is_loki_clone = true
+	new_node.health = 5
+	new_node.global_position
+	
+	self_end_state()
+	
 
 func _exit_state() -> void:
 	pass
@@ -23,5 +32,6 @@ func _exit_state() -> void:
 func _state_update(delta: float) -> void:
 	pass
 
-func self_end_state() -> void:
-	state_concluded.emit()
+
+func _on_attack_state_attacked() -> void:
+	charges += 1

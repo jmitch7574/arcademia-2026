@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("1_631iu")
 unit_name = "Thor"
-unit_cost = 2.0
+unit_cost = 2
 unit_sprite = ExtResource("2_54sjr")
 unit_scene = ExtResource("2_tea2j")
 metadata/_custom_type_script = "uid://drwphox75l0em"

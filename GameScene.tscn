@@ -9,19 +9,23 @@
 [ext_resource type="Script" uid="uid://drwphox75l0em" path="res://Scripts/UnitResource.gd" id="3_ex6dp"]
 [ext_resource type="Resource" uid="uid://xdj3ayk30444" path="res://Units/Thor.tres" id="4_cg2kh"]
 [ext_resource type="Script" uid="uid://bklrncyxf57w" path="res://Scripts/FocusManager.gd" id="4_hvuor"]
+[ext_resource type="Resource" uid="uid://dsyjybeoeaxmw" path="res://Units/Loki.tres" id="5_0ptlf"]
 [ext_resource type="Script" uid="uid://dpgvq4s54gfmg" path="res://Scripts/GameStateManager.gd" id="5_rb7ul"]
 [ext_resource type="Script" uid="uid://ba6qwy5xsj3t7" path="res://mouse_sprite.gd" id="6_i2arf"]
-[ext_resource type="Script" uid="uid://cosr4qrn1kb71" path="res://Scripts/Unit.gd" id="7_0exr2"]
-[ext_resource type="Material" uid="uid://dlhhnx45g42ri" path="res://Materials/unit.tres" id="7_5cvvu"]
 [ext_resource type="Script" uid="uid://h45001on6p0r" path="res://Scripts/ShopManager.gd" id="7_cg2kh"]
 [ext_resource type="Script" uid="uid://dma5ow0mpynxh" path="res://Scripts/GameTimer.gd" id="9_icjtl"]
 [ext_resource type="Script" uid="uid://c86217m1sekx4" path="res://Scripts/SectionDisplay.gd" id="9_sao6o"]
 [ext_resource type="Script" uid="uid://cu606eit2hnd6" path="res://Scripts/MoneyLabel.gd" id="11_sao6o"]
-[ext_resource type="Texture2D" uid="uid://d301wn0llt2ct" path="res://Assets/Units/dummy.png" id="13_4fxa8"]
 [ext_resource type="Texture2D" uid="uid://ct7ahocabdtbm" path="res://Assets/PandorasBox/base.png" id="19_6qjax"]
 [ext_resource type="Script" uid="uid://bbjt63v3jqfil" path="res://Scripts/PandorasBox.gd" id="19_k8u5j"]
+[ext_resource type="PackedScene" uid="uid://8barv47wqjcm" path="res://Scenes/Pandoras Units/decay.tscn" id="20_0p1ba"]
 [ext_resource type="Texture2D" uid="uid://b4xwgpu7ew32e" path="res://Assets/PandorasBox/lid.png" id="20_88a4u"]
 [ext_resource type="Texture2D" uid="uid://cwf2mfxnots3" path="res://Assets/PandorasBox/eyes.png" id="21_0ptlf"]
+
+[sub_resource type="Curve" id="Curve_k8u5j"]
+_limits = [0.0, 1.0, 0.0, 9.0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(9, 0.3404163), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="Animation" id="Animation_0p1ba"]
 length = 0.001
@@ -101,6 +105,7 @@ tracks/5/keys = {
 [sub_resource type="Animation" id="Animation_n1fdl"]
 resource_name = "firing"
 length = 0.6
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -177,6 +182,7 @@ tracks/5/keys = {
 [sub_resource type="Animation" id="Animation_k8u5j"]
 resource_name = "idle"
 length = 2.0
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -269,13 +275,13 @@ script = ExtResource("1_0exr2")
 
 [node name="ShopQueue" type="Node" parent="." unique_id=1354138094]
 script = ExtResource("2_ex6dp")
-units = Array[ExtResource("3_ex6dp")]([ExtResource("4_cg2kh")])
+units = Array[ExtResource("3_ex6dp")]([ExtResource("4_cg2kh"), ExtResource("5_0ptlf")])
 
 [node name="GameStateManager" type="Node" parent="." unique_id=594612751 groups=["GameManager"]]
 script = ExtResource("5_rb7ul")
 
 [node name="BuyTimeTimer" type="Timer" parent="GameStateManager" unique_id=754912126]
-wait_time = 15.0
+wait_time = 5.0
 one_shot = true
 
 [node name="PreRoundTimer" type="Timer" parent="GameStateManager" unique_id=1396043593]
@@ -346,7 +352,7 @@ grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("1_haeiw")
 
-[node name="SectionLabel" type="RichTextLabel" parent="Screen/SectionContainer" unique_id=653674044]
+[node name="SectionLabel" type="RichTextLabel" parent="Screen/SectionContainer" unique_id=653674044 node_paths=PackedStringArray("game_manager")]
 texture_filter = 1
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 32
@@ -354,6 +360,7 @@ text = "Game STATE"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("9_sao6o")
+game_manager = NodePath("../../../GameStateManager")
 
 [node name="ClockContainer" type="PanelContainer" parent="Screen" unique_id=798945036]
 layout_mode = 1
@@ -438,22 +445,13 @@ script = ExtResource("4_hvuor")
 mouse_object = NodePath("..")
 shop_elements = NodePath("../../Screen/Shop/MarginContainer/ShopElements")
 
-[node name="TargetDummy" type="Node2D" parent="." unique_id=1008819936 groups=["Units"]]
-position = Vector2(1420, 382)
-script = ExtResource("7_0exr2")
-player_owner = 2
-
-[node name="Sprite" type="Sprite2D" parent="TargetDummy" unique_id=1195982391]
-texture_filter = 1
-material = ExtResource("7_5cvvu")
-scale = Vector2(-5, 5)
-texture = ExtResource("13_4fxa8")
-region_rect = Rect2(0, 16, 16, 16)
-metadata/_edit_lock_ = true
-
-[node name="PandorasBox" type="Node2D" parent="." unique_id=934045646]
+[node name="PandorasBox" type="Node2D" parent="." unique_id=934045646 node_paths=PackedStringArray("state_manager")]
 position = Vector2(1688, 393)
 script = ExtResource("19_k8u5j")
+state_manager = NodePath("../GameStateManager")
+tier_one_enemies = Array[PackedScene]([ExtResource("20_0p1ba")])
+tier_two_enemies = Array[PackedScene]([ExtResource("20_0p1ba")])
+tier_two_chance = SubResource("Curve_k8u5j")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="PandorasBox" unique_id=944654250]
 root_node = NodePath("../..")

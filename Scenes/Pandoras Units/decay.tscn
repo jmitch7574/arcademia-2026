@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://8barv47wqjcm"]
+
+[ext_resource type="Script" uid="uid://cosr4qrn1kb71" path="res://Scripts/Unit.gd" id="1_ed6gx"]
+[ext_resource type="Resource" uid="uid://xdj3ayk30444" path="res://Units/Thor.tres" id="2_8r16i"]
+[ext_resource type="Material" uid="uid://c1xaxlfgt2wpv" path="res://Materials/pandora_unit.tres" id="3_q5hwp"]
+[ext_resource type="Texture2D" uid="uid://8shc4042x1xv" path="res://Assets/PandorasUnits/Decay.png" id="4_q5hwp"]
+[ext_resource type="Script" uid="uid://w8c1iwl35m6i" path="res://Scripts/States/StateMachine.gd" id="5_5abrr"]
+[ext_resource type="Script" uid="uid://d0byqe8nfg7jb" path="res://Scripts/States/WalkState.gd" id="6_gxl84"]
+[ext_resource type="Script" uid="uid://bjxb0ag1ry4ws" path="res://Scripts/States/AttackState.gd" id="7_p1a2r"]
+[ext_resource type="Script" uid="uid://cukpese4y8oec" path="res://Scripts/States/InShopState.gd" id="8_v661t"]
+[ext_resource type="PackedScene" uid="uid://13pluik5kytw" path="res://Scenes/pandora_particles.tscn" id="10_ywp0r"]
+[ext_resource type="Script" uid="uid://bdu8lj42wuild" path="res://Scripts/ClosestTarget.gd" id="11_8ma5j"]
+
+[node name="Decay" type="Node2D" unique_id=1703226469 groups=["Units"]]
+script = ExtResource("1_ed6gx")
+unit_resource = ExtResource("2_8r16i")
+max_health = 40.0
+player_owner = 2
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1543214580]
+texture_filter = 1
+material = ExtResource("3_q5hwp")
+scale = Vector2(5, 5)
+texture = ExtResource("4_q5hwp")
+region_rect = Rect2(0, 0, 16, 16)
+metadata/_edit_lock_ = true
+
+[node name="StateMachine" type="Node" parent="." unique_id=943529181 node_paths=PackedStringArray("states")]
+script = ExtResource("5_5abrr")
+states = [NodePath("InShopState"), NodePath("AttackState"), NodePath("WalkState")]
+
+[node name="InShopState" type="Node" parent="StateMachine" unique_id=1968193139]
+script = ExtResource("8_v661t")
+interruptible = true
+
+[node name="WalkState" type="Node" parent="StateMachine" unique_id=624709180 node_paths=PackedStringArray("target_system", "parent", "sprite")]
+script = ExtResource("6_gxl84")
+target_system = NodePath("../../TargetingSystem")
+parent = NodePath("../..")
+move_speed = 100.0
+sprite = NodePath("../../Sprite")
+interruptible = true
+
+[node name="AttackState" type="Node" parent="StateMachine" unique_id=747475448 node_paths=PackedStringArray("target_system", "parent", "sprite")]
+script = ExtResource("7_p1a2r")
+target_system = NodePath("../../TargetingSystem")
+parent = NodePath("../..")
+sprite = NodePath("../../Sprite")
+attack_speed = 1.0
+attack_range = 64.0
+damage = 8
+
+[node name="TargetingSystem" type="Node2D" parent="." unique_id=701804326 node_paths=PackedStringArray("parent")]
+script = ExtResource("11_8ma5j")
+parent = NodePath("..")
+
+[node name="PandoraParticles" parent="." unique_id=1098845346 instance=ExtResource("10_ywp0r")]
