@@ -9,7 +9,9 @@ var random_object : RandomNumberGenerator
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	random_object = RandomNumberGenerator.new()
-	#random_object.seed = random_seed
+	
+	if OS.has_feature("demonstration") or OS.has_feature("editor"):
+		random_object.seed = 1738
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

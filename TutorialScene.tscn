@@ -1,109 +1,181 @@
 [gd_scene format=3 uid="uid://du5jc510bg3r5"]
 
-[ext_resource type="Script" uid="uid://cqa6w1stpq8xl" path="res://Scripts/MainMenu/MainMenu.gd" id="1_gaqjs"]
-[ext_resource type="Theme" uid="uid://cbr6moskbqfq0" path="res://Themes/MainMenu.tres" id="2_2nwka"]
-[ext_resource type="Script" uid="uid://dh80fe31cljgt" path="res://Scripts/MainMenu/Wobble.gd" id="3_r6w8k"]
-[ext_resource type="Script" uid="uid://dmma2nvlrp88o" path="res://Scripts/MainMenu/FocusOnStart.gd" id="7_3jkl7"]
-[ext_resource type="Texture2D" uid="uid://ct7ahocabdtbm" path="res://Assets/PandorasBox/base.png" id="35_rwb1a"]
-[ext_resource type="Texture2D" uid="uid://b4xwgpu7ew32e" path="res://Assets/PandorasBox/lid.png" id="36_7rwjr"]
-[ext_resource type="Script" uid="uid://b6xcwnoeitecp" path="res://Scripts/MainMenu/Float.gd" id="43_8ton7"]
+[ext_resource type="Script" uid="uid://bvirb63wt0m4m" path="res://Scripts/TutorialScene.gd" id="1_knpya"]
+[ext_resource type="FontFile" uid="uid://cdkwewgc63agi" path="res://Assets/Jersey10-Regular.ttf" id="27_66158"]
 
-[node name="MainMenu" type="CanvasLayer" unique_id=1033068373]
-script = ExtResource("1_gaqjs")
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_knpya"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 16
+border_width_top = 16
+border_width_right = 16
+border_width_bottom = 16
+border_color = Color(0.19200002, 0.5365333, 0.8, 1)
+corner_radius_top_left = 45
+corner_radius_top_right = 45
+corner_radius_bottom_right = 45
+corner_radius_bottom_left = 45
 
-[node name="TitleContainer" type="Control" parent="." unique_id=1033587229]
-layout_mode = 3
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8rir8"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 16
+border_width_top = 16
+border_width_right = 16
+border_width_bottom = 16
+border_color = Color(0.8, 0.19200002, 0.19200002, 1)
+corner_radius_top_left = 45
+corner_radius_top_right = 45
+corner_radius_bottom_right = 45
+corner_radius_bottom_left = 45
+
+[node name="Tutorial Scene" type="CanvasLayer" unique_id=1033068373]
+script = ExtResource("1_knpya")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=651960749]
+texture_filter = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 541.0
+offset_top = 25.0
+offset_bottom = 162.0
 grow_horizontal = 2
+theme_override_fonts/normal_font = ExtResource("27_66158")
+theme_override_font_sizes/normal_font_size = 128
+text = "HOW TO PLAY"
+scroll_active = false
+horizontal_alignment = 1
 
-[node name="RichTextLabel" type="RichTextLabel" parent="TitleContainer" unique_id=175715816]
-texture_filter = 6
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -473.0
-offset_top = -71.0
-offset_right = 473.0
-offset_bottom = 71.0
+[node name="Sections" type="HFlowContainer" parent="." unique_id=115693703]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 335.0
+offset_top = 221.0
+offset_right = -335.0
+offset_bottom = -246.0
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset_ratio = Vector2(0.5, 0.5)
-theme = ExtResource("2_2nwka")
-bbcode_enabled = true
-text = "[outline_color=#000][outline_size=64]Army of Myths[/outline_size][/outline_color]"
+
+[node name="Assemble a Team" type="Control" parent="Sections" unique_id=396686447]
+custom_minimum_size = Vector2(600, 600)
+layout_mode = 2
+
+[node name="Border" type="Panel" parent="Sections/Assemble a Team" unique_id=56673559]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_knpya")
+
+[node name="Assemble A Team" type="RichTextLabel" parent="Sections/Assemble a Team" unique_id=2115071793]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 1.0
+offset_top = -27.0
+offset_right = 1.0
+offset_bottom = 176.0
+grow_horizontal = 2
+theme_override_colors/font_outline_color = Color(0.06666667, 0.043137256, 0.078431375, 1)
+theme_override_constants/outline_size = 64
+theme_override_fonts/normal_font = ExtResource("27_66158")
+theme_override_font_sizes/normal_font_size = 64
+text = "ASSEMBLE
+A TEAM"
+horizontal_alignment = 1
+
+[node name="Text" type="RichTextLabel" parent="Sections/Assemble a Team" unique_id=1708092250]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 44.813293
+offset_top = 112.0
+offset_right = -44.813293
+offset_bottom = -36.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("27_66158")
+theme_override_font_sizes/normal_font_size = 32
+text = "Purchase Units to put together a team to go against Pandora's Curses
+
+The amount of units you can have is limited by your level, purchase level ups to unlock more unit slots
+
+Arrange your units in the best way to see fit. Devise a strategy guaranteed to take Pandora DOWN!!!"
 horizontal_alignment = 1
 vertical_alignment = 1
-script = ExtResource("3_r6w8k")
 
-[node name="Lid" type="TextureRect" parent="TitleContainer" unique_id=67051780]
-texture_filter = 1
+[node name="Spacer" type="Control" parent="Sections" unique_id=1779671528]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Fight" type="Control" parent="Sections" unique_id=1653879327]
+custom_minimum_size = Vector2(600, 600)
+layout_mode = 2
+
+[node name="Border" type="Panel" parent="Sections/Fight" unique_id=841095162]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 78.38037
-offset_top = -247.52191
-offset_right = 258.38037
-offset_bottom = -67.52191
-grow_horizontal = 2
-grow_vertical = 2
-rotation = -0.23537903
-texture = ExtResource("36_7rwjr")
-script = ExtResource("43_8ton7")
-
-[node name="Base" type="TextureRect" parent="TitleContainer" unique_id=205427445]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -287.6195
-offset_top = 95.47809
-offset_right = -107.61951
-offset_bottom = 275.4781
-grow_horizontal = 2
-grow_vertical = 2
-rotation = 0.33030975
-texture = ExtResource("35_rwb1a")
-script = ExtResource("43_8ton7")
-
-[node name="ButtonsContainer" type="HBoxContainer" parent="." unique_id=504320325]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -486.0
-offset_top = -186.0
-offset_right = 486.0
-offset_bottom = -101.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8rir8")
+
+[node name="Fight Pandora\'s curses" type="RichTextLabel" parent="Sections/Fight" unique_id=1971398699]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 1.0
+offset_top = -27.0
+offset_right = 1.0
+offset_bottom = 176.0
+grow_horizontal = 2
+theme_override_colors/font_outline_color = Color(0.06666667, 0.043137256, 0.078431375, 1)
+theme_override_constants/outline_size = 64
+theme_override_fonts/normal_font = ExtResource("27_66158")
+theme_override_font_sizes/normal_font_size = 64
+text = "FIGHT PANDORA'S
+CURSES"
+horizontal_alignment = 1
+
+[node name="Text" type="RichTextLabel" parent="Sections/Fight" unique_id=901006644]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 44.813232
+offset_top = 112.0
+offset_right = -44.813354
+offset_bottom = -36.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("27_66158")
+theme_override_font_sizes/normal_font_size = 32
+text = "Every round, Pandora's box will summon curses to go against your team.
+
+As you win more rounds, the amount of curses it will summon increase.
+
+Should you be victorious, gain gold and continue to the next round. Should you lose 3 games, it is GAME OVER
+
+Any Units that die during a round will respawn in the next Buy Phase"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="." unique_id=305834915]
+texture_filter = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -190.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_constants/separation = 64
-
-[node name="PlayButton" type="Button" parent="ButtonsContainer" unique_id=688397297]
-texture_filter = 1
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("2_2nwka")
-text = "Pandora's Gauntlet"
-script = ExtResource("7_3jkl7")
-
-[node name="QuitButton" type="Button" parent="ButtonsContainer" unique_id=1175502551]
-texture_filter = 1
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("2_2nwka")
-text = "Quit"
-
-[connection signal="pressed" from="ButtonsContainer/PlayButton" to="." method="_on_play_button_pressed"]
-[connection signal="pressed" from="ButtonsContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+theme_override_fonts/normal_font = ExtResource("27_66158")
+theme_override_font_sizes/normal_font_size = 96
+text = "Press A To Begin..."
+horizontal_alignment = 1
