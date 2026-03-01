@@ -11,6 +11,9 @@
 [ext_resource type="PackedScene" uid="uid://b42iaqce3h8w8" path="res://Scenes/unit_audio.tscn" id="10_w56o8"]
 [ext_resource type="Script" uid="uid://bdu8lj42wuild" path="res://Scripts/ClosestTarget.gd" id="11_emfp8"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w56o8"]
+size = Vector2(64, 90)
+
 [node name="Loki" type="Node2D" unique_id=1703226469 groups=["Units"]]
 script = ExtResource("1_vq3b6")
 max_health = 100.0
@@ -52,5 +55,10 @@ script = ExtResource("11_emfp8")
 parent = NodePath("..")
 
 [node name="UnitAudio" parent="." unique_id=1661030395 instance=ExtResource("10_w56o8")]
+
+[node name="Collision" type="Area2D" parent="." unique_id=1695340925]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision" unique_id=701027008]
+shape = SubResource("RectangleShape2D_w56o8")
 
 [connection signal="attacked" from="StateMachine/AttackState" to="StateMachine/SpecialAttackState" method="_on_attack_state_attacked"]

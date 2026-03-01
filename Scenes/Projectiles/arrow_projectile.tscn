@@ -1,8 +1,24 @@
 [gd_scene format=3 uid="uid://b261w0eheva7f"]
 
-[ext_resource type="Script" uid="uid://dr4r6d0hiabm3" path="res://Scripts/LokiProjectile.gd" id="1_jihij"]
+[ext_resource type="Script" uid="uid://b8luyswa8dkix" path="res://Scripts/ArrowProjectile.gd" id="1_x56gi"]
+[ext_resource type="Texture2D" uid="uid://cgf4j34hdbpd" path="res://Assets/Arrow.png" id="2_6wxm5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6wxm5"]
+size = Vector2(64, 28)
 
 [node name="Arrow" type="Node2D" unique_id=768164927]
-script = ExtResource("1_jihij")
+script = ExtResource("1_x56gi")
 projectile_speed = 200.0
 projectile_damage = 5.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1494235742]
+texture_filter = 1
+scale = Vector2(4, 4)
+texture = ExtResource("2_6wxm5")
+
+[node name="Collision" type="Area2D" parent="." unique_id=309155046]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision" unique_id=2056668106]
+shape = SubResource("RectangleShape2D_6wxm5")
+
+[connection signal="area_entered" from="Collision" to="." method="_on_collision_area_entered"]

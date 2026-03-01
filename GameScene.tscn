@@ -14,6 +14,8 @@
 [ext_resource type="Script" uid="uid://dpgvq4s54gfmg" path="res://Scripts/GameStateManager.gd" id="5_rb7ul"]
 [ext_resource type="Script" uid="uid://ba6qwy5xsj3t7" path="res://mouse_sprite.gd" id="6_i2arf"]
 [ext_resource type="Script" uid="uid://h45001on6p0r" path="res://Scripts/ShopManager.gd" id="7_cg2kh"]
+[ext_resource type="Resource" uid="uid://cj6fjvruyo8e" path="res://Units/Archer.tres" id="7_fsk3a"]
+[ext_resource type="Resource" uid="uid://dsysxw7sa712c" path="res://Units/Viking.tres" id="8_y0td7"]
 [ext_resource type="Script" uid="uid://dma5ow0mpynxh" path="res://Scripts/GameTimer.gd" id="9_icjtl"]
 [ext_resource type="Script" uid="uid://c86217m1sekx4" path="res://Scripts/SectionDisplay.gd" id="9_sao6o"]
 [ext_resource type="Script" uid="uid://cm8plam3lsmhj" path="res://Scripts/ShopSFXManager.gd" id="11_n1fdl"]
@@ -22,24 +24,25 @@
 [ext_resource type="Script" uid="uid://h7au6xuybg48" path="res://Scripts/Camera.gd" id="14_k8u5j"]
 [ext_resource type="Texture2D" uid="uid://ct7ahocabdtbm" path="res://Assets/PandorasBox/base.png" id="19_6qjax"]
 [ext_resource type="Script" uid="uid://bbjt63v3jqfil" path="res://Scripts/PandorasBox.gd" id="19_k8u5j"]
-[ext_resource type="PackedScene" uid="uid://8barv47wqjcm" path="res://Scenes/Pandoras Units/decay.tscn" id="20_0p1ba"]
 [ext_resource type="Texture2D" uid="uid://b4xwgpu7ew32e" path="res://Assets/PandorasBox/lid.png" id="20_88a4u"]
 [ext_resource type="Texture2D" uid="uid://cwf2mfxnots3" path="res://Assets/PandorasBox/eyes.png" id="21_0ptlf"]
 [ext_resource type="PackedScene" uid="uid://d3mfkh7jwepl2" path="res://Scenes/Pandoras Units/spider.tscn" id="23_redr1"]
 [ext_resource type="Script" uid="uid://dgfx10t1vmvs8" path="res://Scripts/VictoryAndLossThemePlayer.gd" id="26_0axbu"]
+[ext_resource type="PackedScene" uid="uid://b0xqh1f554bxi" path="res://Scenes/Pandoras Units/medusa.tscn" id="26_y0td7"]
 [ext_resource type="Script" uid="uid://b8p74f0ukwe7s" path="res://Scripts/MusicManager.gd" id="27_4puv8"]
 [ext_resource type="AudioStream" uid="uid://cx5u1utjh3ooc" path="res://Sound/bass_loop.wav" id="27_agx0x"]
+[ext_resource type="PackedScene" uid="uid://dploi3bb5lluw" path="res://Scenes/Pandoras Units/minotaur.tscn" id="27_ry04y"]
 [ext_resource type="AudioStream" uid="uid://cj22ugkd4tji" path="res://Sound/melody.wav" id="28_jvwnh"]
 
 [sub_resource type="Curve" id="Curve_k8u5j"]
 _limits = [0.0, 1.0, 0.0, 9.0]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(9, 0.38551605), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(9, 0.30095404), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_0ptlf"]
 _limits = [0.0, 20.0, 0.0, 30.0]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(2.4, 1.2), 0.0, 0.0, 0, 0, Vector2(9, 6), -0.080152065, -0.080152065, 0, 0, Vector2(19.5, 13), 0.0, 0.0, 0, 0, Vector2(30, 20), 0.0, 0.0, 0, 0]
-point_count = 5
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(8.400001, 7.2000003), -0.080152065, -0.080152065, 0, 0, Vector2(19.2, 14.400001), 0.0, 0.0, 0, 0, Vector2(30, 20), 0.0, 0.0, 0, 0]
+point_count = 4
 metadata/_snap_enabled = true
 metadata/_snap_count = 50
 
@@ -294,7 +297,7 @@ stream = ExtResource("2_igvw6")
 
 [node name="ShopQueue" type="Node" parent="." unique_id=1354138094]
 script = ExtResource("2_ex6dp")
-units = Array[ExtResource("3_ex6dp")]([ExtResource("4_cg2kh"), ExtResource("5_0ptlf")])
+units = Array[ExtResource("3_ex6dp")]([ExtResource("4_cg2kh"), ExtResource("5_0ptlf"), ExtResource("7_fsk3a"), ExtResource("8_y0td7")])
 
 [node name="GameStateManager" type="Node" parent="." unique_id=594612751 groups=["GameManager"]]
 script = ExtResource("5_rb7ul")
@@ -533,8 +536,8 @@ shop_elements = NodePath("../../ShopContainer/Shop/MarginContainer/ShopElements"
 position = Vector2(1688, 393)
 script = ExtResource("19_k8u5j")
 state_manager = NodePath("../GameStateManager")
-tier_one_enemies = Array[PackedScene]([ExtResource("23_redr1"), ExtResource("20_0p1ba")])
-tier_two_enemies = Array[PackedScene]([ExtResource("20_0p1ba")])
+tier_one_enemies = Array[PackedScene]([ExtResource("27_ry04y"), ExtResource("23_redr1")])
+tier_two_enemies = Array[PackedScene]([ExtResource("26_y0td7"), ExtResource("27_ry04y")])
 tier_two_chance = SubResource("Curve_k8u5j")
 slots_curve = SubResource("Curve_0ptlf")
 

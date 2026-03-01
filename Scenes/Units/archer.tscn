@@ -2,14 +2,18 @@
 
 [ext_resource type="Script" uid="uid://cosr4qrn1kb71" path="res://Scripts/Unit.gd" id="1_b3v06"]
 [ext_resource type="Material" uid="uid://dlhhnx45g42ri" path="res://Materials/unit.tres" id="2_30ihb"]
-[ext_resource type="Texture2D" uid="uid://l2jnwj6sflkg" path="res://Assets/Units/viking.png" id="3_e20kn"]
+[ext_resource type="Texture2D" uid="uid://bok2uvx4jdqiy" path="res://Assets/Units/archer.png" id="3_30ihb"]
 [ext_resource type="Script" uid="uid://w8c1iwl35m6i" path="res://Scripts/States/StateMachine.gd" id="4_t6ard"]
 [ext_resource type="Script" uid="uid://d0byqe8nfg7jb" path="res://Scripts/States/WalkState.gd" id="5_0r5lf"]
 [ext_resource type="Script" uid="uid://bh3fkcxmm5vc" path="res://Scripts/States/ShootProjectile.gd" id="6_b3v06"]
 [ext_resource type="Script" uid="uid://bdu8lj42wuild" path="res://Scripts/ClosestTarget.gd" id="7_22n53"]
+[ext_resource type="PackedScene" uid="uid://b261w0eheva7f" path="res://Scenes/Projectiles/arrow_projectile.tscn" id="7_e20kn"]
 [ext_resource type="PackedScene" uid="uid://b42iaqce3h8w8" path="res://Scenes/unit_audio.tscn" id="8_6oxgn"]
 
-[node name="Viking" type="Node2D" unique_id=1703226469 groups=["Units"]]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b3v06"]
+size = Vector2(64, 90)
+
+[node name="Archer" type="Node2D" unique_id=1703226469 groups=["Units"]]
 script = ExtResource("1_b3v06")
 max_health = 80.0
 
@@ -17,13 +21,13 @@ max_health = 80.0
 texture_filter = 1
 material = ExtResource("2_30ihb")
 scale = Vector2(5, 5)
-texture = ExtResource("3_e20kn")
+texture = ExtResource("3_30ihb")
 region_rect = Rect2(0, 0, 16, 16)
 metadata/_edit_lock_ = true
 
 [node name="StateMachine" type="Node" parent="." unique_id=943529181 node_paths=PackedStringArray("states")]
 script = ExtResource("4_t6ard")
-states = [NodePath(""), NodePath("WalkState")]
+states = [NodePath("ArrowState"), NodePath("WalkState")]
 
 [node name="WalkState" type="Node" parent="StateMachine" unique_id=624709180 node_paths=PackedStringArray("target_system", "parent", "sprite")]
 script = ExtResource("5_0r5lf")
@@ -39,12 +43,16 @@ target_system = NodePath("../../TargetingSystem")
 parent = NodePath("../..")
 sprite = NodePath("../../Sprite")
 attack_speed = 0.5
-attack_range = 200.0
-damage = 12
-projectile_speed = 15.0
+attack_range = 500.0
+projectile = ExtResource("7_e20kn")
 
 [node name="TargetingSystem" type="Node2D" parent="." unique_id=701804326 node_paths=PackedStringArray("parent")]
 script = ExtResource("7_22n53")
 parent = NodePath("..")
 
 [node name="UnitAudio" parent="." unique_id=1661030395 instance=ExtResource("8_6oxgn")]
+
+[node name="Collision" type="Area2D" parent="." unique_id=572136496]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision" unique_id=1957006823]
+shape = SubResource("RectangleShape2D_b3v06")

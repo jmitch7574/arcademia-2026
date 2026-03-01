@@ -18,6 +18,8 @@ func _process(delta: float) -> void:
 		
 		particle_hit.reparent(get_tree().current_scene)
 		
+		
+		projectile_damage -= 2 if source_unit.is_loki_clone else 0
 		targeting_system.get_target().take_damage(projectile_damage, source_unit)
 		
 		queue_free()

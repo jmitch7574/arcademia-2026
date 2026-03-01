@@ -8,7 +8,9 @@ var current_state : State
 const global_states : Dictionary[Resource, bool] = {
 	preload("uid://bgm0othjow4am") : true,
 	preload("uid://cukpese4y8oec") : true,
-}
+	preload("uid://bmmemqt86qx3c") : false,
+	
+}	
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -29,8 +31,8 @@ func load_global_states() -> void:
 		var new_state = state.new()
 		add_child(new_state)
 		states.push_front(new_state)
-		new_state.name = state.resource_name
 		new_state.interruptible = global_states[state] 
+		new_state.name = state.resource_path.split("/")[-1].split(".")[0]
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -48,6 +50,19 @@ func swap_state(newState : State):
 	current_state = newState
 	newState._enter_state()
 
+
+func swap_state_by_name(newState : String):
+	if newState == current_state.name:
+		return
+	
+	var state_node = get_node(newState)
+	
+	if current_state and state_node:
+		current_state._exit_state()
+	
+		current_state = state_node
+		state_node._enter_state()
+
 func on_state_self_ended() -> void:
 	swap_state(get_next_state())
 
@@ -58,6 +73,6 @@ func get_next_state() -> State:
 
 	return null
 
-func interrupt_state_on_death(death : Unit):
-	if death == get_parent():
+func interrupt_state_on_death(victim : Unit, killer : Unit, gold_reward : int):
+	if victim == get_parent():
 		swap_state(get_next_state())

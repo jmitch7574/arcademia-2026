@@ -9,9 +9,12 @@
 [ext_resource type="Script" uid="uid://bdu8lj42wuild" path="res://Scripts/ClosestTarget.gd" id="8_afwv8"]
 [ext_resource type="PackedScene" uid="uid://b42iaqce3h8w8" path="res://Scenes/unit_audio.tscn" id="9_mrn8j"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_usnxg"]
+size = Vector2(64, 90)
+
 [node name="Viking" type="Node2D" unique_id=1703226469 groups=["Units"]]
 script = ExtResource("1_5yglg")
-max_health = 80.0
+max_health = 75.0
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1543214580]
 texture_filter = 1
@@ -47,3 +50,8 @@ script = ExtResource("8_afwv8")
 parent = NodePath("..")
 
 [node name="UnitAudio" parent="." unique_id=1661030395 instance=ExtResource("9_mrn8j")]
+
+[node name="Collision" type="Area2D" parent="." unique_id=1440811901]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision" unique_id=1077469942]
+shape = SubResource("RectangleShape2D_usnxg")

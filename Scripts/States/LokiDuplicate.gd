@@ -10,7 +10,7 @@ func _ready() -> void:
 
 ## Function that decides whether or not this state can be transitioned to
 func state_entry_condition() -> bool:
-	return charges >= 3
+	return charges >= 4
 	
 func _enter_state() -> void:
 	charges = 0

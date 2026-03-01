@@ -10,7 +10,7 @@ enum PLAYER
 
 @export var player : PLAYER
 
-var money : int = 4
+var money : int = 3000 #4
 signal money_changed(new_value)
 
 var player_level = 1

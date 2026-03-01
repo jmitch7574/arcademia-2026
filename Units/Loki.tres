@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("1_tgmv7")
 unit_name = "Loki"
-unit_cost = 2
+unit_cost = 3
 unit_sprite = ExtResource("3_tgmv7")
 unit_scene = ExtResource("2_tgmv7")
 metadata/_custom_type_script = "uid://drwphox75l0em"

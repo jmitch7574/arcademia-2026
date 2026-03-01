@@ -1,0 +1,121 @@
+[gd_scene format=3 uid="uid://b0xqh1f554bxi"]
+
+[ext_resource type="Script" uid="uid://cosr4qrn1kb71" path="res://Scripts/Unit.gd" id="1_ywywr"]
+[ext_resource type="Resource" uid="uid://xdj3ayk30444" path="res://Units/Thor.tres" id="2_0yoaw"]
+[ext_resource type="Material" uid="uid://c1xaxlfgt2wpv" path="res://Materials/pandora_unit.tres" id="3_u6lha"]
+[ext_resource type="Texture2D" uid="uid://mk8o4ee214jv" path="res://Assets/PandorasUnits/Medusa.png" id="4_ywywr"]
+[ext_resource type="Script" uid="uid://w8c1iwl35m6i" path="res://Scripts/States/StateMachine.gd" id="5_14slv"]
+[ext_resource type="Script" uid="uid://cukpese4y8oec" path="res://Scripts/States/InShopState.gd" id="6_1x57b"]
+[ext_resource type="Script" uid="uid://d0byqe8nfg7jb" path="res://Scripts/States/WalkState.gd" id="7_u4a8f"]
+[ext_resource type="Script" uid="uid://bjxb0ag1ry4ws" path="res://Scripts/States/AttackState.gd" id="8_kr02g"]
+[ext_resource type="Script" uid="uid://cccvk68yqix3a" path="res://Scripts/States/PetrifyState.gd" id="9_0yoaw"]
+[ext_resource type="Script" uid="uid://bdu8lj42wuild" path="res://Scripts/ClosestTarget.gd" id="9_42kyh"]
+[ext_resource type="PackedScene" uid="uid://13pluik5kytw" path="res://Scenes/Particle Systems/pandora_particles.tscn" id="10_ssyu5"]
+[ext_resource type="PackedScene" uid="uid://b42iaqce3h8w8" path="res://Scenes/unit_audio.tscn" id="11_jfyu8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q5hwp"]
+size = Vector2(64, 90)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0yoaw"]
+size = Vector2(557, 171)
+
+[sub_resource type="Curve" id="Curve_0yoaw"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_u6lha"]
+curve = SubResource("Curve_0yoaw")
+
+[sub_resource type="Curve" id="Curve_u6lha"]
+_limits = [0.0, 1000.0, 0.0, 1.0]
+_data = [Vector2(0, 1000), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_yskdn"]
+curve = SubResource("Curve_u6lha")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0yoaw"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 11.33
+spread = 25.0
+initial_velocity_min = 750.0
+initial_velocity_max = 1000.0
+angular_velocity_min = -180.00002
+angular_velocity_max = 179.99998
+velocity_limit_curve = SubResource("CurveTexture_yskdn")
+gravity = Vector3(0, 0, 0)
+scale_min = 20.0
+scale_max = 20.0
+scale_curve = SubResource("CurveTexture_u6lha")
+color = Color(0.62, 0.62, 0.62, 1)
+
+[node name="Medusa" type="Node2D" unique_id=1703226469 groups=["Units"]]
+script = ExtResource("1_ywywr")
+unit_resource = ExtResource("2_0yoaw")
+max_health = 80.0
+player_owner = 2
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1543214580]
+texture_filter = 1
+material = ExtResource("3_u6lha")
+scale = Vector2(5, 5)
+texture = ExtResource("4_ywywr")
+region_rect = Rect2(0, 0, 16, 16)
+metadata/_edit_lock_ = true
+
+[node name="StateMachine" type="Node" parent="." unique_id=943529181 node_paths=PackedStringArray("states")]
+script = ExtResource("5_14slv")
+states = [NodePath("InShopState"), NodePath("Petrify"), NodePath("AttackState"), NodePath("WalkState")]
+
+[node name="InShopState" type="Node" parent="StateMachine" unique_id=1968193139]
+script = ExtResource("6_1x57b")
+interruptible = true
+
+[node name="WalkState" type="Node" parent="StateMachine" unique_id=624709180 node_paths=PackedStringArray("target_system", "parent", "sprite")]
+script = ExtResource("7_u4a8f")
+target_system = NodePath("../../TargetingSystem")
+parent = NodePath("../..")
+move_speed = 100.0
+sprite = NodePath("../../Sprite")
+interruptible = true
+
+[node name="AttackState" type="Node" parent="StateMachine" unique_id=747475448 node_paths=PackedStringArray("target_system", "parent", "sprite")]
+script = ExtResource("8_kr02g")
+target_system = NodePath("../../TargetingSystem")
+parent = NodePath("../..")
+sprite = NodePath("../../Sprite")
+attack_speed = 1.0
+attack_range = 128.0
+damage = 8
+
+[node name="Petrify" type="Node" parent="StateMachine" unique_id=1521636741]
+script = ExtResource("9_0yoaw")
+
+[node name="TargetingSystem" type="Node2D" parent="." unique_id=701804326 node_paths=PackedStringArray("parent")]
+script = ExtResource("9_42kyh")
+parent = NodePath("..")
+
+[node name="PandoraParticles" parent="." unique_id=1098845346 instance=ExtResource("10_ssyu5")]
+
+[node name="UnitAudio" parent="." unique_id=1661030395 instance=ExtResource("11_jfyu8")]
+
+[node name="Collision" type="Area2D" parent="." unique_id=71595455]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision" unique_id=400527315]
+shape = SubResource("RectangleShape2D_q5hwp")
+
+[node name="PetrificationZone" type="Area2D" parent="." unique_id=191806744]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PetrificationZone" unique_id=619744247]
+position = Vector2(294, -3.5)
+shape = SubResource("RectangleShape2D_0yoaw")
+
+[node name="PetrificationParticles" type="GPUParticles2D" parent="." unique_id=579872367]
+emitting = false
+amount = 16
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_0yoaw")
+
+[connection signal="attacked" from="StateMachine/AttackState" to="StateMachine/Petrify" method="_on_attack_state_attacked"]

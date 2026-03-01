@@ -10,6 +10,9 @@
 [ext_resource type="Script" uid="uid://bdu8lj42wuild" path="res://Scripts/ClosestTarget.gd" id="8_aaj72"]
 [ext_resource type="PackedScene" uid="uid://b42iaqce3h8w8" path="res://Scenes/unit_audio.tscn" id="9_3f7ei"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3f7ei"]
+size = Vector2(64, 90)
+
 [node name="Thor" type="Node2D" unique_id=1703226469 groups=["Units"]]
 script = ExtResource("1_xspdb")
 max_health = 100.0
@@ -39,19 +42,23 @@ script = ExtResource("6_0f6ju")
 target_system = NodePath("../../TargetingSystem")
 parent = NodePath("../..")
 sprite = NodePath("../../Sprite")
-attack_speed = 1.0
+attack_speed = 1.6
 attack_range = 64.0
-damage = 14
+damage = 12
 
 [node name="SpecialAttackState" type="Node" parent="StateMachine" unique_id=2008884350 node_paths=PackedStringArray("target_system")]
 script = ExtResource("7_sp4f5")
 target_system = NodePath("../../TargetingSystem")
-damage = 22
 
 [node name="TargetingSystem" type="Node2D" parent="." unique_id=701804326 node_paths=PackedStringArray("parent")]
 script = ExtResource("8_aaj72")
 parent = NodePath("..")
 
 [node name="UnitAudio" parent="." unique_id=1661030395 instance=ExtResource("9_3f7ei")]
+
+[node name="Collision" type="Area2D" parent="." unique_id=1344125948]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision" unique_id=616171161]
+shape = SubResource("RectangleShape2D_3f7ei")
 
 [connection signal="attacked" from="StateMachine/AttackState" to="StateMachine/SpecialAttackState" method="_on_attack_state_attacked"]

@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://dploi3bb5lluw"]
+
+[ext_resource type="Script" uid="uid://cosr4qrn1kb71" path="res://Scripts/Unit.gd" id="1_7epdb"]
+[ext_resource type="Resource" uid="uid://xdj3ayk30444" path="res://Units/Thor.tres" id="2_88ph0"]
+[ext_resource type="Material" uid="uid://c1xaxlfgt2wpv" path="res://Materials/pandora_unit.tres" id="3_t78cj"]
+[ext_resource type="Texture2D" uid="uid://bmmqnx5g117j3" path="res://Assets/PandorasUnits/Minotaur.png" id="4_7epdb"]
+[ext_resource type="Script" uid="uid://w8c1iwl35m6i" path="res://Scripts/States/StateMachine.gd" id="5_dte5i"]
+[ext_resource type="Script" uid="uid://cukpese4y8oec" path="res://Scripts/States/InShopState.gd" id="6_7frxd"]
+[ext_resource type="Script" uid="uid://d0byqe8nfg7jb" path="res://Scripts/States/WalkState.gd" id="7_jhskc"]
+[ext_resource type="Script" uid="uid://bjxb0ag1ry4ws" path="res://Scripts/States/AttackState.gd" id="8_om2df"]
+[ext_resource type="Script" uid="uid://ca60j4f4mk4io" path="res://Scripts/States/SlamDunkState.gd" id="9_7epdb"]
+[ext_resource type="Script" uid="uid://bdu8lj42wuild" path="res://Scripts/ClosestTarget.gd" id="10_8cnlu"]
+[ext_resource type="PackedScene" uid="uid://13pluik5kytw" path="res://Scenes/Particle Systems/pandora_particles.tscn" id="11_mc4ke"]
+[ext_resource type="PackedScene" uid="uid://b42iaqce3h8w8" path="res://Scenes/unit_audio.tscn" id="12_qumqh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q5hwp"]
+size = Vector2(64, 90)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7epdb"]
+radius = 83.09633
+
+[node name="Minotaur" type="Node2D" unique_id=1703226469 groups=["Units"]]
+script = ExtResource("1_7epdb")
+unit_resource = ExtResource("2_88ph0")
+max_health = 100.0
+player_owner = 2
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1543214580]
+texture_filter = 1
+material = ExtResource("3_t78cj")
+scale = Vector2(5, 5)
+texture = ExtResource("4_7epdb")
+region_rect = Rect2(0, 0, 16, 16)
+metadata/_edit_lock_ = true
+
+[node name="StateMachine" type="Node" parent="." unique_id=943529181 node_paths=PackedStringArray("states")]
+script = ExtResource("5_dte5i")
+states = [NodePath("InShopState"), NodePath("SlamDunkState"), NodePath("AttackState"), NodePath("WalkState")]
+
+[node name="InShopState" type="Node" parent="StateMachine" unique_id=1968193139]
+script = ExtResource("6_7frxd")
+interruptible = true
+
+[node name="WalkState" type="Node" parent="StateMachine" unique_id=624709180 node_paths=PackedStringArray("target_system", "parent", "sprite")]
+script = ExtResource("7_jhskc")
+target_system = NodePath("../../TargetingSystem")
+parent = NodePath("../..")
+move_speed = 100.0
+sprite = NodePath("../../Sprite")
+interruptible = true
+
+[node name="AttackState" type="Node" parent="StateMachine" unique_id=747475448 node_paths=PackedStringArray("target_system", "parent", "sprite")]
+script = ExtResource("8_om2df")
+target_system = NodePath("../../TargetingSystem")
+parent = NodePath("../..")
+sprite = NodePath("../../Sprite")
+attack_speed = 1.0
+attack_range = 128.0
+damage = 11
+
+[node name="SlamDunkState" type="Node" parent="StateMachine" unique_id=1521636741]
+script = ExtResource("9_7epdb")
+
+[node name="TargetingSystem" type="Node2D" parent="." unique_id=701804326 node_paths=PackedStringArray("parent")]
+script = ExtResource("10_8cnlu")
+parent = NodePath("..")
+
+[node name="PandoraParticles" parent="." unique_id=1098845346 instance=ExtResource("11_mc4ke")]
+
+[node name="UnitAudio" parent="." unique_id=1661030395 instance=ExtResource("12_qumqh")]
+
+[node name="Collision" type="Area2D" parent="." unique_id=71595455]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision" unique_id=400527315]
+shape = SubResource("RectangleShape2D_q5hwp")
+
+[node name="SlamCollider" type="Area2D" parent="." unique_id=703788593]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SlamCollider" unique_id=858672494]
+shape = SubResource("CircleShape2D_7epdb")
+
+[connection signal="attacked" from="StateMachine/AttackState" to="StateMachine/SlamDunkState" method="_on_attack_state_attacked"]

@@ -12,6 +12,9 @@
 [ext_resource type="Script" uid="uid://bdu8lj42wuild" path="res://Scripts/ClosestTarget.gd" id="11_8ma5j"]
 [ext_resource type="PackedScene" uid="uid://b42iaqce3h8w8" path="res://Scenes/unit_audio.tscn" id="11_q5hwp"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q5hwp"]
+size = Vector2(64, 90)
+
 [node name="Decay" type="Node2D" unique_id=1703226469 groups=["Units"]]
 script = ExtResource("1_ed6gx")
 unit_resource = ExtResource("2_8r16i")
@@ -49,7 +52,7 @@ parent = NodePath("../..")
 sprite = NodePath("../../Sprite")
 attack_speed = 1.0
 attack_range = 64.0
-damage = 8
+damage = 7
 
 [node name="TargetingSystem" type="Node2D" parent="." unique_id=701804326 node_paths=PackedStringArray("parent")]
 script = ExtResource("11_8ma5j")
@@ -58,3 +61,8 @@ parent = NodePath("..")
 [node name="PandoraParticles" parent="." unique_id=1098845346 instance=ExtResource("10_ywp0r")]
 
 [node name="UnitAudio" parent="." unique_id=1661030395 instance=ExtResource("11_q5hwp")]
+
+[node name="Collision" type="Area2D" parent="." unique_id=71595455]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision" unique_id=400527315]
+shape = SubResource("RectangleShape2D_q5hwp")

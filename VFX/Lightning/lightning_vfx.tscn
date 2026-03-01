@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://bn4s7iijx68dg"]
 
+[ext_resource type="Script" uid="uid://6yc1rbltqkif" path="res://Scripts/ThorsLightnings.gd" id="1_la1vc"]
 [ext_resource type="Texture2D" uid="uid://dgnsu4u6dbioc" path="res://VFX/Lightning/spark_05_a.png" id="1_yfmkt"]
 [ext_resource type="Script" uid="uid://gtuyy4l15kvx" path="res://Scripts/PlayAnimOnAwake.gd" id="2_a7x4o"]
 
@@ -39,7 +40,12 @@ _data = {
 &"RESET": SubResource("Animation_a7x4o")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_la1vc"]
+radius = 125.89678
+
 [node name="LightningVFX" type="Node2D" unique_id=1741486299]
+script = ExtResource("1_la1vc")
+projectile_damage = 17.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1190736295]
 modulate = Color(0.24000001, 0.8479998, 1, 1)
@@ -52,3 +58,8 @@ offset = Vector2(0, -256)
 libraries/ = SubResource("AnimationLibrary_a7x4o")
 script = ExtResource("2_a7x4o")
 anim_name = "Lightning"
+
+[node name="Area" type="Area2D" parent="." unique_id=432172605]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area" unique_id=1216082907]
+shape = SubResource("CircleShape2D_la1vc")

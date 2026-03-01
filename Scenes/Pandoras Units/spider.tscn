@@ -13,6 +13,9 @@
 [ext_resource type="PackedScene" uid="uid://b42iaqce3h8w8" path="res://Scenes/unit_audio.tscn" id="11_27a6f"]
 [ext_resource type="Script" uid="uid://b1bbh72omc80q" path="res://Scripts/WebbedApplicator.gd" id="12_lojwx"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lojwx"]
+size = Vector2(64, 90)
+
 [node name="Spider" type="Node2D" unique_id=1703226469 groups=["Units"]]
 script = ExtResource("1_nb5wa")
 unit_resource = ExtResource("2_lojwx")
@@ -62,5 +65,10 @@ parent = NodePath("..")
 
 [node name="WebbedApplicator" type="Node" parent="." unique_id=1968561649]
 script = ExtResource("12_lojwx")
+
+[node name="Collision" type="Area2D" parent="." unique_id=338870405]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision" unique_id=1950058114]
+shape = SubResource("RectangleShape2D_lojwx")
 
 [connection signal="attacked" from="StateMachine/AttackState" to="WebbedApplicator" method="_on_attack_state_attacked"]
