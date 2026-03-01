@@ -30,7 +30,7 @@ func process_reroll(was_requested_by_player : bool = false):
 	shop_item.bootstrap(shop_queue.get_next_unit())
 	
 	if (was_requested_by_player):
-		player_stats.update_money(-reroll_button.reroll_price)
+		player_stats.update_money(-reroll_button.reroll_price, "reroll")
 		reroll_button.reroll_successful()
 		shop_sfx_manager.play_reroll() 
 
@@ -41,7 +41,7 @@ func process_levelup():
 		shop_sfx_manager.play_buzzer()
 		return
 	
-	player_stats.update_money(-player_stats.get_level_up_cost())
+	player_stats.update_money(-player_stats.get_level_up_cost(), "level up")
 	player_stats.level_up()
 	levelup_button.levelup_successful()
 	levelup_button.update_price_text(player_stats.get_level_up_cost())
@@ -59,7 +59,7 @@ func process_purchase(unit : UnitResource, source : ShopItem):
 		shop_sfx_manager.play_buzzer()
 		return
 	
-	player_stats.update_money(-unit.unit_cost)
+	player_stats.update_money(-unit.unit_cost, "purchase unit")
 	
 	var newUnit = unit.unit_scene.instantiate()
 	newUnit.player_owner = player_stats.player

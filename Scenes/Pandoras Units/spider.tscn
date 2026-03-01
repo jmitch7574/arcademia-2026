@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d3mfkh7jwepl2"]
 
 [ext_resource type="Script" uid="uid://cosr4qrn1kb71" path="res://Scripts/Unit.gd" id="1_nb5wa"]
-[ext_resource type="Resource" uid="uid://xdj3ayk30444" path="res://Units/Thor.tres" id="2_lojwx"]
+[ext_resource type="Script" uid="uid://drwphox75l0em" path="res://Scripts/UnitResource.gd" id="2_lojwx"]
 [ext_resource type="Material" uid="uid://c1xaxlfgt2wpv" path="res://Materials/pandora_unit.tres" id="3_jcw52"]
 [ext_resource type="Texture2D" uid="uid://b48nedyfjyw6r" path="res://Assets/PandorasUnits/Spider.png" id="4_nb5wa"]
 [ext_resource type="Script" uid="uid://w8c1iwl35m6i" path="res://Scripts/States/StateMachine.gd" id="5_ut5m2"]
@@ -13,12 +13,17 @@
 [ext_resource type="PackedScene" uid="uid://b42iaqce3h8w8" path="res://Scenes/unit_audio.tscn" id="11_27a6f"]
 [ext_resource type="Script" uid="uid://b1bbh72omc80q" path="res://Scripts/WebbedApplicator.gd" id="12_lojwx"]
 
+[sub_resource type="Resource" id="Resource_jcw52"]
+script = ExtResource("2_lojwx")
+unit_cost = 1
+metadata/_custom_type_script = "uid://drwphox75l0em"
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lojwx"]
 size = Vector2(64, 90)
 
 [node name="Spider" type="Node2D" unique_id=1703226469 groups=["Units"]]
 script = ExtResource("1_nb5wa")
-unit_resource = ExtResource("2_lojwx")
+unit_resource = SubResource("Resource_jcw52")
 max_health = 20.0
 player_owner = 2
 

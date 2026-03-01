@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://8barv47wqjcm"]
 
 [ext_resource type="Script" uid="uid://cosr4qrn1kb71" path="res://Scripts/Unit.gd" id="1_ed6gx"]
-[ext_resource type="Resource" uid="uid://xdj3ayk30444" path="res://Units/Thor.tres" id="2_8r16i"]
+[ext_resource type="Script" uid="uid://drwphox75l0em" path="res://Scripts/UnitResource.gd" id="2_q5hwp"]
 [ext_resource type="Material" uid="uid://c1xaxlfgt2wpv" path="res://Materials/pandora_unit.tres" id="3_q5hwp"]
 [ext_resource type="Texture2D" uid="uid://8shc4042x1xv" path="res://Assets/PandorasUnits/Decay.png" id="4_q5hwp"]
 [ext_resource type="Script" uid="uid://w8c1iwl35m6i" path="res://Scripts/States/StateMachine.gd" id="5_5abrr"]
@@ -12,12 +12,17 @@
 [ext_resource type="Script" uid="uid://bdu8lj42wuild" path="res://Scripts/ClosestTarget.gd" id="11_8ma5j"]
 [ext_resource type="PackedScene" uid="uid://b42iaqce3h8w8" path="res://Scenes/unit_audio.tscn" id="11_q5hwp"]
 
+[sub_resource type="Resource" id="Resource_vm8j0"]
+script = ExtResource("2_q5hwp")
+unit_cost = 1
+metadata/_custom_type_script = "uid://drwphox75l0em"
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q5hwp"]
 size = Vector2(64, 90)
 
 [node name="Decay" type="Node2D" unique_id=1703226469 groups=["Units"]]
 script = ExtResource("1_ed6gx")
-unit_resource = ExtResource("2_8r16i")
+unit_resource = SubResource("Resource_vm8j0")
 max_health = 40.0
 player_owner = 2
 

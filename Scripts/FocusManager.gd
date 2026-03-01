@@ -43,6 +43,7 @@ func _ready() -> void:
 	
 	GameEvents.buy_time_begin.connect(func(): enabled = true)
 	GameEvents.buy_time_end.connect(func(): enabled = false)
+	GameEvents.player_died.connect(func(player : PlayerStats.PLAYER): get_parent().queue_free())
 	
 	move_mouse(START_POSITION)
 	input_prefix = "p1" if player == PlayerStats.PLAYER.ONE else "p2"
@@ -55,6 +56,12 @@ func _process(delta: float) -> void:
 	if picked_up_unit != null:
 		picked_up_unit.grid_coords = grid_position
 		picked_up_unit.global_position = START_POSITION + (picked_up_unit.grid_coords * 102)
+		
+		if Input.is_action_just_pressed(input_prefix + "_decline"):
+			GameEvents.unit_sold.emit(picked_up_unit.unit_resource.unit_cost - 2)
+			picked_up_unit.queue_free()
+			picked_up_unit = null
+			
 	
 	if Input.is_action_just_pressed(input_prefix + "_accept") and focused_control is InteractableControl:
 		focused_control._on_press()

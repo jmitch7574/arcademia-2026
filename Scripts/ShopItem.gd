@@ -18,6 +18,7 @@ func bootstrap(unit: UnitResource):
 	if unit == null:
 		unit_name.text = ""
 		unit_texture.texture = null
+		current_unit = null
 		return
 	
 	unit_name.text = unit.unit_name + " [img]res://Assets/money.png[/img][color=#ffd24b]" + str(unit.unit_cost) + "[/color]"
@@ -27,4 +28,5 @@ func bootstrap(unit: UnitResource):
 
 
 func _on_press() -> void:
-	purchase_requested.emit(current_unit, self)
+	if current_unit:
+		purchase_requested.emit(current_unit, self)

@@ -35,7 +35,7 @@ grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
 theme = ExtResource("1_i26rj")
 bbcode_enabled = true
-text = "[outline_color=#000][outline_size=64]Army of Mythos[/outline_size][/outline_color]"
+text = "[outline_color=#000][outline_size=64]Army of Myths[/outline_size][/outline_color]"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("2_eiy7p")

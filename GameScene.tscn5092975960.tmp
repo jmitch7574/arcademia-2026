@@ -22,7 +22,6 @@
 [ext_resource type="PackedScene" uid="uid://chw6n1tignf2u" path="res://Scenes/UI Elements/shop.tscn" id="12_0qy1f"]
 [ext_resource type="Script" uid="uid://j4vrpkdjrry3" path="res://Scripts/UnitText.gd" id="13_0p1ba"]
 [ext_resource type="Script" uid="uid://h7au6xuybg48" path="res://Scripts/Camera.gd" id="14_k8u5j"]
-[ext_resource type="Script" uid="uid://0gdnvd6dbelh" path="res://Scripts/MoneyContainer.gd" id="16_b3pp0"]
 [ext_resource type="Script" uid="uid://bikk0tdbsecgb" path="res://Scripts/RoundLabel.gd" id="19_0qy1f"]
 [ext_resource type="Texture2D" uid="uid://ct7ahocabdtbm" path="res://Assets/PandorasBox/base.png" id="19_6qjax"]
 [ext_resource type="Script" uid="uid://bbjt63v3jqfil" path="res://Scripts/PandorasBox.gd" id="19_k8u5j"]
@@ -31,7 +30,6 @@
 [ext_resource type="Script" uid="uid://jbed7d3lyfo4" path="res://Scripts/LivesLabel.gd" id="20_s8bal"]
 [ext_resource type="Texture2D" uid="uid://cwf2mfxnots3" path="res://Assets/PandorasBox/eyes.png" id="21_0ptlf"]
 [ext_resource type="PackedScene" uid="uid://d3mfkh7jwepl2" path="res://Scenes/Pandoras Units/spider.tscn" id="23_redr1"]
-[ext_resource type="Script" uid="uid://bcm5mhmkta8me" path="res://Scripts/MouseTooltip.gd" id="25_ybhw4"]
 [ext_resource type="Script" uid="uid://dgfx10t1vmvs8" path="res://Scripts/VictoryAndLossThemePlayer.gd" id="26_0axbu"]
 [ext_resource type="PackedScene" uid="uid://b0xqh1f554bxi" path="res://Scenes/Pandoras Units/medusa.tscn" id="26_y0td7"]
 [ext_resource type="Script" uid="uid://b8p74f0ukwe7s" path="res://Scripts/MusicManager.gd" id="27_4puv8"]
@@ -424,7 +422,6 @@ script = ExtResource("9_icjtl")
 custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
 theme = ExtResource("1_haeiw")
-script = ExtResource("16_b3pp0")
 
 [node name="MoneyLabel" type="RichTextLabel" parent="PlayerStatsContainer/Items/MoneyContainer" unique_id=1593765542 node_paths=PackedStringArray("player_stats")]
 texture_filter = 1
@@ -585,22 +582,6 @@ texture = ExtResource("2_k77ap")
 offset = Vector2(6, 6)
 script = ExtResource("6_i2arf")
 mouse_control = NodePath("../P1Mouse")
-
-[node name="P1MouseTooltip" type="RichTextLabel" parent="." unique_id=1348153448 node_paths=PackedStringArray("mouse_control")]
-z_index = 101
-texture_filter = 1
-offset_left = 24.00003
-offset_top = -101.0
-offset_right = 626.0
-offset_bottom = -1.0
-theme_override_fonts/normal_font = ExtResource("38_4iqu7")
-theme_override_font_sizes/normal_font_size = 48
-bbcode_enabled = true
-text = "Press B to Sell Unit for $4"
-horizontal_alignment = 1
-vertical_alignment = 1
-script = ExtResource("25_ybhw4")
-mouse_control = NodePath("../P1Mouse/P1FocusManager")
 
 [node name="P1Mouse" type="Node2D" parent="." unique_id=362869788]
 position = Vector2(500, 75)

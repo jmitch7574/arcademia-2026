@@ -9,7 +9,7 @@ func _ready() -> void:
 	
 	var tween = create_tween()
 	tween.set_parallel()
-	tween.tween_property(self, "position", global_position + Vector2(0, -100), 1)
+	tween.tween_property(self, "position", position + Vector2(0, -100), 1)
 	tween.tween_property(self, "modulate", color, 1).finished.connect(func():
 		queue_free()
 	)

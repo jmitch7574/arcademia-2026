@@ -10,11 +10,9 @@ enum PLAYER
 
 @export var player : PLAYER
 
-var money : int = 3005
-signal money_changed(new_value)
+var money : int = 5
 
 var player_level = 1
-signal levelled_up(new_level : int)
 
 var lives_left = 3
 
@@ -24,22 +22,24 @@ var lives_left = 3
 func _ready() -> void:
 	GameEvents.battle_end.connect(try_award_victory_money)
 	GameEvents.unit_killed.connect(try_award_kill_money)
+	GameEvents.buy_time_begin.connect(apply_interest)
+	GameEvents.unit_sold.connect(func(amount: int): update_money(amount, "Sold Unit"))
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-
-func update_money(change : float):
+func update_money(change : float, source : String = ""):
+	if change == 0:
+		return
 	money += change
-	money_changed.emit(money)
+	GameEvents.money_changed.emit(player, change, money, ("-" if change < 0 else "+") + "%s   %s" % [str(int(abs(change))), source])
 	
 	if change > 0:
 		money_sfx.play()
 
+func apply_interest():
+	update_money(floor(money / 5), "Interest")
+
 func level_up() -> void:
 	player_level += 1
-	levelled_up.emit(player_level)
+	GameEvents.levelled_up.emit(player_level)
 
 func get_level_up_cost() -> int:
 	return int(pow(player_level * 1.5, 2)) + 4
@@ -55,11 +55,16 @@ func get_unit_count() -> int:
 	return player_units
 
 func try_award_victory_money(winner : PlayerStats.PLAYER):
+	await get_tree().create_timer(1).timeout
+	
 	if winner == player:
-		update_money(5)
+		update_money(4, "Round Win")
 	else:
-		update_money(2)
+		update_money(2, "Round Loss")
+		lives_left -= 1
+		if lives_left <= 0:
+			GameEvents.player_died.emit(player)
 
 func try_award_kill_money(victim : Unit, killer : Unit, gold_reward : int):
-	if killer.player_owner == player and randf() < 0.1:
-		update_money(gold_reward)
+	if killer.player_owner == player and randf() < 0.2:
+		update_money(gold_reward, "killed enemy")

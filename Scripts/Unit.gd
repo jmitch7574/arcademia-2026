@@ -72,12 +72,17 @@ func take_damage(damage : float, source : Unit) -> void:
 	GameEvents.unit_health_changed.emit(self, source, -damage, health)
 	
 	if health <= 0:
-		GameEvents.unit_killed.emit(self, source, 1)
+		var reward = unit_resource.unit_cost if player_owner == PlayerStats.PLAYER.PANDORA else 0
+		GameEvents.unit_killed.emit(self, source, reward)
 	
 	if player_owner == PlayerStats.PLAYER.PANDORA and health <= 0:
 		queue_free()
 
 func heal(amount : float, source : Unit) -> void:
+	## Don't resurrect dead allies, lol
+	if health <= 0:
+		return
+
 	health = min(health + amount, max_health)
 	
 	GameEvents.unit_health_changed.emit(self, source, amount, health)

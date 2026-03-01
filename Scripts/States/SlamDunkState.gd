@@ -24,7 +24,7 @@ func _enter_state() -> void:
 	slam_tween.tween_property(sprite, "position", Vector2(0, 0), 0.3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN).finished.connect(func():
 		for node in slam_collider.get_overlapping_areas():
 			var target_unit := node.get_parent() as Unit
-			if target_unit.player_owner != unit.player_owner:
+			if target_unit and target_unit.player_owner != unit.player_owner:
 				var direction = target_unit.global_position - unit.global_position
 				create_tween().tween_property(target_unit, "position", target_unit.global_position + (direction.normalized() * 300), 0.3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 				target_unit.take_damage(12, unit)

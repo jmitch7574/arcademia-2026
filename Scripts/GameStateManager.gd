@@ -6,7 +6,8 @@ enum GAMESTATE
 	BUY_TIME,
 	PRE_BATTLE,
 	BATTLE,
-	BATTLE_END
+	BATTLE_END,
+	LOSS
 }
 
 
@@ -22,12 +23,14 @@ static var round = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	round += 1
+	round = 1
 	current_state = GAMESTATE.BUY_TIME
 	
 	buy_time_timer.start()
 	GameEvents.buy_time_begin.emit()
 	current_timer = buy_time_timer
+	
+	GameEvents.player_died.connect(on_player_died)
 
 func get_faction_counts() -> Array[int]:
 	var player_one_count = 0
@@ -51,7 +54,6 @@ func _process(delta: float) -> void:
 	if current_state == GAMESTATE.BATTLE:
 		var factions = get_faction_counts()
 		if factions[0] <= 0 or (factions[1] + factions[2]) <= 0:
-			calculate_winner()
 			early_exit()
 
 func early_exit() -> void:
@@ -110,3 +112,14 @@ func _on_shop_process_player_skip(player: PlayerStats.PLAYER) -> void:
 	pre_round_timer.start()
 	GameEvents.buy_time_end.emit()
 	current_timer = pre_round_timer
+
+func on_player_died(player : PlayerStats.PLAYER):
+	current_timer.stop()
+	round_timer.stop()
+	battle_end_timer.stop()
+	pre_round_timer.stop()
+	buy_time_timer.stop()
+	
+	await get_tree().create_timer(10).timeout
+	
+	get_tree().change_scene_to_file("res://MainMenu.tscn")
