@@ -31,5 +31,5 @@ func _exit_state() -> void:
 func _state_update(delta: float) -> void:
 	pass
 
-func _on_attack_state_attacked() -> void:
+func _on_attack_state_attacked(unit: Unit) -> void:
 	charges += 1

@@ -30,12 +30,12 @@ func _ready() -> void:
 	
 	GameEvents.gold_karp_fished.connect(func(fisher : FishingState):
 		if fisher.unit.player_owner == player:
-			update_money(5, "Gold Karp")
+			update_money(3, "Gold Karp")
 	)
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("p1_moneylode") and (OS.has_feature("demonstration") or OS.has_feature("editor")):
-		update_money(1000, "moneylode")
+		update_money(1000, "moneyl	ode")
 
 func update_money(change : float, source : String = ""):
 	if change == 0:

@@ -27,7 +27,7 @@ radius = 83.09633
 [node name="Minotaur" type="Node2D" unique_id=1703226469 groups=["Units"]]
 script = ExtResource("1_7epdb")
 unit_resource = SubResource("Resource_88ph0")
-max_health = 100.0
+max_health = 80.0
 player_owner = 2
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1543214580]

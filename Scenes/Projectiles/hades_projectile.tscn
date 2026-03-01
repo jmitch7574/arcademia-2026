@@ -65,7 +65,7 @@ alpha_curve = SubResource("CurveTexture_wlybq")
 [node name="HadesProjectile" type="Node2D" unique_id=768164927]
 script = ExtResource("1_vc6nf")
 projectile_speed = 200.0
-projectile_damage = 5.0
+projectile_damage = 4.0
 
 [node name="ParticleTrail" parent="." unique_id=1098845346 instance=ExtResource("2_wlybq")]
 amount = 30

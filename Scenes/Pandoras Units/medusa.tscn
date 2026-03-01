@@ -58,7 +58,7 @@ color = Color(0.62, 0.62, 0.62, 1)
 [node name="Medusa" type="Node2D" unique_id=1703226469 groups=["Units"]]
 script = ExtResource("1_ywywr")
 unit_resource = SubResource("Resource_u6lha")
-max_health = 80.0
+max_health = 75.0
 player_owner = 2
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1543214580]

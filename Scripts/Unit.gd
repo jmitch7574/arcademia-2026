@@ -24,6 +24,9 @@ func _ready() -> void:
 	audio_player = AudioStreamPlayer2D.new()
 	add_child(audio_player)
 	
+	if player_owner == PlayerStats.PLAYER.PANDORA:
+		max_health += GameStateManager.round * 2
+	
 	health = max_health
 	GameEvents.buy_time_begin.connect(on_round_end)
 	

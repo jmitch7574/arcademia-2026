@@ -43,9 +43,9 @@ script = ExtResource("6_0f6ju")
 target_system = NodePath("../../TargetingSystem")
 parent = NodePath("../..")
 sprite = NodePath("../../Sprite")
-attack_speed = 0.8
+attack_speed = 0.65
 attack_range = 64.0
-damage = 7
+damage = 6
 
 [node name="SpecialAttackState" type="Node" parent="StateMachine" unique_id=2008884350 node_paths=PackedStringArray("target_system")]
 script = ExtResource("7_sp4f5")

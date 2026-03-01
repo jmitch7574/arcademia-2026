@@ -58,7 +58,7 @@ parent = NodePath("../..")
 sprite = NodePath("../../Sprite")
 attack_speed = 1.2
 attack_range = 32.0
-damage = 5
+damage = 3
 
 [node name="TargetingSystem" type="Node2D" parent="." unique_id=701804326 node_paths=PackedStringArray("parent")]
 script = ExtResource("9_65f1g")

@@ -8,7 +8,7 @@ radius = 150.0
 [node name="HadesBurn" type="Node2D" unique_id=1257142710]
 z_index = -1
 script = ExtResource("1_s02ws")
-projectile_damage = 8.0
+projectile_damage = 3.0
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=1934717865]
 
