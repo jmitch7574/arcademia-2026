@@ -48,6 +48,22 @@ border_width_right = 4
 border_width_bottom = 4
 border_color = Color(0.079200014, 0.47435996, 0.72, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i6g8y"]
+bg_color = Color(0.33, 0.26081002, 0.2079, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.72, 0.37824008, 0.079200014, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ens7f"]
+bg_color = Color(0.21, 0.15168999, 0.107099995, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.72, 0.31416002, 0.079200014, 1)
+
 [resource]
 LevelUp/base_type = &"Panel"
 LevelUp/styles/panel = SubResource("StyleBoxFlat_5y5h7")
@@ -61,3 +77,7 @@ ShopItem/base_type = &"Panel"
 ShopItem/styles/panel = SubResource("StyleBoxFlat_sj118")
 ShopItemBottom/base_type = &"Panel"
 ShopItemBottom/styles/panel = SubResource("StyleBoxFlat_hxabr")
+Skip/base_type = &"Panel"
+Skip/styles/panel = SubResource("StyleBoxFlat_i6g8y")
+SkipBottom/base_type = &"Panel"
+SkipBottom/styles/panel = SubResource("StyleBoxFlat_ens7f")

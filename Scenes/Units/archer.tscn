@@ -52,7 +52,7 @@ parent = NodePath("..")
 
 [node name="UnitAudio" parent="." unique_id=1661030395 instance=ExtResource("8_6oxgn")]
 
-[node name="Collision" type="Area2D" parent="." unique_id=572136496]
+[node name="Collision" type="Area2D" parent="." unique_id=572136496 groups=["UnitHitbox"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collision" unique_id=1957006823]
 shape = SubResource("RectangleShape2D_b3v06")

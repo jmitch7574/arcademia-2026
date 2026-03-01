@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="UnitResource" format=3 uid="uid://bsprx7okiyvo1"]
+
+[ext_resource type="Script" uid="uid://drwphox75l0em" path="res://Scripts/UnitResource.gd" id="1_juaih"]
+[ext_resource type="PackedScene" uid="uid://doefmx0qaswrs" path="res://Scenes/Units/appolo.tscn" id="2_juaih"]
+[ext_resource type="Texture2D" uid="uid://r0vcrsg8jphg" path="res://Assets/Units/appolo.png" id="3_juaih"]
+
+[resource]
+script = ExtResource("1_juaih")
+unit_name = "Apollo"
+unit_cost = 6
+unit_sprite = ExtResource("3_juaih")
+unit_scene = ExtResource("2_juaih")
+metadata/_custom_type_script = "uid://drwphox75l0em"

@@ -18,6 +18,7 @@ func _enter_state() -> void:
 		var strike = LIGHTNING.instantiate()
 		strike.global_position = position
 		get_tree().current_scene.add_child(strike)
+		strike.source_unit = unit
 		
 	self_end_state()
 

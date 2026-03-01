@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("1_i86fq")
 unit_name = "Archer"
-unit_cost = 2
+unit_cost = 4
 unit_sprite = ExtResource("3_i86fq")
 unit_scene = ExtResource("2_i86fq")
 metadata/_custom_type_script = "uid://drwphox75l0em"

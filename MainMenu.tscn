@@ -1,0 +1,109 @@
+[gd_scene format=3 uid="uid://88uwoj6u0rkp"]
+
+[ext_resource type="Script" uid="uid://cqa6w1stpq8xl" path="res://Scripts/MainMenu/MainMenu.gd" id="1_cqjrg"]
+[ext_resource type="Theme" uid="uid://cbr6moskbqfq0" path="res://Themes/MainMenu.tres" id="1_i26rj"]
+[ext_resource type="Script" uid="uid://dh80fe31cljgt" path="res://Scripts/MainMenu/Wobble.gd" id="2_eiy7p"]
+[ext_resource type="Texture2D" uid="uid://b4xwgpu7ew32e" path="res://Assets/PandorasBox/lid.png" id="3_h7a2f"]
+[ext_resource type="Script" uid="uid://b6xcwnoeitecp" path="res://Scripts/MainMenu/Float.gd" id="4_iwfq2"]
+[ext_resource type="Texture2D" uid="uid://ct7ahocabdtbm" path="res://Assets/PandorasBox/base.png" id="4_qoqlk"]
+[ext_resource type="Script" uid="uid://dmma2nvlrp88o" path="res://Scripts/MainMenu/FocusOnStart.gd" id="6_7r1g0"]
+
+[node name="MainMenu" type="CanvasLayer" unique_id=1033068373]
+script = ExtResource("1_cqjrg")
+
+[node name="TitleContainer" type="Control" parent="." unique_id=1033587229]
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 541.0
+grow_horizontal = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TitleContainer" unique_id=175715816]
+texture_filter = 6
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -473.0
+offset_top = -71.0
+offset_right = 473.0
+offset_bottom = 71.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme = ExtResource("1_i26rj")
+bbcode_enabled = true
+text = "[outline_color=#000][outline_size=64]Army of Mythos[/outline_size][/outline_color]"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_eiy7p")
+
+[node name="Lid" type="TextureRect" parent="TitleContainer" unique_id=67051780]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 78.38037
+offset_top = -247.52191
+offset_right = 258.38037
+offset_bottom = -67.52191
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.23537903
+texture = ExtResource("3_h7a2f")
+script = ExtResource("4_iwfq2")
+
+[node name="Base" type="TextureRect" parent="TitleContainer" unique_id=205427445]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -287.6195
+offset_top = 95.47809
+offset_right = -107.61951
+offset_bottom = 275.4781
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.33030975
+texture = ExtResource("4_qoqlk")
+script = ExtResource("4_iwfq2")
+
+[node name="ButtonsContainer" type="HBoxContainer" parent="." unique_id=504320325]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -486.0
+offset_top = -186.0
+offset_right = 486.0
+offset_bottom = -101.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 64
+
+[node name="PlayButton" type="Button" parent="ButtonsContainer" unique_id=688397297]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_i26rj")
+text = "Pandora's Gauntlet"
+script = ExtResource("6_7r1g0")
+
+[node name="QuitButton" type="Button" parent="ButtonsContainer" unique_id=1175502551]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_i26rj")
+text = "Quit"
+
+[connection signal="pressed" from="ButtonsContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="ButtonsContainer/QuitButton" to="." method="_on_quit_button_pressed"]

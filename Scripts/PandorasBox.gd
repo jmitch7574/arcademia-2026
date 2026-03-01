@@ -29,6 +29,8 @@ func spawn_enemies():
 		await get_tree().create_timer(2.0 / state_manager.round).timeout
 
 func on_battle_about_to_begin():
+	await get_tree().create_timer(1).timeout
+	
 	animation_player.play("to_fire")
 	
 	await get_tree().create_timer(0.2).timeout

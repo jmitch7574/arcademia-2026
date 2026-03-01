@@ -13,18 +13,21 @@
 [ext_resource type="Resource" uid="uid://dsyjybeoeaxmw" path="res://Units/Loki.tres" id="5_0ptlf"]
 [ext_resource type="Script" uid="uid://dpgvq4s54gfmg" path="res://Scripts/GameStateManager.gd" id="5_rb7ul"]
 [ext_resource type="Script" uid="uid://ba6qwy5xsj3t7" path="res://mouse_sprite.gd" id="6_i2arf"]
-[ext_resource type="Script" uid="uid://h45001on6p0r" path="res://Scripts/ShopManager.gd" id="7_cg2kh"]
 [ext_resource type="Resource" uid="uid://cj6fjvruyo8e" path="res://Units/Archer.tres" id="7_fsk3a"]
 [ext_resource type="Resource" uid="uid://dsysxw7sa712c" path="res://Units/Viking.tres" id="8_y0td7"]
+[ext_resource type="Resource" uid="uid://bsprx7okiyvo1" path="res://Units/Apollo.tres" id="9_cvqoq"]
 [ext_resource type="Script" uid="uid://dma5ow0mpynxh" path="res://Scripts/GameTimer.gd" id="9_icjtl"]
 [ext_resource type="Script" uid="uid://c86217m1sekx4" path="res://Scripts/SectionDisplay.gd" id="9_sao6o"]
-[ext_resource type="Script" uid="uid://cm8plam3lsmhj" path="res://Scripts/ShopSFXManager.gd" id="11_n1fdl"]
 [ext_resource type="Script" uid="uid://cu606eit2hnd6" path="res://Scripts/MoneyLabel.gd" id="11_sao6o"]
+[ext_resource type="PackedScene" uid="uid://chw6n1tignf2u" path="res://Scenes/UI Elements/shop.tscn" id="12_0qy1f"]
 [ext_resource type="Script" uid="uid://j4vrpkdjrry3" path="res://Scripts/UnitText.gd" id="13_0p1ba"]
 [ext_resource type="Script" uid="uid://h7au6xuybg48" path="res://Scripts/Camera.gd" id="14_k8u5j"]
+[ext_resource type="Script" uid="uid://bikk0tdbsecgb" path="res://Scripts/RoundLabel.gd" id="19_0qy1f"]
 [ext_resource type="Texture2D" uid="uid://ct7ahocabdtbm" path="res://Assets/PandorasBox/base.png" id="19_6qjax"]
 [ext_resource type="Script" uid="uid://bbjt63v3jqfil" path="res://Scripts/PandorasBox.gd" id="19_k8u5j"]
+[ext_resource type="PackedScene" uid="uid://8barv47wqjcm" path="res://Scenes/Pandoras Units/decay.tscn" id="20_0p1ba"]
 [ext_resource type="Texture2D" uid="uid://b4xwgpu7ew32e" path="res://Assets/PandorasBox/lid.png" id="20_88a4u"]
+[ext_resource type="Script" uid="uid://jbed7d3lyfo4" path="res://Scripts/LivesLabel.gd" id="20_s8bal"]
 [ext_resource type="Texture2D" uid="uid://cwf2mfxnots3" path="res://Assets/PandorasBox/eyes.png" id="21_0ptlf"]
 [ext_resource type="PackedScene" uid="uid://d3mfkh7jwepl2" path="res://Scenes/Pandoras Units/spider.tscn" id="23_redr1"]
 [ext_resource type="Script" uid="uid://dgfx10t1vmvs8" path="res://Scripts/VictoryAndLossThemePlayer.gd" id="26_0axbu"]
@@ -36,8 +39,8 @@
 
 [sub_resource type="Curve" id="Curve_k8u5j"]
 _limits = [0.0, 1.0, 0.0, 9.0]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(9, 0.30095404), 0.0, 0.0, 0, 0]
-point_count = 2
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1.9952831, 0), 0.0, 0.0, 0, 0, Vector2(9, 0.30095404), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="Curve" id="Curve_0ptlf"]
 _limits = [0.0, 20.0, 0.0, 30.0]
@@ -297,17 +300,17 @@ stream = ExtResource("2_igvw6")
 
 [node name="ShopQueue" type="Node" parent="." unique_id=1354138094]
 script = ExtResource("2_ex6dp")
-units = Array[ExtResource("3_ex6dp")]([ExtResource("4_cg2kh"), ExtResource("5_0ptlf"), ExtResource("7_fsk3a"), ExtResource("8_y0td7")])
+units = Array[ExtResource("3_ex6dp")]([ExtResource("4_cg2kh"), ExtResource("5_0ptlf"), ExtResource("7_fsk3a"), ExtResource("8_y0td7"), ExtResource("9_cvqoq")])
 
 [node name="GameStateManager" type="Node" parent="." unique_id=594612751 groups=["GameManager"]]
 script = ExtResource("5_rb7ul")
 
 [node name="BuyTimeTimer" type="Timer" parent="GameStateManager" unique_id=754912126]
-wait_time = 15.0
+wait_time = 60.0
 one_shot = true
 
 [node name="PreRoundTimer" type="Timer" parent="GameStateManager" unique_id=1396043593]
-wait_time = 3.0
+wait_time = 5.0
 one_shot = true
 
 [node name="RoundTimer" type="Timer" parent="GameStateManager" unique_id=451211138]
@@ -319,6 +322,7 @@ wait_time = 5.0
 one_shot = true
 
 [node name="ShopContainer" type="Control" parent="." unique_id=1412506660]
+z_index = 100
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -332,114 +336,78 @@ grow_vertical = 2
 pivot_offset = Vector2(910, 512)
 script = ExtResource("2_4fxa8")
 
-[node name="Shop" type="PanelContainer" parent="ShopContainer" unique_id=117144800 node_paths=PackedStringArray("shop_queue", "player_stats")]
-custom_minimum_size = Vector2(1000, 300)
+[node name="Shop" parent="ShopContainer" unique_id=715110259 node_paths=PackedStringArray("shop_queue", "player_stats") instance=ExtResource("12_0qy1f")]
+custom_minimum_size = Vector2(750, 300)
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -40.0
-offset_right = 20.0
-grow_horizontal = 2
-grow_vertical = 0
-theme = ExtResource("1_haeiw")
-script = ExtResource("7_cg2kh")
+offset_left = -500.0
+offset_top = -300.0
+offset_right = 500.0
 shop_queue = NodePath("../../ShopQueue")
 player_stats = NodePath("../../PlayerStats")
 
-[node name="MarginContainer" type="MarginContainer" parent="ShopContainer/Shop" unique_id=730343077]
-layout_mode = 2
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 16
+[node name="PlayerStatsContainer" type="CanvasLayer" parent="." unique_id=1621534677]
 
-[node name="ShopElements" type="HBoxContainer" parent="ShopContainer/Shop/MarginContainer" unique_id=2107210662]
-layout_mode = 2
-
-[node name="ShopSFXManager" type="AudioStreamPlayer2D" parent="ShopContainer/Shop" unique_id=1600939729]
-script = ExtResource("11_n1fdl")
-
-[node name="PlayerStatsContainer" type="Control" parent="." unique_id=1858020564]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
+[node name="Items" type="VFlowContainer" parent="PlayerStatsContainer" unique_id=523105553]
+anchors_preset = 9
 anchor_bottom = 1.0
-offset_left = 54.13977
-offset_top = 34.0
-offset_right = 1864.8602
-offset_bottom = 1052.0
-grow_horizontal = 2
+offset_left = 155.0
+offset_top = 73.0
+offset_right = 355.0
+offset_bottom = -73.0
 grow_vertical = 2
+theme_override_constants/v_separation = 48
+alignment = 1
+last_wrap_alignment = 2
 
-[node name="SectionContainer" type="PanelContainer" parent="PlayerStatsContainer" unique_id=1959297522]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -805.5
-offset_top = -844.0
-offset_right = -629.5
-offset_bottom = -793.0
-grow_horizontal = 2
-grow_vertical = 0
+[node name="TimeContainer" type="Control" parent="PlayerStatsContainer/Items" unique_id=1320373326]
+custom_minimum_size = Vector2(200, 140)
+layout_mode = 2
+
+[node name="SectionContainer" type="PanelContainer" parent="PlayerStatsContainer/Items/TimeContainer" unique_id=1959297522]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 0
+offset_left = 25.0
+offset_top = 90.0
+offset_right = 175.0
+offset_bottom = 140.0
 theme = ExtResource("1_haeiw")
 
-[node name="SectionLabel" type="RichTextLabel" parent="PlayerStatsContainer/SectionContainer" unique_id=211525174 node_paths=PackedStringArray("game_manager")]
+[node name="SectionLabel" type="RichTextLabel" parent="PlayerStatsContainer/Items/TimeContainer/SectionContainer" unique_id=211525174 node_paths=PackedStringArray("game_manager")]
 texture_filter = 1
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 32
-text = "Buy Phase"
+bbcode_enabled = true
+text = "[wave amp=10.0 freq=3.0 connected=1]Buy Phase"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("9_sao6o")
-game_manager = NodePath("../../../GameStateManager")
+game_manager = NodePath("../../../../../GameStateManager")
 
-[node name="ClockContainer" type="PanelContainer" parent="PlayerStatsContainer" unique_id=1529515175]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -813.5
-offset_top = -922.0
-offset_right = -621.5
-offset_bottom = -835.0
+[node name="ClockContainer" type="PanelContainer" parent="PlayerStatsContainer/Items/TimeContainer" unique_id=1529515175]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 100.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("1_haeiw")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="PlayerStatsContainer/ClockContainer" unique_id=1802380600]
+[node name="RichTextLabel" type="RichTextLabel" parent="PlayerStatsContainer/Items/TimeContainer/ClockContainer" unique_id=1802380600]
 texture_filter = 1
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
 text = "Time"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("9_icjtl")
 
-[node name="MoneyContainer" type="PanelContainer" parent="PlayerStatsContainer" unique_id=456746939]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -813.5
-offset_top = -699.0
-offset_right = -621.5
-offset_bottom = -612.0
-grow_horizontal = 2
-grow_vertical = 0
+[node name="MoneyContainer" type="PanelContainer" parent="PlayerStatsContainer/Items" unique_id=456746939]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
 theme = ExtResource("1_haeiw")
 
-[node name="MoneyLabel" type="RichTextLabel" parent="PlayerStatsContainer/MoneyContainer" unique_id=1593765542 node_paths=PackedStringArray("player_stats")]
+[node name="MoneyLabel" type="RichTextLabel" parent="PlayerStatsContainer/Items/MoneyContainer" unique_id=1593765542 node_paths=PackedStringArray("player_stats")]
 texture_filter = 1
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 64
@@ -448,55 +416,132 @@ text = "money"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("11_sao6o")
-player_stats = NodePath("../../../PlayerStats")
+player_stats = NodePath("../../../../PlayerStats")
 
-[node name="SlotsNumberContainer" type="PanelContainer" parent="PlayerStatsContainer" unique_id=1551635139]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -805.5
-offset_top = -437.0
-offset_right = -629.5
-offset_bottom = -386.0
-grow_horizontal = 2
-grow_vertical = 0
+[node name="UnitsContainer" type="Control" parent="PlayerStatsContainer/Items" unique_id=1055741397]
+custom_minimum_size = Vector2(200, 140)
+layout_mode = 2
+
+[node name="SectionContainer" type="PanelContainer" parent="PlayerStatsContainer/Items/UnitsContainer" unique_id=208355324]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 0
+offset_left = 25.0
+offset_top = 90.0
+offset_right = 175.0
+offset_bottom = 140.0
 theme = ExtResource("1_haeiw")
 
-[node name="SectionLabel" type="RichTextLabel" parent="PlayerStatsContainer/SlotsNumberContainer" unique_id=2137857006]
+[node name="SectionLabel" type="RichTextLabel" parent="PlayerStatsContainer/Items/UnitsContainer/SectionContainer" unique_id=2137857006]
 texture_filter = 1
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 32
-text = "Units"
+bbcode_enabled = true
+text = "[wave amp=10.0 freq=3.0 connected=1]Units"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SlotsDescription" type="PanelContainer" parent="PlayerStatsContainer" unique_id=136213461]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -813.5
-offset_top = -515.0
-offset_right = -621.5
-offset_bottom = -428.0
+[node name="CountContainer" type="PanelContainer" parent="PlayerStatsContainer/Items/UnitsContainer" unique_id=1900836685]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 100.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("1_haeiw")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="PlayerStatsContainer/SlotsDescription" unique_id=1078636193 node_paths=PackedStringArray("player_stats")]
+[node name="RichTextLabel" type="RichTextLabel" parent="PlayerStatsContainer/Items/UnitsContainer/CountContainer" unique_id=1078636193 node_paths=PackedStringArray("player_stats")]
 texture_filter = 1
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
 text = "3 / 10"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("13_0p1ba")
-player_stats = NodePath("../../../PlayerStats")
+player_stats = NodePath("../../../../../PlayerStats")
+
+[node name="RoundsContainer" type="Control" parent="PlayerStatsContainer/Items" unique_id=353599957]
+custom_minimum_size = Vector2(200, 140)
+layout_mode = 2
+
+[node name="SectionContainer" type="PanelContainer" parent="PlayerStatsContainer/Items/RoundsContainer" unique_id=489017071]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 0
+offset_left = 25.0
+offset_top = 90.0
+offset_right = 175.0
+offset_bottom = 140.0
+theme = ExtResource("1_haeiw")
+
+[node name="SectionLabel" type="RichTextLabel" parent="PlayerStatsContainer/Items/RoundsContainer/SectionContainer" unique_id=1886669461]
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[wave amp=10.0 freq=3.0 connected=1]ROUND"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CountContainer" type="PanelContainer" parent="PlayerStatsContainer/Items/RoundsContainer" unique_id=436275758]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("1_haeiw")
+
+[node name="RoundLabel" type="RichTextLabel" parent="PlayerStatsContainer/Items/RoundsContainer/CountContainer" unique_id=500199856]
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "Round"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("19_0qy1f")
+
+[node name="LivesContainer" type="Control" parent="PlayerStatsContainer/Items" unique_id=56472881]
+custom_minimum_size = Vector2(200, 140)
+layout_mode = 2
+
+[node name="SectionContainer" type="PanelContainer" parent="PlayerStatsContainer/Items/LivesContainer" unique_id=1718485027]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 0
+offset_left = 25.0
+offset_top = 90.0
+offset_right = 175.0
+offset_bottom = 140.0
+theme = ExtResource("1_haeiw")
+
+[node name="SectionLabel" type="RichTextLabel" parent="PlayerStatsContainer/Items/LivesContainer/SectionContainer" unique_id=1806983415]
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[wave amp=10.0 freq=3.0 connected=1]Lives"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CountContainer" type="PanelContainer" parent="PlayerStatsContainer/Items/LivesContainer" unique_id=905823326]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("1_haeiw")
+
+[node name="RoundLabel" type="RichTextLabel" parent="PlayerStatsContainer/Items/LivesContainer/CountContainer" unique_id=326468434 node_paths=PackedStringArray("player_stats")]
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "Round"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("20_s8bal")
+player_stats = NodePath("../../../../../PlayerStats")
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=642158115]
 
@@ -515,7 +560,7 @@ anchor_mode = 0
 script = ExtResource("14_k8u5j")
 
 [node name="P1MouseSprite" type="Sprite2D" parent="." unique_id=445692134 node_paths=PackedStringArray("mouse_control")]
-z_index = 1
+z_index = 101
 texture_filter = 1
 position = Vector2(507.00003, -101)
 scale = Vector2(5, 5)
@@ -527,16 +572,17 @@ mouse_control = NodePath("../P1Mouse")
 [node name="P1Mouse" type="Node2D" parent="." unique_id=362869788]
 position = Vector2(500, 75)
 
-[node name="P1FocusManager" type="Node" parent="P1Mouse" unique_id=269751576 node_paths=PackedStringArray("mouse_object", "shop_elements")]
+[node name="P1FocusManager" type="Node" parent="P1Mouse" unique_id=269751576 node_paths=PackedStringArray("mouse_object", "shop")]
 script = ExtResource("4_hvuor")
 mouse_object = NodePath("..")
-shop_elements = NodePath("../../ShopContainer/Shop/MarginContainer/ShopElements")
+shop = NodePath("../../ShopContainer/Shop")
 
 [node name="PandorasBox" type="Node2D" parent="." unique_id=934045646 node_paths=PackedStringArray("state_manager")]
+z_index = 100
 position = Vector2(1688, 393)
 script = ExtResource("19_k8u5j")
 state_manager = NodePath("../GameStateManager")
-tier_one_enemies = Array[PackedScene]([ExtResource("27_ry04y"), ExtResource("23_redr1")])
+tier_one_enemies = Array[PackedScene]([ExtResource("20_0p1ba"), ExtResource("23_redr1")])
 tier_two_enemies = Array[PackedScene]([ExtResource("26_y0td7"), ExtResource("27_ry04y")])
 tier_two_chance = SubResource("Curve_k8u5j")
 slots_curve = SubResource("Curve_0ptlf")
@@ -581,3 +627,4 @@ autoplay = true
 [connection signal="timeout" from="GameStateManager/PreRoundTimer" to="GameStateManager" method="_on_pre_round_timer_timeout"]
 [connection signal="timeout" from="GameStateManager/RoundTimer" to="GameStateManager" method="_on_round_timer_timeout"]
 [connection signal="timeout" from="GameStateManager/PostRoundTimer" to="GameStateManager" method="_on_post_round_timer_timeout"]
+[connection signal="process_player_skip" from="ShopContainer/Shop" to="GameStateManager" method="_on_shop_process_player_skip"]

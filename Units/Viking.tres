@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("1_fct0b")
 unit_name = "Viking"
-unit_cost = 2
+unit_cost = 4
 unit_sprite = ExtResource("3_fct0b")
 unit_scene = ExtResource("2_fct0b")
 metadata/_custom_type_script = "uid://drwphox75l0em"

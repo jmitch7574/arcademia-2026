@@ -12,3 +12,4 @@ signal reroll_requested(done_by_player : bool, for_player: PlayerStats.PLAYER)
 signal purchase_requested(unit : UnitResource, source : ShopItem)
 
 signal unit_killed(victim : Unit, killer : Unit, gold_reward : int)
+signal unit_health_changed(unit : Unit, source : Unit, amount : float, new_health : float)

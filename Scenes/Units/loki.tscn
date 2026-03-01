@@ -16,7 +16,7 @@ size = Vector2(64, 90)
 
 [node name="Loki" type="Node2D" unique_id=1703226469 groups=["Units"]]
 script = ExtResource("1_vq3b6")
-max_health = 100.0
+max_health = 80.0
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1543214580]
 texture_filter = 1
@@ -56,7 +56,7 @@ parent = NodePath("..")
 
 [node name="UnitAudio" parent="." unique_id=1661030395 instance=ExtResource("10_w56o8")]
 
-[node name="Collision" type="Area2D" parent="." unique_id=1695340925]
+[node name="Collision" type="Area2D" parent="." unique_id=1695340925 groups=["UnitHitbox"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collision" unique_id=701027008]
 shape = SubResource("RectangleShape2D_w56o8")

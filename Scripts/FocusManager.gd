@@ -24,7 +24,7 @@ static var START_POSITION = Vector2(500, 75)
 var grid_position = Vector2(0, 0)
 
 ## The first element in the shop, the reroll
-@export var shop_elements : Control
+@export var shop : ShopManager
 
 ## The parent of the perks,  for going to the first child
 @export var perks_parent : Control
@@ -120,7 +120,7 @@ func move_mouse_to_control(control : Control):
 	
 func move_to_shop():
 	location = POSITION.SHOP
-	move_mouse_to_control(shop_elements.get_child(0))
+	move_mouse_to_control(shop.shop_item)
 	drop_unit()
 
 func pick_up_unit(unit : Unit):

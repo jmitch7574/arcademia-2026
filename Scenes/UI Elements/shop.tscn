@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://chw6n1tignf2u"]
+
+[ext_resource type="Theme" uid="uid://gaki48q5hftc" path="res://Themes/GameTheme.tres" id="1_io27d"]
+[ext_resource type="Script" uid="uid://h45001on6p0r" path="res://Scripts/ShopManager.gd" id="2_fdj0q"]
+[ext_resource type="Script" uid="uid://cm8plam3lsmhj" path="res://Scripts/ShopSFXManager.gd" id="3_k6jq0"]
+[ext_resource type="PackedScene" uid="uid://uu0p10ftnw1r" path="res://Scenes/UI Elements/shop_item.tscn" id="3_sbp0t"]
+[ext_resource type="PackedScene" uid="uid://b2n21l6pwilj3" path="res://Scenes/UI Elements/reroll.tscn" id="4_wku4y"]
+[ext_resource type="PackedScene" uid="uid://b0xmg8pvy5yqy" path="res://Scenes/UI Elements/level_up.tscn" id="5_p80rw"]
+[ext_resource type="PackedScene" uid="uid://54lp46g6bsk" path="res://Scenes/UI Elements/skip.tscn" id="6_jptg5"]
+[ext_resource type="Script" uid="uid://hswklkqirkmi" path="res://Scripts/SkipButton.gd" id="7_086r2"]
+
+[node name="Shop" type="PanelContainer" unique_id=715110259 node_paths=PackedStringArray("reroll_button", "levelup_button", "shop_item")]
+custom_minimum_size = Vector2(1000, 300)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("1_io27d")
+script = ExtResource("2_fdj0q")
+reroll_button = NodePath("MarginContainer/ShopElements/Reroll")
+levelup_button = NodePath("MarginContainer/ShopElements/LevelUp")
+shop_item = NodePath("MarginContainer/ShopElements/ShopItem")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=467465114]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="ShopElements" type="HBoxContainer" parent="MarginContainer" unique_id=1753680271]
+layout_mode = 2
+
+[node name="ShopItem" parent="MarginContainer/ShopElements" unique_id=1357183532 instance=ExtResource("3_sbp0t")]
+layout_mode = 2
+
+[node name="Reroll" parent="MarginContainer/ShopElements" unique_id=1309589322 instance=ExtResource("4_wku4y")]
+layout_mode = 2
+
+[node name="LevelUp" parent="MarginContainer/ShopElements" unique_id=2137320744 instance=ExtResource("5_p80rw")]
+layout_mode = 2
+
+[node name="Skip" parent="MarginContainer/ShopElements" unique_id=296041755 instance=ExtResource("6_jptg5")]
+layout_mode = 2
+script = ExtResource("7_086r2")
+
+[node name="ShopSFXManager" type="AudioStreamPlayer2D" parent="." unique_id=39020437]
+script = ExtResource("3_k6jq0")
+
+[connection signal="purchase_requested" from="MarginContainer/ShopElements/ShopItem" to="." method="process_purchase"]
+[connection signal="reroll_requested" from="MarginContainer/ShopElements/Reroll" to="." method="process_reroll"]
+[connection signal="levelup_requested" from="MarginContainer/ShopElements/LevelUp" to="." method="process_levelup"]
+[connection signal="skip_requested" from="MarginContainer/ShopElements/Skip" to="." method="process_skip_request"]

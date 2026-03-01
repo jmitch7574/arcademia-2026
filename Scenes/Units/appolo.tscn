@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://doefmx0qaswrs"]
+
+[ext_resource type="Script" uid="uid://cosr4qrn1kb71" path="res://Scripts/Unit.gd" id="1_o5klj"]
+[ext_resource type="Material" uid="uid://dlhhnx45g42ri" path="res://Materials/unit.tres" id="2_rgcpn"]
+[ext_resource type="Texture2D" uid="uid://r0vcrsg8jphg" path="res://Assets/Units/appolo.png" id="3_o5klj"]
+[ext_resource type="Script" uid="uid://w8c1iwl35m6i" path="res://Scripts/States/StateMachine.gd" id="4_wpi5s"]
+[ext_resource type="Script" uid="uid://d0byqe8nfg7jb" path="res://Scripts/States/WalkState.gd" id="5_7d8rp"]
+[ext_resource type="Script" uid="uid://bh3fkcxmm5vc" path="res://Scripts/States/ShootProjectile.gd" id="6_r36dp"]
+[ext_resource type="PackedScene" uid="uid://c54846h5xo6fb" path="res://Scenes/Projectiles/music_note.tscn" id="7_o5klj"]
+[ext_resource type="Script" uid="uid://ckvuq63xt8twu" path="res://Scripts/States/ApolloSonataState.gd" id="8_o5klj"]
+[ext_resource type="Script" uid="uid://bdu8lj42wuild" path="res://Scripts/ClosestTarget.gd" id="9_gbgjf"]
+[ext_resource type="PackedScene" uid="uid://b42iaqce3h8w8" path="res://Scenes/unit_audio.tscn" id="10_kdc2q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w56o8"]
+size = Vector2(64, 90)
+
+[node name="Apollo" type="Node2D" unique_id=1703226469 groups=["Units"]]
+script = ExtResource("1_o5klj")
+max_health = 70.0
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1543214580]
+texture_filter = 1
+material = ExtResource("2_rgcpn")
+scale = Vector2(5, 5)
+texture = ExtResource("3_o5klj")
+region_rect = Rect2(0, 0, 16, 16)
+metadata/_edit_lock_ = true
+
+[node name="StateMachine" type="Node" parent="." unique_id=943529181 node_paths=PackedStringArray("states")]
+script = ExtResource("4_wpi5s")
+states = [NodePath("SpecialAttackState"), NodePath("AttackState"), NodePath("WalkState")]
+
+[node name="WalkState" type="Node" parent="StateMachine" unique_id=624709180 node_paths=PackedStringArray("target_system", "parent", "sprite")]
+script = ExtResource("5_7d8rp")
+target_system = NodePath("../../TargetingSystem")
+parent = NodePath("../..")
+move_speed = 100.0
+sprite = NodePath("../../Sprite")
+interruptible = true
+
+[node name="AttackState" type="Node" parent="StateMachine" unique_id=747475448 node_paths=PackedStringArray("target_system", "parent", "sprite")]
+script = ExtResource("6_r36dp")
+target_system = NodePath("../../TargetingSystem")
+parent = NodePath("../..")
+sprite = NodePath("../../Sprite")
+attack_speed = 0.4
+attack_range = 10000.0
+projectile = ExtResource("7_o5klj")
+
+[node name="SpecialAttackState" type="Node" parent="StateMachine" unique_id=2008884350]
+script = ExtResource("8_o5klj")
+
+[node name="TargetingSystem" type="Node2D" parent="." unique_id=701804326 node_paths=PackedStringArray("parent")]
+script = ExtResource("9_gbgjf")
+parent = NodePath("..")
+
+[node name="UnitAudio" parent="." unique_id=1661030395 instance=ExtResource("10_kdc2q")]
+
+[node name="Collision" type="Area2D" parent="." unique_id=1695340925 groups=["UnitHitbox"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision" unique_id=701027008]
+shape = SubResource("RectangleShape2D_w56o8")
+
+[connection signal="attacked" from="StateMachine/AttackState" to="StateMachine/SpecialAttackState" method="_on_attack_state_attacked"]

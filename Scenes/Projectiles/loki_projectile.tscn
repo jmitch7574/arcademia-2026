@@ -4,12 +4,44 @@
 [ext_resource type="PackedScene" uid="uid://bar7nvfyyjnjq" path="res://Scenes/Particle Systems/loki_projectile_particles_trail.tscn" id="2_gm0ja"]
 [ext_resource type="PackedScene" uid="uid://levqg6qlcxh6" path="res://Scenes/Particle Systems/loki_projectile_particles_hit.tscn" id="3_ooqs6"]
 
+[sub_resource type="Curve" id="Curve_t2xnb"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_m1anv"]
+curve = SubResource("Curve_t2xnb")
+
+[sub_resource type="Curve" id="Curve_m1anv"]
+_limits = [0.0, 412.77, 0.0, 1.0]
+_data = [Vector2(0, 412.77), 0.0, 0.0, 0, 0, Vector2(0.57258064, 13.831055), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ywp0r"]
+curve = SubResource("Curve_m1anv")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ma6lg"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 10.0
+radial_velocity_min = -2.2351742e-05
+radial_velocity_max = -2.2351742e-05
+velocity_limit_curve = SubResource("CurveTexture_ywp0r")
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -2.2351742e-06
+radial_accel_max = -2.2351742e-06
+scale_min = 25.0
+scale_max = 25.0
+color = Color(0.122400016, 0.72, 0.15228, 1)
+alpha_curve = SubResource("CurveTexture_m1anv")
+
 [node name="LokiProjectile" type="Node2D" unique_id=768164927]
 script = ExtResource("1_ma6lg")
 projectile_speed = 200.0
 projectile_damage = 5.0
 
 [node name="ParticleTrail" parent="." unique_id=1098845346 instance=ExtResource("2_gm0ja")]
+amount = 30
+process_material = SubResource("ParticleProcessMaterial_ma6lg")
 
 [node name="ParticleHit" parent="." unique_id=1366613433 instance=ExtResource("3_ooqs6")]
 script = null

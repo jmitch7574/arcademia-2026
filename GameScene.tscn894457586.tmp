@@ -1,0 +1,629 @@
+[gd_scene format=3 uid="uid://wd0trlkmus3"]
+
+[ext_resource type="Script" uid="uid://c3thlbfirpi83" path="res://Scripts/PlayerStats.gd" id="1_0exr2"]
+[ext_resource type="Texture2D" uid="uid://cddq2pqfiyia4" path="res://Assets/Kenney/Grid.svg" id="1_eqhe0"]
+[ext_resource type="Theme" uid="uid://gaki48q5hftc" path="res://Themes/GameTheme.tres" id="1_haeiw"]
+[ext_resource type="Script" uid="uid://drbithaitpukd" path="res://Scripts/Shop.gd" id="2_4fxa8"]
+[ext_resource type="Script" uid="uid://bilyoutardbvk" path="res://Scripts/ShopQueue.gd" id="2_ex6dp"]
+[ext_resource type="AudioStream" uid="uid://d3or0c28j36nh" path="res://Sound/pickupCoin.wav" id="2_igvw6"]
+[ext_resource type="Texture2D" uid="uid://cvjjdojnal7o7" path="res://Assets/Kenney/Cursor.png" id="2_k77ap"]
+[ext_resource type="Script" uid="uid://drwphox75l0em" path="res://Scripts/UnitResource.gd" id="3_ex6dp"]
+[ext_resource type="Resource" uid="uid://xdj3ayk30444" path="res://Units/Thor.tres" id="4_cg2kh"]
+[ext_resource type="Script" uid="uid://bklrncyxf57w" path="res://Scripts/FocusManager.gd" id="4_hvuor"]
+[ext_resource type="Resource" uid="uid://dsyjybeoeaxmw" path="res://Units/Loki.tres" id="5_0ptlf"]
+[ext_resource type="Script" uid="uid://dpgvq4s54gfmg" path="res://Scripts/GameStateManager.gd" id="5_rb7ul"]
+[ext_resource type="Script" uid="uid://ba6qwy5xsj3t7" path="res://mouse_sprite.gd" id="6_i2arf"]
+[ext_resource type="Resource" uid="uid://cj6fjvruyo8e" path="res://Units/Archer.tres" id="7_fsk3a"]
+[ext_resource type="Resource" uid="uid://dsysxw7sa712c" path="res://Units/Viking.tres" id="8_y0td7"]
+[ext_resource type="Resource" uid="uid://bsprx7okiyvo1" path="res://Units/Apollo.tres" id="9_cvqoq"]
+[ext_resource type="Script" uid="uid://dma5ow0mpynxh" path="res://Scripts/GameTimer.gd" id="9_icjtl"]
+[ext_resource type="Script" uid="uid://c86217m1sekx4" path="res://Scripts/SectionDisplay.gd" id="9_sao6o"]
+[ext_resource type="Script" uid="uid://cu606eit2hnd6" path="res://Scripts/MoneyLabel.gd" id="11_sao6o"]
+[ext_resource type="PackedScene" uid="uid://chw6n1tignf2u" path="res://Scenes/UI Elements/shop.tscn" id="12_0qy1f"]
+[ext_resource type="Script" uid="uid://j4vrpkdjrry3" path="res://Scripts/UnitText.gd" id="13_0p1ba"]
+[ext_resource type="Script" uid="uid://h7au6xuybg48" path="res://Scripts/Camera.gd" id="14_k8u5j"]
+[ext_resource type="Script" uid="uid://bikk0tdbsecgb" path="res://Scripts/RoundLabel.gd" id="19_0qy1f"]
+[ext_resource type="Texture2D" uid="uid://ct7ahocabdtbm" path="res://Assets/PandorasBox/base.png" id="19_6qjax"]
+[ext_resource type="Script" uid="uid://bbjt63v3jqfil" path="res://Scripts/PandorasBox.gd" id="19_k8u5j"]
+[ext_resource type="PackedScene" uid="uid://8barv47wqjcm" path="res://Scenes/Pandoras Units/decay.tscn" id="20_0p1ba"]
+[ext_resource type="Texture2D" uid="uid://b4xwgpu7ew32e" path="res://Assets/PandorasBox/lid.png" id="20_88a4u"]
+[ext_resource type="Script" uid="uid://jbed7d3lyfo4" path="res://Scripts/LivesLabel.gd" id="20_s8bal"]
+[ext_resource type="Texture2D" uid="uid://cwf2mfxnots3" path="res://Assets/PandorasBox/eyes.png" id="21_0ptlf"]
+[ext_resource type="PackedScene" uid="uid://d3mfkh7jwepl2" path="res://Scenes/Pandoras Units/spider.tscn" id="23_redr1"]
+[ext_resource type="Script" uid="uid://dgfx10t1vmvs8" path="res://Scripts/VictoryAndLossThemePlayer.gd" id="26_0axbu"]
+[ext_resource type="PackedScene" uid="uid://b0xqh1f554bxi" path="res://Scenes/Pandoras Units/medusa.tscn" id="26_y0td7"]
+[ext_resource type="Script" uid="uid://b8p74f0ukwe7s" path="res://Scripts/MusicManager.gd" id="27_4puv8"]
+[ext_resource type="AudioStream" uid="uid://cx5u1utjh3ooc" path="res://Sound/bass_loop.wav" id="27_agx0x"]
+[ext_resource type="PackedScene" uid="uid://dploi3bb5lluw" path="res://Scenes/Pandoras Units/minotaur.tscn" id="27_ry04y"]
+[ext_resource type="AudioStream" uid="uid://cj22ugkd4tji" path="res://Sound/melody.wav" id="28_jvwnh"]
+
+[sub_resource type="Curve" id="Curve_k8u5j"]
+_limits = [0.0, 1.0, 0.0, 9.0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(9, 0.30095404), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_0ptlf"]
+_limits = [0.0, 20.0, 0.0, 30.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(8.400001, 7.2000003), -0.080152065, -0.080152065, 0, 0, Vector2(19.2, 14.400001), 0.0, 0.0, 0, 0, Vector2(30, 20), 0.0, 0.0, 0, 0]
+point_count = 4
+metadata/_snap_enabled = true
+metadata/_snap_count = 50
+
+[sub_resource type="Animation" id="Animation_0p1ba"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PandorasBox/Base:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PandorasBox/Lid:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -97.99999)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PandorasBox/Eyes:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-13, -27.999992)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PandorasBox/Base:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("PandorasBox/Lid:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("PandorasBox/Eyes:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_n1fdl"]
+resource_name = "firing"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PandorasBox/Base:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 100), Vector2(0, 100)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PandorasBox/Lid:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -200), Vector2(0, -200)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PandorasBox/Eyes:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-13, -250), Vector2(-13, -250)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PandorasBox/Base:rotation")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.2617993877991494, -0.2617993877991494, 0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("PandorasBox/Lid:rotation")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.2617993877991494, 0.2617993877991494, 0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("PandorasBox/Eyes:rotation")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.2617993877991494, -0.2617993877991494, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_k8u5j"]
+resource_name = "idle"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PandorasBox/Base:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 50), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PandorasBox/Lid:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 1, 1.19, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -97.99999), Vector2(0, -97.99999), Vector2(0, -60), Vector2(0, -70), Vector2(0, -97.99999)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PandorasBox/Eyes:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.0333333, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-13, -27.999992), Vector2(-13, -50), Vector2(-13, -27.999992)]
+}
+
+[sub_resource type="Animation" id="Animation_igvw6"]
+resource_name = "to_fire"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PandorasBox/Base:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 100)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PandorasBox/Lid:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -97.99999), Vector2(0, -200)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PandorasBox/Eyes:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-13, -27.999992), Vector2(-13, -250)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0p1ba"]
+_data = {
+&"RESET": SubResource("Animation_0p1ba"),
+&"firing": SubResource("Animation_n1fdl"),
+&"idle": SubResource("Animation_k8u5j"),
+&"to_fire": SubResource("Animation_igvw6")
+}
+
+[node name="GameScene" type="Node2D" unique_id=1309565388]
+
+[node name="PlayerStats" type="Node" parent="." unique_id=1776936839]
+script = ExtResource("1_0exr2")
+
+[node name="MoneySFX" type="AudioStreamPlayer2D" parent="PlayerStats" unique_id=855459625]
+stream = ExtResource("2_igvw6")
+
+[node name="ShopQueue" type="Node" parent="." unique_id=1354138094]
+script = ExtResource("2_ex6dp")
+units = Array[ExtResource("3_ex6dp")]([ExtResource("4_cg2kh"), ExtResource("5_0ptlf"), ExtResource("7_fsk3a"), ExtResource("8_y0td7"), ExtResource("9_cvqoq")])
+
+[node name="GameStateManager" type="Node" parent="." unique_id=594612751 groups=["GameManager"]]
+script = ExtResource("5_rb7ul")
+
+[node name="BuyTimeTimer" type="Timer" parent="GameStateManager" unique_id=754912126]
+wait_time = 15.0
+one_shot = true
+
+[node name="PreRoundTimer" type="Timer" parent="GameStateManager" unique_id=1396043593]
+wait_time = 3.0
+one_shot = true
+
+[node name="RoundTimer" type="Timer" parent="GameStateManager" unique_id=451211138]
+wait_time = 60.0
+one_shot = true
+
+[node name="PostRoundTimer" type="Timer" parent="GameStateManager" unique_id=1594374737]
+wait_time = 5.0
+one_shot = true
+
+[node name="ShopContainer" type="Control" parent="." unique_id=1412506660]
+z_index = 100
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_top = 34.0
+offset_right = 1870.0
+offset_bottom = 1058.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(910, 512)
+script = ExtResource("2_4fxa8")
+
+[node name="Shop" parent="ShopContainer" unique_id=715110259 node_paths=PackedStringArray("shop_queue", "player_stats") instance=ExtResource("12_0qy1f")]
+custom_minimum_size = Vector2(750, 300)
+layout_mode = 1
+offset_left = -500.0
+offset_top = -300.0
+offset_right = 500.0
+shop_queue = NodePath("../../ShopQueue")
+player_stats = NodePath("../../PlayerStats")
+
+[node name="PlayerStatsContainer" type="CanvasLayer" parent="." unique_id=1621534677]
+
+[node name="Items" type="VFlowContainer" parent="PlayerStatsContainer" unique_id=523105553]
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 155.0
+offset_top = 73.0
+offset_right = 355.0
+offset_bottom = -73.0
+grow_vertical = 2
+theme_override_constants/v_separation = 48
+alignment = 1
+last_wrap_alignment = 2
+
+[node name="TimeContainer" type="Control" parent="PlayerStatsContainer/Items" unique_id=1320373326]
+custom_minimum_size = Vector2(200, 140)
+layout_mode = 2
+
+[node name="SectionContainer" type="PanelContainer" parent="PlayerStatsContainer/Items/TimeContainer" unique_id=1959297522]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 0
+offset_left = 25.0
+offset_top = 90.0
+offset_right = 175.0
+offset_bottom = 140.0
+theme = ExtResource("1_haeiw")
+
+[node name="SectionLabel" type="RichTextLabel" parent="PlayerStatsContainer/Items/TimeContainer/SectionContainer" unique_id=211525174 node_paths=PackedStringArray("game_manager")]
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[wave amp=10.0 freq=3.0 connected=1]Buy Phase"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("9_sao6o")
+game_manager = NodePath("../../../../../GameStateManager")
+
+[node name="ClockContainer" type="PanelContainer" parent="PlayerStatsContainer/Items/TimeContainer" unique_id=1529515175]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("1_haeiw")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PlayerStatsContainer/Items/TimeContainer/ClockContainer" unique_id=1802380600]
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "Time"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("9_icjtl")
+
+[node name="MoneyContainer" type="PanelContainer" parent="PlayerStatsContainer/Items" unique_id=456746939]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+theme = ExtResource("1_haeiw")
+
+[node name="MoneyLabel" type="RichTextLabel" parent="PlayerStatsContainer/Items/MoneyContainer" unique_id=1593765542 node_paths=PackedStringArray("player_stats")]
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "money"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("11_sao6o")
+player_stats = NodePath("../../../../PlayerStats")
+
+[node name="UnitsContainer" type="Control" parent="PlayerStatsContainer/Items" unique_id=1055741397]
+custom_minimum_size = Vector2(200, 140)
+layout_mode = 2
+
+[node name="SectionContainer" type="PanelContainer" parent="PlayerStatsContainer/Items/UnitsContainer" unique_id=208355324]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 0
+offset_left = 25.0
+offset_top = 90.0
+offset_right = 175.0
+offset_bottom = 140.0
+theme = ExtResource("1_haeiw")
+
+[node name="SectionLabel" type="RichTextLabel" parent="PlayerStatsContainer/Items/UnitsContainer/SectionContainer" unique_id=2137857006]
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[wave amp=10.0 freq=3.0 connected=1]Units"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CountContainer" type="PanelContainer" parent="PlayerStatsContainer/Items/UnitsContainer" unique_id=1900836685]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("1_haeiw")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PlayerStatsContainer/Items/UnitsContainer/CountContainer" unique_id=1078636193 node_paths=PackedStringArray("player_stats")]
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "3 / 10"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("13_0p1ba")
+player_stats = NodePath("../../../../../PlayerStats")
+
+[node name="RoundsContainer" type="Control" parent="PlayerStatsContainer/Items" unique_id=353599957]
+custom_minimum_size = Vector2(200, 140)
+layout_mode = 2
+
+[node name="SectionContainer" type="PanelContainer" parent="PlayerStatsContainer/Items/RoundsContainer" unique_id=489017071]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 0
+offset_left = 25.0
+offset_top = 90.0
+offset_right = 175.0
+offset_bottom = 140.0
+theme = ExtResource("1_haeiw")
+
+[node name="SectionLabel" type="RichTextLabel" parent="PlayerStatsContainer/Items/RoundsContainer/SectionContainer" unique_id=1886669461]
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[wave amp=10.0 freq=3.0 connected=1]ROUND"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CountContainer" type="PanelContainer" parent="PlayerStatsContainer/Items/RoundsContainer" unique_id=436275758]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("1_haeiw")
+
+[node name="RoundLabel" type="RichTextLabel" parent="PlayerStatsContainer/Items/RoundsContainer/CountContainer" unique_id=500199856]
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "Round"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("19_0qy1f")
+
+[node name="LivesContainer" type="Control" parent="PlayerStatsContainer/Items" unique_id=56472881]
+custom_minimum_size = Vector2(200, 140)
+layout_mode = 2
+
+[node name="SectionContainer" type="PanelContainer" parent="PlayerStatsContainer/Items/LivesContainer" unique_id=1718485027]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 0
+offset_left = 25.0
+offset_top = 90.0
+offset_right = 175.0
+offset_bottom = 140.0
+theme = ExtResource("1_haeiw")
+
+[node name="SectionLabel" type="RichTextLabel" parent="PlayerStatsContainer/Items/LivesContainer/SectionContainer" unique_id=1806983415]
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[wave amp=10.0 freq=3.0 connected=1]Lives"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CountContainer" type="PanelContainer" parent="PlayerStatsContainer/Items/LivesContainer" unique_id=905823326]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("1_haeiw")
+
+[node name="RoundLabel" type="RichTextLabel" parent="PlayerStatsContainer/Items/LivesContainer/CountContainer" unique_id=326468434 node_paths=PackedStringArray("player_stats")]
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "Round"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("20_s8bal")
+player_stats = NodePath("../../../../../PlayerStats")
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=642158115]
+
+[node name="Board" type="Sprite2D" parent="." unique_id=1255175370]
+modulate = Color(0.6654342, 0.4226154, 0.74744385, 1)
+texture_filter = 2
+texture_repeat = 2
+position = Vector2(960, 384)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("1_eqhe0")
+region_enabled = true
+region_rect = Rect2(2, 2, 2540, 1792)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1568371280]
+anchor_mode = 0
+script = ExtResource("14_k8u5j")
+
+[node name="P1MouseSprite" type="Sprite2D" parent="." unique_id=445692134 node_paths=PackedStringArray("mouse_control")]
+z_index = 101
+texture_filter = 1
+position = Vector2(507.00003, -101)
+scale = Vector2(5, 5)
+texture = ExtResource("2_k77ap")
+offset = Vector2(6, 6)
+script = ExtResource("6_i2arf")
+mouse_control = NodePath("../P1Mouse")
+
+[node name="P1Mouse" type="Node2D" parent="." unique_id=362869788]
+position = Vector2(500, 75)
+
+[node name="P1FocusManager" type="Node" parent="P1Mouse" unique_id=269751576 node_paths=PackedStringArray("mouse_object", "shop")]
+script = ExtResource("4_hvuor")
+mouse_object = NodePath("..")
+shop = NodePath("../../ShopContainer/Shop")
+
+[node name="PandorasBox" type="Node2D" parent="." unique_id=934045646 node_paths=PackedStringArray("state_manager")]
+z_index = 100
+position = Vector2(1688, 393)
+script = ExtResource("19_k8u5j")
+state_manager = NodePath("../GameStateManager")
+tier_one_enemies = Array[PackedScene]([ExtResource("20_0p1ba"), ExtResource("23_redr1")])
+tier_two_enemies = Array[PackedScene]([ExtResource("26_y0td7"), ExtResource("27_ry04y")])
+tier_two_chance = SubResource("Curve_k8u5j")
+slots_curve = SubResource("Curve_0ptlf")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PandorasBox" unique_id=944654250]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_0p1ba")
+
+[node name="Base" type="Sprite2D" parent="PandorasBox" unique_id=484251659]
+texture_filter = 1
+scale = Vector2(10, 10)
+texture = ExtResource("19_6qjax")
+
+[node name="Lid" type="Sprite2D" parent="PandorasBox" unique_id=1710980127]
+texture_filter = 1
+position = Vector2(0, -97.99999)
+scale = Vector2(10, 10)
+texture = ExtResource("20_88a4u")
+
+[node name="Eyes" type="Sprite2D" parent="PandorasBox" unique_id=567336721]
+texture_filter = 1
+position = Vector2(-13, -27.999992)
+scale = Vector2(8, 8)
+texture = ExtResource("21_0ptlf")
+
+[node name="VictoryAndLossThemes" type="AudioStreamPlayer2D" parent="." unique_id=1335489374]
+script = ExtResource("26_0axbu")
+
+[node name="MusicManager" type="Node2D" parent="." unique_id=1095050228]
+script = ExtResource("27_4puv8")
+
+[node name="Bassline" type="AudioStreamPlayer2D" parent="MusicManager" unique_id=893811297]
+stream = ExtResource("27_agx0x")
+autoplay = true
+
+[node name="Melody" type="AudioStreamPlayer2D" parent="MusicManager" unique_id=899949984]
+stream = ExtResource("28_jvwnh")
+volume_db = -50.0
+autoplay = true
+
+[connection signal="timeout" from="GameStateManager/BuyTimeTimer" to="GameStateManager" method="_on_buy_time_timer_timeout"]
+[connection signal="timeout" from="GameStateManager/PreRoundTimer" to="GameStateManager" method="_on_pre_round_timer_timeout"]
+[connection signal="timeout" from="GameStateManager/RoundTimer" to="GameStateManager" method="_on_round_timer_timeout"]
+[connection signal="timeout" from="GameStateManager/PostRoundTimer" to="GameStateManager" method="_on_post_round_timer_timeout"]

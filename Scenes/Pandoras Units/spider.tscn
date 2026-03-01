@@ -66,7 +66,7 @@ parent = NodePath("..")
 [node name="WebbedApplicator" type="Node" parent="." unique_id=1968561649]
 script = ExtResource("12_lojwx")
 
-[node name="Collision" type="Area2D" parent="." unique_id=338870405]
+[node name="Collision" type="Area2D" parent="." unique_id=338870405 groups=["UnitHitbox"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collision" unique_id=1950058114]
 shape = SubResource("RectangleShape2D_lojwx")

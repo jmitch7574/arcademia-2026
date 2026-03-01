@@ -1,44 +1,21 @@
 class_name ShopManager
 extends PanelContainer
 
-@onready var shop_elements: HBoxContainer = $MarginContainer/ShopElements
-
-const REROLL = preload("uid://b2n21l6pwilj3")
-const SHOP_ITEM = preload("uid://uu0p10ftnw1r")
-const LEVEL_UP = preload("uid://b0xmg8pvy5yqy")
-
-var reroll_button : RerollButton
-var levelup_button : LevelUpButton
-var shop_items : Array[ShopItem]
+@export var reroll_button : RerollButton
+@export var levelup_button : LevelUpButton
+@export var shop_item : ShopItem
 
 @export var shop_queue : ShopQueue
 @export var player_stats : PlayerStats
 
 @onready var shop_sfx_manager: ShopSFXManager = $ShopSFXManager
 
+signal process_player_skip(player : PlayerStats.PLAYER)
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	reroll_button = REROLL.instantiate()
-	shop_elements.add_child(reroll_button)
-	
-	if reroll_button is RerollButton:
-		reroll_button.reroll_requested.connect(process_reroll.bind(true))
-		GameEvents.buy_time_begin.connect(process_reroll)
-	
-	for i in range(0, 1):
-		var shop_item = SHOP_ITEM.instantiate()
-		shop_elements.add_child(shop_item)
-		
-		if shop_item is ShopItem:
-			shop_item.purchase_requested.connect(process_purchase)
-			shop_items.append(shop_item)
-	
-	levelup_button = LEVEL_UP.instantiate()
-	shop_elements.add_child(levelup_button)
-	
-	if levelup_button is LevelUpButton:
-		levelup_button.levelup_requested.connect(process_levelup)
-		levelup_button.update_price_text(player_stats.get_level_up_cost())
+	GameEvents.buy_time_begin.connect(process_reroll)
+	levelup_button.update_price_text(player_stats.get_level_up_cost())
 	
 	process_reroll()
 
@@ -49,11 +26,8 @@ func process_reroll(was_requested_by_player : bool = false):
 		shop_sfx_manager.play_buzzer()
 		return
 	
-	for shop_item in shop_items:
-		shop_item.current_unit = null
-	
-	for shop_item in shop_items:
-		shop_item.bootstrap(shop_queue.get_next_unit())
+	shop_item.current_unit = null
+	shop_item.bootstrap(shop_queue.get_next_unit())
 	
 	if (was_requested_by_player):
 		player_stats.update_money(-reroll_button.reroll_price)
@@ -92,6 +66,9 @@ func process_purchase(unit : UnitResource, source : ShopItem):
 	newUnit.unit_resource = unit
 	get_tree().current_scene.add_child(newUnit)
 	source.bootstrap(null)
+
+func process_skip_request():
+	process_player_skip.emit(player_stats.player)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

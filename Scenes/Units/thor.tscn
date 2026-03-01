@@ -42,9 +42,9 @@ script = ExtResource("6_0f6ju")
 target_system = NodePath("../../TargetingSystem")
 parent = NodePath("../..")
 sprite = NodePath("../../Sprite")
-attack_speed = 1.6
+attack_speed = 0.8
 attack_range = 64.0
-damage = 12
+damage = 7
 
 [node name="SpecialAttackState" type="Node" parent="StateMachine" unique_id=2008884350 node_paths=PackedStringArray("target_system")]
 script = ExtResource("7_sp4f5")
@@ -56,7 +56,7 @@ parent = NodePath("..")
 
 [node name="UnitAudio" parent="." unique_id=1661030395 instance=ExtResource("9_3f7ei")]
 
-[node name="Collision" type="Area2D" parent="." unique_id=1344125948]
+[node name="Collision" type="Area2D" parent="." unique_id=1344125948 groups=["UnitHitbox"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collision" unique_id=616171161]
 shape = SubResource("RectangleShape2D_3f7ei")

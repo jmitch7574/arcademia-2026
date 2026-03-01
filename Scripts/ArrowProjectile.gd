@@ -18,7 +18,7 @@ func _process(delta: float) -> void:
 
 func _on_collision_area_entered(area: Area2D) -> void:
 	var unit := area.get_parent() as Unit
-	if unit:
+	if unit and area.is_in_group("UnitHitbox"):
 		if unit.player_owner == source_unit.player_owner:
 			return
 		

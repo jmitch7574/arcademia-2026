@@ -10,11 +10,13 @@ enum PLAYER
 
 @export var player : PLAYER
 
-var money : int = 3000 #4
+var money : int = 3005
 signal money_changed(new_value)
 
 var player_level = 1
 signal levelled_up(new_level : int)
+
+var lives_left = 3
 
 @onready var money_sfx: AudioStreamPlayer2D = $MoneySFX
 
@@ -40,7 +42,7 @@ func level_up() -> void:
 	levelled_up.emit(player_level)
 
 func get_level_up_cost() -> int:
-	return int(pow(player_level * 1.4, 1.5)) + 2
+	return int(pow(player_level * 1.5, 2)) + 4
 
 func get_unit_count() -> int:
 	var player_units = 0
@@ -54,8 +56,10 @@ func get_unit_count() -> int:
 
 func try_award_victory_money(winner : PlayerStats.PLAYER):
 	if winner == player:
+		update_money(5)
+	else:
 		update_money(2)
 
 func try_award_kill_money(victim : Unit, killer : Unit, gold_reward : int):
-	if killer.player_owner == player:
+	if killer.player_owner == player and randf() < 0.1:
 		update_money(gold_reward)

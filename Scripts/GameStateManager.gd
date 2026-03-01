@@ -101,3 +101,12 @@ func _on_post_round_timer_timeout() -> void:
 	buy_time_timer.start()
 	GameEvents.buy_time_begin.emit()
 	current_timer = buy_time_timer
+
+
+func _on_shop_process_player_skip(player: PlayerStats.PLAYER) -> void:
+	buy_time_timer.stop()
+	current_state = GAMESTATE.PRE_BATTLE
+	
+	pre_round_timer.start()
+	GameEvents.buy_time_end.emit()
+	current_timer = pre_round_timer

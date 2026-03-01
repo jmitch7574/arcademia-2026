@@ -55,7 +55,7 @@ target_system = NodePath("../../TargetingSystem")
 parent = NodePath("../..")
 sprite = NodePath("../../Sprite")
 attack_speed = 1.0
-attack_range = 128.0
+attack_range = 32.0
 damage = 11
 
 [node name="SlamDunkState" type="Node" parent="StateMachine" unique_id=1521636741]
@@ -69,7 +69,7 @@ parent = NodePath("..")
 
 [node name="UnitAudio" parent="." unique_id=1661030395 instance=ExtResource("12_qumqh")]
 
-[node name="Collision" type="Area2D" parent="." unique_id=71595455]
+[node name="Collision" type="Area2D" parent="." unique_id=71595455 groups=["UnitHitbox"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collision" unique_id=400527315]
 shape = SubResource("RectangleShape2D_q5hwp")

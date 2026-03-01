@@ -26,11 +26,13 @@ func _enter_state() -> void:
 			var target_unit := node.get_parent() as Unit
 			if target_unit.player_owner != unit.player_owner:
 				var direction = target_unit.global_position - unit.global_position
-				create_tween().tween_property(target_unit, "position", target_unit.global_position + direction * 100, 0.3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+				create_tween().tween_property(target_unit, "position", target_unit.global_position + (direction.normalized() * 300), 0.3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 				target_unit.take_damage(12, unit)
+		
+		
+		self_end_state()
 	)
 	
-	self_end_state()
 
 func _exit_state() -> void:
 	if slam_tween: slam_tween.kill()

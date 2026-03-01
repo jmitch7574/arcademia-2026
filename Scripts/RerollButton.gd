@@ -6,19 +6,19 @@ signal reroll_requested
 @onready var texture_rect: TextureRect = $TextureRect
 @onready var reroll_text: RichTextLabel = $RerollBottom/RerollText
 
-var reroll_price = 3
+var reroll_price = 5
 
 var rotation_anim : Tween
 
 func _ready() -> void:
 	GameEvents.buy_time_begin.connect(func(): 
-		reroll_price = 3
+		reroll_price = 5
 		update_price_text()
 	)
 	update_price_text()
 
 func _on_press() -> void:
-	reroll_requested.emit()
+	reroll_requested.emit(true)
 
 func reroll_successful() -> void:
 	reroll_price += 2

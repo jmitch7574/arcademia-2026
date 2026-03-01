@@ -15,8 +15,8 @@ func _ready() -> void:
 			stream = NEW_UNIT
 			play()
 		
-		unit.health_changed.connect(func(amount, new_health): 
-			if amount < 0:
+		GameEvents.unit_health_changed.connect(func(hurt_unit : Unit, source : Unit, amount : float, new_health : float): 
+			if amount < 0 and hurt_unit == unit:
 				stream = HIT_HURT
 				play()
 		)

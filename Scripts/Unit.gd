@@ -10,8 +10,6 @@ enum EFFECTS
 @export var max_health : float
 var health : float
 
-signal health_changed(amount, new_health)
-
 var grid_coords
 
 var is_loki_clone = false
@@ -36,14 +34,18 @@ func _ready() -> void:
 		
 		while not valid_coord:
 			valid_coord = true
-			coord = Vector2(randi_range(5, 9), randi_range(0, 7))
+			coord = Vector2(randi_range(5, 9), randi_range(0, 6))
 			for node in get_tree().get_nodes_in_group("Units"):
 				if node is Unit:
 					if node == self:
 						continue
 					if node.grid_coords == coord:
 						valid_coord = false
-			
+		
+		grid_coords = coord
+		global_position = FocusManager.START_POSITION + (grid_coords * 102)
+		
+		return
 	
 	var taken_grid_coords : Array[Vector2] = []
 	for node in get_tree().get_nodes_in_group("Units"):
@@ -62,16 +64,23 @@ func _ready() -> void:
 			grid_coords = coord
 			global_position = FocusManager.START_POSITION + (grid_coords * 102)
 			return
+	
+	grid_coords = Vector2(0, 0)
 
 func take_damage(damage : float, source : Unit) -> void:
 	health -= damage
-	health_changed.emit(-damage, health)
+	GameEvents.unit_health_changed.emit(self, source, -damage, health)
 	
 	if health <= 0:
 		GameEvents.unit_killed.emit(self, source, 1)
 	
 	if player_owner == PlayerStats.PLAYER.PANDORA and health <= 0:
 		queue_free()
+
+func heal(amount : float, source : Unit) -> void:
+	health = min(health + amount, max_health)
+	
+	GameEvents.unit_health_changed.emit(self, source, amount, health)
 
 func on_round_end() -> void:
 	if player_owner == PlayerStats.PLAYER.PANDORA or is_loki_clone:
