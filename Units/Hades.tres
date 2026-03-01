@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="UnitResource" format=3 uid="uid://cbiexfictnsxm"]
+
+[ext_resource type="Script" uid="uid://drwphox75l0em" path="res://Scripts/UnitResource.gd" id="1_ig7mu"]
+[ext_resource type="PackedScene" uid="uid://bmevv653182fi" path="res://Scenes/Units/hades.tscn" id="2_ig7mu"]
+[ext_resource type="Texture2D" uid="uid://c5p74uvy8sgnr" path="res://Assets/Units/hades.png" id="3_ig7mu"]
+
+[resource]
+script = ExtResource("1_ig7mu")
+unit_name = "Hades"
+unit_cost = 10
+unit_sprite = ExtResource("3_ig7mu")
+unit_scene = ExtResource("2_ig7mu")
+metadata/_custom_type_script = "uid://drwphox75l0em"

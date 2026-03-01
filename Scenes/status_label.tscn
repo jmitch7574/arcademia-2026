@@ -1,16 +1,11 @@
 [gd_scene format=3 uid="uid://h4oue6vyv86b"]
 
-[ext_resource type="FontFile" uid="uid://36x3jhw1acdx" path="res://Assets/Kenney/Kenney High.ttf" id="1_5qfih"]
+[ext_resource type="FontFile" uid="uid://cdkwewgc63agi" path="res://Assets/Jersey10-Regular.ttf" id="1_5qfih"]
 [ext_resource type="Script" uid="uid://6osy65vsa15u" path="res://Scripts/TextDisappear.gd" id="2_yw3kq"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_s8bal"]
-font = ExtResource("1_5qfih")
-font_size = 32
-outline_size = 16
-outline_color = Color(0, 0, 0, 1)
-
-[node name="StatusLabel" type="Label" unique_id=1528324794]
+[node name="StatusLabel" type="RichTextLabel" unique_id=820151443]
 z_index = 105
+clip_contents = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -23,8 +18,14 @@ offset_bottom = -512.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
-text = "36"
-label_settings = SubResource("LabelSettings_s8bal")
+theme_override_constants/outline_size = 12
+theme_override_fonts/normal_font = ExtResource("1_5qfih")
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "36
+"
+scroll_active = false
+autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("2_yw3kq")

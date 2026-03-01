@@ -122,4 +122,4 @@ func on_player_died(player : PlayerStats.PLAYER):
 	
 	await get_tree().create_timer(10).timeout
 	
-	get_tree().change_scene_to_file("res://MainMenu.tscn")
+	SceneTransitioner.move_to_scene("res://MainMenu.tscn")

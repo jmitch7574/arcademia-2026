@@ -18,6 +18,8 @@
 [ext_resource type="Resource" uid="uid://bsprx7okiyvo1" path="res://Units/Apollo.tres" id="9_cvqoq"]
 [ext_resource type="Script" uid="uid://dma5ow0mpynxh" path="res://Scripts/GameTimer.gd" id="9_icjtl"]
 [ext_resource type="Script" uid="uid://c86217m1sekx4" path="res://Scripts/SectionDisplay.gd" id="9_sao6o"]
+[ext_resource type="Resource" uid="uid://cbiexfictnsxm" path="res://Units/Hades.tres" id="10_kba41"]
+[ext_resource type="Resource" uid="uid://cwdoaub3qo5lb" path="res://Units/FisherKing.tres" id="11_lul5g"]
 [ext_resource type="Script" uid="uid://cu606eit2hnd6" path="res://Scripts/MoneyLabel.gd" id="11_sao6o"]
 [ext_resource type="PackedScene" uid="uid://chw6n1tignf2u" path="res://Scenes/UI Elements/shop.tscn" id="12_0qy1f"]
 [ext_resource type="Script" uid="uid://j4vrpkdjrry3" path="res://Scripts/UnitText.gd" id="13_0p1ba"]
@@ -318,7 +320,7 @@ stream = ExtResource("2_igvw6")
 
 [node name="ShopQueue" type="Node" parent="." unique_id=1354138094]
 script = ExtResource("2_ex6dp")
-units = Array[ExtResource("3_ex6dp")]([ExtResource("4_cg2kh"), ExtResource("5_0ptlf"), ExtResource("7_fsk3a"), ExtResource("8_y0td7"), ExtResource("9_cvqoq")])
+units = Array[ExtResource("3_ex6dp")]([ExtResource("4_cg2kh"), ExtResource("5_0ptlf"), ExtResource("7_fsk3a"), ExtResource("8_y0td7"), ExtResource("9_cvqoq"), ExtResource("10_kba41"), ExtResource("11_lul5g")])
 
 [node name="GameStateManager" type="Node" parent="." unique_id=594612751 groups=["GameManager"]]
 script = ExtResource("5_rb7ul")
@@ -564,6 +566,7 @@ player_stats = NodePath("../../../../../PlayerStats")
 
 [node name="Board" type="Sprite2D" parent="." unique_id=1255175370]
 modulate = Color(0.6654342, 0.4226154, 0.74744385, 1)
+z_index = -2
 texture_filter = 2
 texture_repeat = 2
 position = Vector2(960, 384)

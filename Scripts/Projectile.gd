@@ -8,3 +8,6 @@ var targeting_system : TargetSystem
 @export var projectile_damage : float
 
 var source_unit : Unit
+
+func _ready() -> void:
+	GameEvents.battle_end.connect(func(): queue_free())

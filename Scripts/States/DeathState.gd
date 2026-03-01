@@ -15,9 +15,11 @@ func state_entry_condition() -> bool:
 	
 func _enter_state() -> void:
 	sprite_renderer.texture = GRAVE
+	sprite_renderer.z_index = -1
 
 func _exit_state() -> void:
 	sprite_renderer.texture = regular_sprite
+	sprite_renderer.z_index = 0
 
 func get_sprite_renderer() -> void:
 	var parent = get_parent()

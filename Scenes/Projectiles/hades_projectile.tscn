@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://d0cp8h0jdlvn0"]
+
+[ext_resource type="Script" uid="uid://dr4r6d0hiabm3" path="res://Scripts/LokiProjectile.gd" id="1_vc6nf"]
+[ext_resource type="PackedScene" uid="uid://bar7nvfyyjnjq" path="res://Scenes/Particle Systems/loki_projectile_particles_trail.tscn" id="2_wlybq"]
+[ext_resource type="PackedScene" uid="uid://levqg6qlcxh6" path="res://Scenes/Particle Systems/loki_projectile_particles_hit.tscn" id="3_qbqmd"]
+
+[sub_resource type="Curve" id="Curve_t2xnb"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_m1anv"]
+curve = SubResource("Curve_t2xnb")
+
+[sub_resource type="Curve" id="Curve_m1anv"]
+_limits = [0.0, 412.77, 0.0, 1.0]
+_data = [Vector2(0, 412.77), 0.0, 0.0, 0, 0, Vector2(0.57258064, 13.831055), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ywp0r"]
+curve = SubResource("Curve_m1anv")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ma6lg"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 10.0
+radial_velocity_min = -2.2351742e-05
+radial_velocity_max = -2.2351742e-05
+velocity_limit_curve = SubResource("CurveTexture_ywp0r")
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -2.2351742e-06
+radial_accel_max = -2.2351742e-06
+scale_min = 25.0
+scale_max = 25.0
+color = Color(0.72, 0.122400016, 0.122400016, 1)
+alpha_curve = SubResource("CurveTexture_m1anv")
+
+[sub_resource type="Curve" id="Curve_vc6nf"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_wlybq"]
+curve = SubResource("Curve_vc6nf")
+
+[sub_resource type="Curve" id="Curve_qbqmd"]
+_limits = [0.0, 412.77, 0.0, 1.0]
+_data = [Vector2(0, 412.77), 0.0, 0.0, 0, 0, Vector2(0.57258064, 13.831055), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_43djy"]
+curve = SubResource("Curve_qbqmd")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5a75l"]
+particle_flag_disable_z = true
+radial_velocity_min = 49.999977
+radial_velocity_max = 199.99997
+velocity_limit_curve = SubResource("CurveTexture_43djy")
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -2.2351742e-06
+radial_accel_max = -2.2351742e-06
+scale_min = 25.0
+scale_max = 25.0
+color = Color(0.72, 0.122400016, 0.122400016, 1)
+alpha_curve = SubResource("CurveTexture_wlybq")
+
+[node name="HadesProjectile" type="Node2D" unique_id=768164927]
+script = ExtResource("1_vc6nf")
+projectile_speed = 200.0
+projectile_damage = 5.0
+
+[node name="ParticleTrail" parent="." unique_id=1098845346 instance=ExtResource("2_wlybq")]
+amount = 30
+process_material = SubResource("ParticleProcessMaterial_ma6lg")
+
+[node name="ParticleHit" parent="." unique_id=1366613433 instance=ExtResource("3_qbqmd")]
+process_material = SubResource("ParticleProcessMaterial_5a75l")
+script = null

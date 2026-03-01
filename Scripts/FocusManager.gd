@@ -58,7 +58,7 @@ func _process(delta: float) -> void:
 		picked_up_unit.global_position = START_POSITION + (picked_up_unit.grid_coords * 102)
 		
 		if Input.is_action_just_pressed(input_prefix + "_decline"):
-			GameEvents.unit_sold.emit(picked_up_unit.unit_resource.unit_cost - 2)
+			GameEvents.unit_sold.emit(picked_up_unit, picked_up_unit.unit_resource.unit_cost - 2)
 			picked_up_unit.queue_free()
 			picked_up_unit = null
 			

@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://crw82r1bis1pq"]
+
+[ext_resource type="Script" uid="uid://cosr4qrn1kb71" path="res://Scripts/Unit.gd" id="1_4jqj7"]
+[ext_resource type="Material" uid="uid://dlhhnx45g42ri" path="res://Materials/unit.tres" id="2_extdu"]
+[ext_resource type="Texture2D" uid="uid://3u5rixjbf4q3" path="res://Assets/Units/fisher-king.png" id="3_4jqj7"]
+[ext_resource type="Script" uid="uid://w8c1iwl35m6i" path="res://Scripts/States/StateMachine.gd" id="4_4el1a"]
+[ext_resource type="Script" uid="uid://dx6oqwrl3ekvb" path="res://Scripts/States/Fishing.gd" id="5_f2amo"]
+[ext_resource type="Texture2D" uid="uid://cagp0foyiftyx" path="res://Assets/Units/fisher-king-fishing.png" id="6_sei5o"]
+[ext_resource type="PackedScene" uid="uid://y35ggejn2fv7" path="res://Scenes/Projectiles/Fish/evil_karp.tscn" id="7_4jqj7"]
+[ext_resource type="Script" uid="uid://bdu8lj42wuild" path="res://Scripts/ClosestTarget.gd" id="9_2ov71"]
+[ext_resource type="Script" uid="uid://cp3y8dx6xgfpq" path="res://Scripts/LowestHealthAllyTargeting.gd" id="9_r7lo2"]
+[ext_resource type="PackedScene" uid="uid://b42iaqce3h8w8" path="res://Scenes/unit_audio.tscn" id="10_l680j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3f7ei"]
+size = Vector2(64, 90)
+
+[node name="Fisher King" type="Node2D" unique_id=1703226469 groups=["Units"]]
+script = ExtResource("1_4jqj7")
+max_health = 100.0
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1543214580]
+texture_filter = 1
+material = ExtResource("2_extdu")
+scale = Vector2(5, 5)
+texture = ExtResource("3_4jqj7")
+region_rect = Rect2(0, 0, 16, 16)
+metadata/_edit_lock_ = true
+
+[node name="StateMachine" type="Node" parent="." unique_id=943529181 node_paths=PackedStringArray("states")]
+script = ExtResource("4_4el1a")
+states = [NodePath("Fishing")]
+
+[node name="Fishing" type="Node" parent="StateMachine" unique_id=80376378 node_paths=PackedStringArray("sprite_renderer", "evil_karp_targeting", "health_karp_targeting")]
+script = ExtResource("5_f2amo")
+sprite_renderer = NodePath("../../Sprite")
+fishing_sprite = ExtResource("6_sei5o")
+evil_karp = ExtResource("7_4jqj7")
+evil_karp_targeting = NodePath("../../EvilKarpTargeting")
+health_karp_targeting = NodePath("../../HealthKarpTargeting")
+fishing_time = 3
+fishing_deviation = 1.5
+interruptible = true
+
+[node name="TargetingSystem" type="Node2D" parent="." unique_id=701804326 node_paths=PackedStringArray("parent")]
+script = ExtResource("9_2ov71")
+parent = NodePath("..")
+
+[node name="UnitAudio" parent="." unique_id=1661030395 instance=ExtResource("10_l680j")]
+
+[node name="Collision" type="Area2D" parent="." unique_id=1344125948 groups=["UnitHitbox"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision" unique_id=616171161]
+shape = SubResource("RectangleShape2D_3f7ei")
+
+[node name="EvilKarpTargeting" type="Node2D" parent="." unique_id=296100900 node_paths=PackedStringArray("parent")]
+script = ExtResource("9_2ov71")
+parent = NodePath("..")
+
+[node name="HealthKarpTargeting" type="Node2D" parent="." unique_id=241349164 node_paths=PackedStringArray("parent")]
+script = ExtResource("9_r7lo2")
+parent = NodePath("..")

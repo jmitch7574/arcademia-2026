@@ -2,17 +2,25 @@ extends Projectile
 
 var direction : Vector2
 
+@export var auto_aim : bool
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	super()
+	update_loc()
+
+func update_loc():
 	var target = targeting_system.get_target()
 	
 	if target:
 		direction = (target.global_position - global_position).normalized()
 		look_at(global_position + direction)
-
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if auto_aim:
+		update_loc()
 	global_position += direction * projectile_speed * delta
 
 

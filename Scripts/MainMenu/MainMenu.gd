@@ -1,7 +1,7 @@
 extends Node
 
 func _on_play_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://GameScene.tscn")
+	SceneTransitioner.move_to_scene("res://GameScene.tscn")
 
 
 func _on_quit_button_pressed() -> void:
