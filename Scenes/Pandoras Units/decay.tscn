@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://8barv47wqjcm"]
 
-[ext_resource type="Script" uid="uid://cosr4qrn1kb71" path="res://Scripts/Unit.gd" id="1_ed6gx"]
-[ext_resource type="Script" uid="uid://drwphox75l0em" path="res://Scripts/UnitResource.gd" id="2_q5hwp"]
+[ext_resource type="Script" uid="uid://cosr4qrn1kb71" path="res://Scripts/Units/Unit.gd" id="1_ed6gx"]
+[ext_resource type="Script" uid="uid://drwphox75l0em" path="res://Scripts/Units/UnitResource.gd" id="2_q5hwp"]
 [ext_resource type="Material" uid="uid://c1xaxlfgt2wpv" path="res://Materials/pandora_unit.tres" id="3_q5hwp"]
 [ext_resource type="Texture2D" uid="uid://8shc4042x1xv" path="res://Assets/PandorasUnits/Decay.png" id="4_q5hwp"]
 [ext_resource type="Script" uid="uid://w8c1iwl35m6i" path="res://Scripts/States/StateMachine.gd" id="5_5abrr"]
@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://bjxb0ag1ry4ws" path="res://Scripts/States/AttackState.gd" id="7_p1a2r"]
 [ext_resource type="Script" uid="uid://cukpese4y8oec" path="res://Scripts/States/InShopState.gd" id="8_v661t"]
 [ext_resource type="PackedScene" uid="uid://13pluik5kytw" path="res://Scenes/Particle Systems/pandora_particles.tscn" id="10_ywp0r"]
-[ext_resource type="Script" uid="uid://bdu8lj42wuild" path="res://Scripts/ClosestTarget.gd" id="11_8ma5j"]
+[ext_resource type="Script" uid="uid://bdu8lj42wuild" path="res://Scripts/Targeting/ClosestTarget.gd" id="11_8ma5j"]
 [ext_resource type="PackedScene" uid="uid://b42iaqce3h8w8" path="res://Scenes/unit_audio.tscn" id="11_q5hwp"]
 
 [sub_resource type="Resource" id="Resource_vm8j0"]

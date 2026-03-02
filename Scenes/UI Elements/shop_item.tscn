@@ -3,7 +3,7 @@
 [ext_resource type="Theme" uid="uid://cna40ld11lpj5" path="res://Themes/Shop.tres" id="1_22joc"]
 [ext_resource type="Material" uid="uid://dlhhnx45g42ri" path="res://Materials/unit.tres" id="2_0vh5g"]
 [ext_resource type="Texture2D" uid="uid://o3khn45cxn88" path="res://Assets/Units/thor.png" id="2_22joc"]
-[ext_resource type="Script" uid="uid://pq757rnhscxh" path="res://Scripts/ShopItem.gd" id="2_onf8e"]
+[ext_resource type="Script" uid="uid://pq757rnhscxh" path="res://Scripts/Shop/ShopItem.gd" id="2_onf8e"]
 
 [node name="ShopItem" type="Panel" unique_id=1357183532 groups=["ShopItems"]]
 size_flags_horizontal = 3

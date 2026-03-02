@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="UnitResource" format=3 uid="uid://cwdoaub3qo5lb"]
 
-[ext_resource type="Script" uid="uid://drwphox75l0em" path="res://Scripts/UnitResource.gd" id="1_ge3ov"]
+[ext_resource type="Script" uid="uid://drwphox75l0em" path="res://Scripts/Units/UnitResource.gd" id="1_ge3ov"]
 [ext_resource type="PackedScene" uid="uid://crw82r1bis1pq" path="res://Scenes/Units/fisher-king.tscn" id="2_ge3ov"]
 [ext_resource type="Texture2D" uid="uid://3u5rixjbf4q3" path="res://Assets/Units/fisher-king.png" id="3_ge3ov"]
 

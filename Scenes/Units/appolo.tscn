@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://doefmx0qaswrs"]
 
-[ext_resource type="Script" uid="uid://cosr4qrn1kb71" path="res://Scripts/Unit.gd" id="1_o5klj"]
+[ext_resource type="Script" uid="uid://cosr4qrn1kb71" path="res://Scripts/Units/Unit.gd" id="1_o5klj"]
 [ext_resource type="Material" uid="uid://dlhhnx45g42ri" path="res://Materials/unit.tres" id="2_rgcpn"]
 [ext_resource type="Texture2D" uid="uid://r0vcrsg8jphg" path="res://Assets/Units/appolo.png" id="3_o5klj"]
 [ext_resource type="Script" uid="uid://w8c1iwl35m6i" path="res://Scripts/States/StateMachine.gd" id="4_wpi5s"]
@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://bh3fkcxmm5vc" path="res://Scripts/States/ShootProjectile.gd" id="6_r36dp"]
 [ext_resource type="PackedScene" uid="uid://c54846h5xo6fb" path="res://Scenes/Projectiles/music_note.tscn" id="7_o5klj"]
 [ext_resource type="Script" uid="uid://ckvuq63xt8twu" path="res://Scripts/States/ApolloSonataState.gd" id="8_o5klj"]
-[ext_resource type="Script" uid="uid://bdu8lj42wuild" path="res://Scripts/ClosestTarget.gd" id="9_gbgjf"]
+[ext_resource type="Script" uid="uid://bdu8lj42wuild" path="res://Scripts/Targeting/ClosestTarget.gd" id="9_gbgjf"]
 [ext_resource type="PackedScene" uid="uid://b42iaqce3h8w8" path="res://Scenes/unit_audio.tscn" id="10_kdc2q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w56o8"]

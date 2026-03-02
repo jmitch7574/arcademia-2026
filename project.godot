@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Arcademia-2026"
+config/name="Army Of Myths"
 run/main_scene="uid://88uwoj6u0rkp"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"

@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://chw6n1tignf2u"]
 
 [ext_resource type="Theme" uid="uid://gaki48q5hftc" path="res://Themes/GameTheme.tres" id="1_io27d"]
-[ext_resource type="Script" uid="uid://h45001on6p0r" path="res://Scripts/ShopManager.gd" id="2_fdj0q"]
-[ext_resource type="Script" uid="uid://cm8plam3lsmhj" path="res://Scripts/ShopSFXManager.gd" id="3_k6jq0"]
+[ext_resource type="Script" uid="uid://h45001on6p0r" path="res://Scripts/Shop/ShopManager.gd" id="2_fdj0q"]
+[ext_resource type="Script" uid="uid://cm8plam3lsmhj" path="res://Scripts/Shop/ShopSFXManager.gd" id="3_k6jq0"]
 [ext_resource type="PackedScene" uid="uid://uu0p10ftnw1r" path="res://Scenes/UI Elements/shop_item.tscn" id="3_sbp0t"]
 [ext_resource type="PackedScene" uid="uid://b2n21l6pwilj3" path="res://Scenes/UI Elements/reroll.tscn" id="4_wku4y"]
 [ext_resource type="PackedScene" uid="uid://b0xmg8pvy5yqy" path="res://Scenes/UI Elements/level_up.tscn" id="5_p80rw"]
 [ext_resource type="PackedScene" uid="uid://54lp46g6bsk" path="res://Scenes/UI Elements/skip.tscn" id="6_jptg5"]
-[ext_resource type="Script" uid="uid://hswklkqirkmi" path="res://Scripts/SkipButton.gd" id="7_086r2"]
+[ext_resource type="Script" uid="uid://hswklkqirkmi" path="res://Scripts/Shop/SkipButton.gd" id="7_086r2"]
 
 [node name="Shop" type="PanelContainer" unique_id=715110259 node_paths=PackedStringArray("reroll_button", "levelup_button", "shop_item")]
 custom_minimum_size = Vector2(1000, 300)

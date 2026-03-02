@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="UnitResource" format=3 uid="uid://xdj3ayk30444"]
 
-[ext_resource type="Script" uid="uid://drwphox75l0em" path="res://Scripts/UnitResource.gd" id="1_631iu"]
+[ext_resource type="Script" uid="uid://drwphox75l0em" path="res://Scripts/Units/UnitResource.gd" id="1_631iu"]
 [ext_resource type="Texture2D" uid="uid://o3khn45cxn88" path="res://Assets/Units/thor.png" id="2_54sjr"]
 [ext_resource type="PackedScene" uid="uid://v65uuesc36kj" path="res://Scenes/Units/thor.tscn" id="2_tea2j"]
 

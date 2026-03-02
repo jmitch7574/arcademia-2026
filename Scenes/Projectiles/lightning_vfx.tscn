@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://bn4s7iijx68dg"]
 
-[ext_resource type="Script" uid="uid://6yc1rbltqkif" path="res://Scripts/ThorsLightnings.gd" id="1_22kv5"]
+[ext_resource type="Script" uid="uid://6yc1rbltqkif" path="res://Scripts/Projectiles/ThorsLightnings.gd" id="1_22kv5"]
 [ext_resource type="Texture2D" uid="uid://dgnsu4u6dbioc" path="res://VFX/Lightning/spark_05_a.png" id="2_yxeax"]
-[ext_resource type="Script" uid="uid://gtuyy4l15kvx" path="res://Scripts/PlayAnimOnAwake.gd" id="3_qks46"]
+[ext_resource type="Script" uid="uid://gtuyy4l15kvx" path="res://Scripts/Misc/PlayAnimOnAwake.gd" id="3_qks46"]
 
 [sub_resource type="Animation" id="Animation_yfmkt"]
 resource_name = "Lightning"

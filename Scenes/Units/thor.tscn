@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://v65uuesc36kj"]
 
-[ext_resource type="Script" uid="uid://cosr4qrn1kb71" path="res://Scripts/Unit.gd" id="1_xspdb"]
+[ext_resource type="Script" uid="uid://cosr4qrn1kb71" path="res://Scripts/Units/Unit.gd" id="1_xspdb"]
 [ext_resource type="Material" uid="uid://dlhhnx45g42ri" path="res://Materials/unit.tres" id="2_ytsjf"]
 [ext_resource type="Texture2D" uid="uid://o3khn45cxn88" path="res://Assets/Units/thor.png" id="3_g70i3"]
 [ext_resource type="Script" uid="uid://w8c1iwl35m6i" path="res://Scripts/States/StateMachine.gd" id="4_q1uhi"]
@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://bjxb0ag1ry4ws" path="res://Scripts/States/AttackState.gd" id="6_0f6ju"]
 [ext_resource type="Script" uid="uid://doxoedc1l1jg2" path="res://Scripts/States/SpecialSpawn.gd" id="7_sp4f5"]
 [ext_resource type="PackedScene" uid="uid://bn4s7iijx68dg" path="res://Scenes/Projectiles/lightning_vfx.tscn" id="8_3mpmt"]
-[ext_resource type="Script" uid="uid://bdu8lj42wuild" path="res://Scripts/ClosestTarget.gd" id="8_aaj72"]
+[ext_resource type="Script" uid="uid://bdu8lj42wuild" path="res://Scripts/Targeting/ClosestTarget.gd" id="8_aaj72"]
 [ext_resource type="PackedScene" uid="uid://b42iaqce3h8w8" path="res://Scenes/unit_audio.tscn" id="9_3f7ei"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3f7ei"]

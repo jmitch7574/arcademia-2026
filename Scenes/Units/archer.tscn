@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://dk3feuub207vn"]
 
-[ext_resource type="Script" uid="uid://cosr4qrn1kb71" path="res://Scripts/Unit.gd" id="1_b3v06"]
+[ext_resource type="Script" uid="uid://cosr4qrn1kb71" path="res://Scripts/Units/Unit.gd" id="1_b3v06"]
 [ext_resource type="Material" uid="uid://dlhhnx45g42ri" path="res://Materials/unit.tres" id="2_30ihb"]
 [ext_resource type="Texture2D" uid="uid://bok2uvx4jdqiy" path="res://Assets/Units/archer.png" id="3_30ihb"]
 [ext_resource type="Script" uid="uid://w8c1iwl35m6i" path="res://Scripts/States/StateMachine.gd" id="4_t6ard"]
 [ext_resource type="Script" uid="uid://d0byqe8nfg7jb" path="res://Scripts/States/WalkState.gd" id="5_0r5lf"]
 [ext_resource type="Script" uid="uid://bh3fkcxmm5vc" path="res://Scripts/States/ShootProjectile.gd" id="6_b3v06"]
-[ext_resource type="Script" uid="uid://bdu8lj42wuild" path="res://Scripts/ClosestTarget.gd" id="7_22n53"]
+[ext_resource type="Script" uid="uid://bdu8lj42wuild" path="res://Scripts/Targeting/ClosestTarget.gd" id="7_22n53"]
 [ext_resource type="PackedScene" uid="uid://b261w0eheva7f" path="res://Scenes/Projectiles/arrow_projectile.tscn" id="7_e20kn"]
 [ext_resource type="PackedScene" uid="uid://b42iaqce3h8w8" path="res://Scenes/unit_audio.tscn" id="8_6oxgn"]
 

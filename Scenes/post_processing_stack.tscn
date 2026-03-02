@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://pw7n4blqlkbj"]
+
+[ext_resource type="Material" uid="uid://diwgqhk1bkxph" path="res://Materials/Bloom.tres" id="1_s8lke"]
+
+[node name="PostProcessingStack" type="CanvasLayer" unique_id=1039859739]
+layer = 1000
+
+[node name="Bloom" type="ColorRect" parent="." unique_id=1556452796]
+material = ExtResource("1_s8lke")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

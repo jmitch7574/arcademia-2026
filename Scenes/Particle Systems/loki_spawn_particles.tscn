@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cpyghlf3dms3o"]
 
-[ext_resource type="Script" uid="uid://drjy7setdnbu8" path="res://Scripts/PlayParticlesOnAwake.gd" id="1_6mitj"]
+[ext_resource type="Script" uid="uid://drjy7setdnbu8" path="res://Scripts/Misc/PlayParticlesOnAwake.gd" id="1_6mitj"]
 
 [sub_resource type="Curve" id="Curve_t2xnb"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]

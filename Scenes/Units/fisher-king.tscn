@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://crw82r1bis1pq"]
 
-[ext_resource type="Script" uid="uid://cosr4qrn1kb71" path="res://Scripts/Unit.gd" id="1_4jqj7"]
+[ext_resource type="Script" uid="uid://cosr4qrn1kb71" path="res://Scripts/Units/Unit.gd" id="1_4jqj7"]
 [ext_resource type="Material" uid="uid://dlhhnx45g42ri" path="res://Materials/unit.tres" id="2_extdu"]
 [ext_resource type="Texture2D" uid="uid://3u5rixjbf4q3" path="res://Assets/Units/fisher-king.png" id="3_4jqj7"]
 [ext_resource type="Script" uid="uid://w8c1iwl35m6i" path="res://Scripts/States/StateMachine.gd" id="4_4el1a"]
 [ext_resource type="Script" uid="uid://dx6oqwrl3ekvb" path="res://Scripts/States/Fishing.gd" id="5_f2amo"]
 [ext_resource type="Texture2D" uid="uid://cagp0foyiftyx" path="res://Assets/Units/fisher-king-fishing.png" id="6_sei5o"]
 [ext_resource type="PackedScene" uid="uid://y35ggejn2fv7" path="res://Scenes/Projectiles/Fish/evil_karp.tscn" id="7_4jqj7"]
-[ext_resource type="Script" uid="uid://bdu8lj42wuild" path="res://Scripts/ClosestTarget.gd" id="9_2ov71"]
-[ext_resource type="Script" uid="uid://cp3y8dx6xgfpq" path="res://Scripts/LowestHealthAllyTargeting.gd" id="9_r7lo2"]
+[ext_resource type="Script" uid="uid://bdu8lj42wuild" path="res://Scripts/Targeting/ClosestTarget.gd" id="9_2ov71"]
+[ext_resource type="Script" uid="uid://cp3y8dx6xgfpq" path="res://Scripts/Targeting/LowestHealthAllyTargeting.gd" id="9_r7lo2"]
 [ext_resource type="PackedScene" uid="uid://b42iaqce3h8w8" path="res://Scenes/unit_audio.tscn" id="10_l680j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3f7ei"]

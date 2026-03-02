@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://h4oue6vyv86b"]
 
 [ext_resource type="FontFile" uid="uid://cdkwewgc63agi" path="res://Assets/Jersey10-Regular.ttf" id="1_5qfih"]
-[ext_resource type="Script" uid="uid://6osy65vsa15u" path="res://Scripts/TextDisappear.gd" id="2_yw3kq"]
+[ext_resource type="Script" uid="uid://6osy65vsa15u" path="res://Scripts/Misc/TextDisappear.gd" id="2_yw3kq"]
 
 [node name="StatusLabel" type="RichTextLabel" unique_id=820151443]
 z_index = 105

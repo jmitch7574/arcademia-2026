@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="UnitResource" format=3 uid="uid://dsysxw7sa712c"]
 
-[ext_resource type="Script" uid="uid://drwphox75l0em" path="res://Scripts/UnitResource.gd" id="1_fct0b"]
+[ext_resource type="Script" uid="uid://drwphox75l0em" path="res://Scripts/Units/UnitResource.gd" id="1_fct0b"]
 [ext_resource type="PackedScene" uid="uid://bdspu3kll1apl" path="res://Scenes/Units/viking.tscn" id="2_fct0b"]
 [ext_resource type="Texture2D" uid="uid://l2jnwj6sflkg" path="res://Assets/Units/viking.png" id="3_fct0b"]
 

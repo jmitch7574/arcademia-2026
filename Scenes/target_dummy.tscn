@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ct82b63pxk4x2"]
 
-[ext_resource type="Script" uid="uid://cosr4qrn1kb71" path="res://Scripts/Unit.gd" id="1_oe3qq"]
+[ext_resource type="Script" uid="uid://cosr4qrn1kb71" path="res://Scripts/Units/Unit.gd" id="1_oe3qq"]
 [ext_resource type="Material" uid="uid://dlhhnx45g42ri" path="res://Materials/unit.tres" id="2_ucqa6"]
 [ext_resource type="Texture2D" uid="uid://d301wn0llt2ct" path="res://Assets/Units/dummy.png" id="3_xvxfa"]
 

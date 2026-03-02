@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c54846h5xo6fb"]
 
-[ext_resource type="Script" uid="uid://b8luyswa8dkix" path="res://Scripts/ArrowProjectile.gd" id="1_prxeo"]
+[ext_resource type="Script" uid="uid://b8luyswa8dkix" path="res://Scripts/Projectiles/ArrowProjectile.gd" id="1_prxeo"]
 [ext_resource type="Texture2D" uid="uid://cvjoanj1f4rgq" path="res://Assets/music-note.png" id="2_prxeo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6wxm5"]

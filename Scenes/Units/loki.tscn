@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bcbr7l40n62kl"]
 
-[ext_resource type="Script" uid="uid://cosr4qrn1kb71" path="res://Scripts/Unit.gd" id="1_vq3b6"]
+[ext_resource type="Script" uid="uid://cosr4qrn1kb71" path="res://Scripts/Units/Unit.gd" id="1_vq3b6"]
 [ext_resource type="Material" uid="uid://dlhhnx45g42ri" path="res://Materials/unit.tres" id="3_7e4hh"]
 [ext_resource type="Texture2D" uid="uid://bmghl5u3cbsty" path="res://Assets/Units/loki.png" id="4_vq3b6"]
 [ext_resource type="Script" uid="uid://w8c1iwl35m6i" path="res://Scripts/States/StateMachine.gd" id="5_40ea1"]
@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bkgxxgy4aj38f" path="res://Scenes/Projectiles/loki_projectile.tscn" id="8_mcy1e"]
 [ext_resource type="Script" uid="uid://cyva8f81wouo8" path="res://Scripts/States/LokiDuplicate.gd" id="9_vq3b6"]
 [ext_resource type="PackedScene" uid="uid://b42iaqce3h8w8" path="res://Scenes/unit_audio.tscn" id="10_w56o8"]
-[ext_resource type="Script" uid="uid://bdu8lj42wuild" path="res://Scripts/ClosestTarget.gd" id="11_emfp8"]
+[ext_resource type="Script" uid="uid://bdu8lj42wuild" path="res://Scripts/Targeting/ClosestTarget.gd" id="11_emfp8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w56o8"]
 size = Vector2(64, 90)

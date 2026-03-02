@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://88uwoj6u0rkp"]
 
-[ext_resource type="Script" uid="uid://cqa6w1stpq8xl" path="res://Scripts/MainMenu/MainMenu.gd" id="1_cqjrg"]
+[ext_resource type="Script" uid="uid://cqa6w1stpq8xl" path="res://Scripts/Main Menu/MainMenu.gd" id="1_cqjrg"]
 [ext_resource type="Theme" uid="uid://cbr6moskbqfq0" path="res://Themes/MainMenu.tres" id="1_i26rj"]
-[ext_resource type="Script" uid="uid://dh80fe31cljgt" path="res://Scripts/MainMenu/Wobble.gd" id="2_eiy7p"]
+[ext_resource type="Script" uid="uid://dh80fe31cljgt" path="res://Scripts/Main Menu/Wobble.gd" id="2_eiy7p"]
 [ext_resource type="Texture2D" uid="uid://b4xwgpu7ew32e" path="res://Assets/PandorasBox/lid.png" id="3_h7a2f"]
-[ext_resource type="Script" uid="uid://b6xcwnoeitecp" path="res://Scripts/MainMenu/Float.gd" id="4_iwfq2"]
+[ext_resource type="Script" uid="uid://b6xcwnoeitecp" path="res://Scripts/Main Menu/FloatyControl.gd" id="4_iwfq2"]
 [ext_resource type="Texture2D" uid="uid://ct7ahocabdtbm" path="res://Assets/PandorasBox/base.png" id="4_qoqlk"]
-[ext_resource type="Script" uid="uid://dmma2nvlrp88o" path="res://Scripts/MainMenu/FocusOnStart.gd" id="6_7r1g0"]
+[ext_resource type="Script" uid="uid://dmma2nvlrp88o" path="res://Scripts/Main Menu/FocusOnStart.gd" id="6_7r1g0"]
 
 [node name="MainMenu" type="CanvasLayer" unique_id=1033068373]
 script = ExtResource("1_cqjrg")
@@ -15,7 +15,7 @@ script = ExtResource("1_cqjrg")
 layout_mode = 3
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 541.0
+offset_bottom = 431.0
 grow_horizontal = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="TitleContainer" unique_id=175715816]
@@ -66,26 +66,26 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -287.6195
-offset_top = 95.47809
-offset_right = -107.61951
-offset_bottom = 275.4781
+offset_left = -288.0
+offset_top = 74.5
+offset_right = -108.0
+offset_bottom = 254.5
 grow_horizontal = 2
 grow_vertical = 2
 rotation = 0.33030975
 texture = ExtResource("4_qoqlk")
 script = ExtResource("4_iwfq2")
 
-[node name="ButtonsContainer" type="HBoxContainer" parent="." unique_id=504320325]
+[node name="ButtonsContainer" type="VBoxContainer" parent="." unique_id=2122567908]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -486.0
-offset_top = -186.0
-offset_right = 486.0
-offset_bottom = -101.0
+offset_left = -289.0
+offset_top = -412.0
+offset_right = 289.0
+offset_bottom = -69.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 64

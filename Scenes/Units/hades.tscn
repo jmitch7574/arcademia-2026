@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bmevv653182fi"]
 
-[ext_resource type="Script" uid="uid://cosr4qrn1kb71" path="res://Scripts/Unit.gd" id="1_jpujk"]
+[ext_resource type="Script" uid="uid://cosr4qrn1kb71" path="res://Scripts/Units/Unit.gd" id="1_jpujk"]
 [ext_resource type="Material" uid="uid://dlhhnx45g42ri" path="res://Materials/unit.tres" id="2_kfvbn"]
 [ext_resource type="Texture2D" uid="uid://c5p74uvy8sgnr" path="res://Assets/Units/hades.png" id="3_jpujk"]
 [ext_resource type="Script" uid="uid://w8c1iwl35m6i" path="res://Scripts/States/StateMachine.gd" id="4_p7pg7"]
@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://bh3fkcxmm5vc" path="res://Scripts/States/ShootProjectile.gd" id="6_jpujk"]
 [ext_resource type="PackedScene" uid="uid://d0cp8h0jdlvn0" path="res://Scenes/Projectiles/hades_projectile.tscn" id="7_kfvbn"]
 [ext_resource type="Script" uid="uid://doxoedc1l1jg2" path="res://Scripts/States/SpecialSpawn.gd" id="7_xw50d"]
-[ext_resource type="Script" uid="uid://bdu8lj42wuild" path="res://Scripts/ClosestTarget.gd" id="8_2j3mk"]
+[ext_resource type="Script" uid="uid://bdu8lj42wuild" path="res://Scripts/Targeting/ClosestTarget.gd" id="8_2j3mk"]
 [ext_resource type="PackedScene" uid="uid://6h7rr0nvfvym" path="res://Scenes/Projectiles/hades_burn.tscn" id="9_blikc"]
 [ext_resource type="PackedScene" uid="uid://b42iaqce3h8w8" path="res://Scenes/unit_audio.tscn" id="9_vkm2n"]
 

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://d0cp8h0jdlvn0"]
 
-[ext_resource type="Script" uid="uid://dr4r6d0hiabm3" path="res://Scripts/LokiProjectile.gd" id="1_vc6nf"]
+[ext_resource type="Script" uid="uid://dr4r6d0hiabm3" path="res://Scripts/Projectiles/LokiProjectile.gd" id="1_vc6nf"]
 [ext_resource type="PackedScene" uid="uid://bar7nvfyyjnjq" path="res://Scenes/Particle Systems/loki_projectile_particles_trail.tscn" id="2_wlybq"]
 [ext_resource type="PackedScene" uid="uid://levqg6qlcxh6" path="res://Scenes/Particle Systems/loki_projectile_particles_hit.tscn" id="3_qbqmd"]
 

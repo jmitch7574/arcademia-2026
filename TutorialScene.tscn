@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://du5jc510bg3r5"]
 
-[ext_resource type="Script" uid="uid://bvirb63wt0m4m" path="res://Scripts/TutorialScene.gd" id="1_knpya"]
+[ext_resource type="Script" uid="uid://bvirb63wt0m4m" path="res://Scripts/Main Menu/TutorialScene.gd" id="1_knpya"]
 [ext_resource type="FontFile" uid="uid://cdkwewgc63agi" path="res://Assets/Jersey10-Regular.ttf" id="27_66158"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_knpya"]

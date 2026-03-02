@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://6h7rr0nvfvym"]
 
-[ext_resource type="Script" uid="uid://cf3kmcvd4vhhm" path="res://Scripts/HadesBurnZone.gd" id="1_s02ws"]
+[ext_resource type="Script" uid="uid://cf3kmcvd4vhhm" path="res://Scripts/Projectiles/HadesBurnZone.gd" id="1_s02ws"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_m1wvo"]
 radius = 150.0
