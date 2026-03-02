@@ -21,6 +21,7 @@ GameEvents="*uid://cew3lk85vbsm4"
 StatusTextFactory="*uid://b1urvfrl5u47h"
 ExitButton="*uid://dafuerall1kst"
 SceneTransitioner="*uid://buh345mt73byo"
+LoadPostProcessingStack="*uid://chjbta0gik377"
 
 [display]
 

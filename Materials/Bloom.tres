@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://diwgqhk1bkxph"]
+
+[ext_resource type="Shader" uid="uid://dpywrc1oqg3bt" path="res://Shaders/Bloom.gdshader" id="1_l38wy"]
+
+[resource]
+shader = ExtResource("1_l38wy")
+shader_parameter/bloom_spread = 3.0
+shader_parameter/bloom_intensity = 0.2
