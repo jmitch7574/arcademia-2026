@@ -37,6 +37,8 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("p1_moneylode") and (OS.has_feature("demonstration") or OS.has_feature("editor")):
 		update_money(1000, "moneyl	ode")
+	if Input.is_action_just_pressed(&"p1_impossible") and (OS.has_feature("demonstration") or OS.has_feature("editor")):
+		GameStateManager.round += 1
 
 func update_money(change : float, source : String = ""):
 	if change == 0:
