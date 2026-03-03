@@ -3,14 +3,13 @@ extends Node
 
 @export var units : Array[UnitResource]
 
-var random_seed = 42
 var random_object : RandomNumberGenerator
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	random_object = RandomNumberGenerator.new()
 	
-	if OS.has_feature("demonstration") or OS.has_feature("editor"):
+	if OS.has_feature("demonstration"):
 		random_object.seed = 1738
 
 

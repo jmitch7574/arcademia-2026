@@ -6,7 +6,7 @@ signal reroll_requested
 @onready var texture_rect: TextureRect = $TextureRect
 @onready var reroll_text: RichTextLabel = $RerollBottom/RerollText
 
-var reroll_price = 5
+var reroll_price = 1
 
 var rotation_anim : Tween
 
@@ -21,7 +21,7 @@ func _on_press() -> void:
 	reroll_requested.emit(true)
 
 func reroll_successful() -> void:
-	reroll_price += 2
+	reroll_price += 1
 	if rotation_anim: rotation_anim.stop()
 	texture_rect.rotation_degrees = 0
 	rotation_anim = create_tween()
