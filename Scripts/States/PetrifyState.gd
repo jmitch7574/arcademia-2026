@@ -15,7 +15,7 @@ func _enter_state() -> void:
 	
 	for node in petrification_zone.get_overlapping_areas():
 		var target_unit := node.get_parent() as Unit
-		if target_unit and target_unit != unit:
+		if target_unit and target_unit != unit and target_unit.player_owner != unit.player_owner:
 			print(target_unit.name)
 			those_who_were_petrified.append(target_unit)
 			target_unit.get_node("StateMachine").swap_state_by_name("Petrified")

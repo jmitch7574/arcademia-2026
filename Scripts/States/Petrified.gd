@@ -6,11 +6,12 @@ var time_passed : float
 var sprite_renderer : Sprite2D
 
 const ROCK_MATERIAL = preload("uid://c1h54rcpaqonv")
-const UNIT = preload("uid://dlhhnx45g42ri")
+var normal_material : Material
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	get_sprite_renderer()
+	normal_material = sprite_renderer.material
 	
 func _enter_state() -> void:
 	sprite_renderer.material = ROCK_MATERIAL
@@ -18,7 +19,7 @@ func _enter_state() -> void:
 	pass
 
 func _exit_state() -> void:
-	sprite_renderer.material = UNIT
+	sprite_renderer.material = normal_material
 	pass
 
 func _state_update(delta: float):

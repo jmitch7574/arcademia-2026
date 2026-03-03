@@ -43,6 +43,7 @@ func load_global_states() -> void:
 
 	## Petrified
 	var petrified_state = PetrifiedState.new()
+	petrified_state.name = "Petrified"
 	add_child(petrified_state)
 	
 	## Add to States
