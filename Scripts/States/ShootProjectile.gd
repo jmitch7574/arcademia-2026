@@ -1,41 +1,33 @@
 class_name ShootState
-extends State
+extends AttackState
 
 @export var target_system : TargetSystem
 @export var parent : Node2D
 @export var sprite : Sprite2D
 
 @export var attack_speed : float
-@export var attack_range : float
 
 @export var projectile : PackedScene
 
 var offset_tween : Tween
 var skew_tween : Tween
 
-signal attacked
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _state_update(delta: float) -> void:
 	pass
-
-## Function that decides whether or not this state can be transitioned to
-func state_entry_condition() -> bool:
-	if target_system.get_target():
-		return parent.global_position.distance_to(target_system.get_target().global_position) < attack_range
-	return false
 
 func _enter_state() -> void:
 	offset_tween = create_tween()
 	skew_tween = create_tween()
 	
 	offset_tween.tween_property(sprite, "offset", Vector2(2, 0),  0.25 / attack_speed).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT).finished.connect(func(): 
-		attacked.emit()
+		attack_launched.emit()
 		var projectile_instance = projectile.instantiate()
 		
 		projectile_instance.targeting_system = target_system
 		projectile_instance.global_position = unit.global_position
 		projectile_instance.source_unit = unit
+		projectile_instance.hit_unit.connect(func(hurt_unit : Unit): attack_completed.emit(hurt_unit))
 		
 		get_tree().current_scene.add_child(projectile_instance)
 	)

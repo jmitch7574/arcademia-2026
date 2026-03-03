@@ -1,37 +1,29 @@
-class_name AttackState
-extends State
+class_name MeleeAttackState
+extends AttackState
 
 @export var target_system : TargetSystem
 @export var parent : Node2D
 @export var sprite : Sprite2D
 
 @export var attack_speed : float
-@export var attack_range : float
 @export var damage : int = 10
 
 var offset_tween : Tween
 var skew_tween : Tween
 
-signal attacked(target : Unit)
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _state_update(delta: float) -> void:
 	pass
 
-## Function that decides whether or not this state can be transitioned to
-func state_entry_condition() -> bool:
-	if target_system.get_target():
-		return parent.global_position.distance_to(target_system.get_target().global_position) < attack_range
-	return false
-
 func _enter_state() -> void:
+	attack_launched.emit()
 	offset_tween = create_tween()
 	skew_tween = create_tween()
 	
 	offset_tween.tween_property(sprite, "offset", Vector2(5, 0),  0.25 / attack_speed).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	offset_tween.tween_property(sprite, "offset", Vector2(0, 0),  0.25 / attack_speed).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT).finished.connect(func(): 
 		if target_system.get_target():
-			attacked.emit(target_system.get_target())
+			attack_completed.emit(target_system.get_target())
 			target_system.get_target().take_damage(damage, unit)
 	)
 	

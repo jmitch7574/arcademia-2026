@@ -21,6 +21,7 @@ func _process(delta: float) -> void:
 		
 		projectile_damage -= 4 if source_unit.is_loki_clone else 0
 		targeting_system.get_target().take_damage(projectile_damage, source_unit)
+		hit_unit.emit(targeting_system.get_target())
 		
 		queue_free()
 		

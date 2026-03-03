@@ -1,3 +1,4 @@
+class_name PetrifiedState
 extends State
 
 var time_passed : float
@@ -10,10 +11,6 @@ const UNIT = preload("uid://dlhhnx45g42ri")
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	get_sprite_renderer()
-
-## Function that decides whether or not this state can be transitioned to
-func state_entry_condition() -> bool:
-	return false
 	
 func _enter_state() -> void:
 	sprite_renderer.material = ROCK_MATERIAL

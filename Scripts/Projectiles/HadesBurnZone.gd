@@ -22,3 +22,4 @@ func _process(delta: float) -> void:
 			var target_unit := node.get_parent() as Unit
 			if target_unit and target_unit.player_owner != source_unit.player_owner:
 				target_unit.take_damage(ceil(projectile_damage / 4), source_unit)
+				hit_unit.emit(target_unit)

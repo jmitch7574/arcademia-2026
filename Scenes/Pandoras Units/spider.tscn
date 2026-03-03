@@ -4,14 +4,14 @@
 [ext_resource type="Script" uid="uid://drwphox75l0em" path="res://Scripts/Units/UnitResource.gd" id="2_lojwx"]
 [ext_resource type="Material" uid="uid://c1xaxlfgt2wpv" path="res://Materials/pandora_unit.tres" id="3_jcw52"]
 [ext_resource type="Texture2D" uid="uid://b48nedyfjyw6r" path="res://Assets/PandorasUnits/Spider.png" id="4_nb5wa"]
-[ext_resource type="Script" uid="uid://w8c1iwl35m6i" path="res://Scripts/States/StateMachine.gd" id="5_ut5m2"]
-[ext_resource type="Script" uid="uid://cukpese4y8oec" path="res://Scripts/States/InShopState.gd" id="6_mlv6x"]
+[ext_resource type="Script" uid="uid://w8c1iwl35m6i" path="res://Scripts/States/Types/StateMachine.gd" id="5_ut5m2"]
+[ext_resource type="Script" uid="uid://dpqdy6u00wq7" path="res://Scripts/States/StateEntryConditions/Always.gd" id="7_nb5wa"]
 [ext_resource type="Script" uid="uid://d0byqe8nfg7jb" path="res://Scripts/States/WalkState.gd" id="7_x2fkh"]
-[ext_resource type="Script" uid="uid://bjxb0ag1ry4ws" path="res://Scripts/States/AttackState.gd" id="8_xapli"]
+[ext_resource type="Script" uid="uid://bjxb0ag1ry4ws" path="res://Scripts/States/MeleeAttackState.gd" id="8_xapli"]
 [ext_resource type="Script" uid="uid://bdu8lj42wuild" path="res://Scripts/Targeting/ClosestTarget.gd" id="9_65f1g"]
+[ext_resource type="Script" uid="uid://c0gyjbipb4kwj" path="res://Scripts/States/StateEntryConditions/DistanceToTarget.gd" id="9_lojwx"]
 [ext_resource type="PackedScene" uid="uid://13pluik5kytw" path="res://Scenes/Particle Systems/pandora_particles.tscn" id="10_s7qc5"]
 [ext_resource type="PackedScene" uid="uid://b42iaqce3h8w8" path="res://Scenes/unit_audio.tscn" id="11_27a6f"]
-[ext_resource type="Script" uid="uid://b1bbh72omc80q" path="res://Scripts/WebbedApplicator.gd" id="12_lojwx"]
 
 [sub_resource type="Resource" id="Resource_jcw52"]
 script = ExtResource("2_lojwx")
@@ -37,28 +37,36 @@ metadata/_edit_lock_ = true
 
 [node name="StateMachine" type="Node" parent="." unique_id=943529181 node_paths=PackedStringArray("states")]
 script = ExtResource("5_ut5m2")
-states = [NodePath("InShopState"), NodePath("AttackState"), NodePath("WalkState")]
+states = [NodePath("AttackState"), NodePath("WalkState")]
 
-[node name="InShopState" type="Node" parent="StateMachine" unique_id=1968193139]
-script = ExtResource("6_mlv6x")
-interruptible = true
-
-[node name="WalkState" type="Node" parent="StateMachine" unique_id=624709180 node_paths=PackedStringArray("target_system", "parent", "sprite")]
+[node name="WalkState" type="Node" parent="StateMachine" unique_id=624709180 node_paths=PackedStringArray("target_system", "parent", "sprite", "entry_condition")]
 script = ExtResource("7_x2fkh")
 target_system = NodePath("../../TargetingSystem")
 parent = NodePath("../..")
 move_speed = 250.0
 sprite = NodePath("../../Sprite")
 interruptible = true
+entry_condition = NodePath("StateConditionAlways")
 
-[node name="AttackState" type="Node" parent="StateMachine" unique_id=747475448 node_paths=PackedStringArray("target_system", "parent", "sprite")]
+[node name="StateConditionAlways" type="Node" parent="StateMachine/WalkState" unique_id=1544115011]
+script = ExtResource("7_nb5wa")
+metadata/_custom_type_script = "uid://dpqdy6u00wq7"
+
+[node name="AttackState" type="Node" parent="StateMachine" unique_id=747475448 node_paths=PackedStringArray("target_system", "parent", "sprite", "entry_condition")]
 script = ExtResource("8_xapli")
 target_system = NodePath("../../TargetingSystem")
 parent = NodePath("../..")
 sprite = NodePath("../../Sprite")
 attack_speed = 1.2
-attack_range = 32.0
 damage = 3
+entry_condition = NodePath("StateConditionAttackRange")
+
+[node name="StateConditionAttackRange" type="Node" parent="StateMachine/AttackState" unique_id=188974932 node_paths=PackedStringArray("target_system", "unit")]
+script = ExtResource("9_lojwx")
+target_system = NodePath("../../../TargetingSystem")
+attack_range = 16.0
+unit = NodePath("../../..")
+metadata/_custom_type_script = "uid://c0gyjbipb4kwj"
 
 [node name="TargetingSystem" type="Node2D" parent="." unique_id=701804326 node_paths=PackedStringArray("parent")]
 script = ExtResource("9_65f1g")
@@ -68,12 +76,7 @@ parent = NodePath("..")
 
 [node name="UnitAudio" parent="." unique_id=1661030395 instance=ExtResource("11_27a6f")]
 
-[node name="WebbedApplicator" type="Node" parent="." unique_id=1968561649]
-script = ExtResource("12_lojwx")
-
 [node name="Collision" type="Area2D" parent="." unique_id=338870405 groups=["UnitHitbox"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collision" unique_id=1950058114]
 shape = SubResource("RectangleShape2D_lojwx")
-
-[connection signal="attacked" from="StateMachine/AttackState" to="WebbedApplicator" method="_on_attack_state_attacked"]

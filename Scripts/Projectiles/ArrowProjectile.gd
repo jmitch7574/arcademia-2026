@@ -31,4 +31,5 @@ func _on_collision_area_entered(area: Area2D) -> void:
 			return
 		
 		unit.take_damage(projectile_damage, source_unit)
+		hit_unit.emit(unit)
 		queue_free()

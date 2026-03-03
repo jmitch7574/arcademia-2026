@@ -1,7 +1,5 @@
 extends State
 
-var charges = 0
-
 var slam_tween : Tween
 
 @onready var sprite: Sprite2D = $"../../Sprite"
@@ -10,13 +8,8 @@ var slam_tween : Tween
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
-
-## Function that decides whether or not this state can be transitioned to
-func state_entry_condition() -> bool:
-	return charges >= 4
 	
 func _enter_state() -> void:
-	charges = 0
 	if slam_tween: slam_tween.kill()
 	slam_tween = create_tween()
 	
@@ -32,16 +25,3 @@ func _enter_state() -> void:
 		
 		self_end_state()
 	)
-	
-
-func _exit_state() -> void:
-	if slam_tween: slam_tween.kill()
-	pass
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _state_update(delta: float) -> void:
-	pass
-
-
-func _on_attack_state_attacked(target: Unit) -> void:
-	charges += 1

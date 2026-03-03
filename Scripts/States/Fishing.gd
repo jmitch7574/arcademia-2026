@@ -22,10 +22,6 @@ var fishing_value : float
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	default_sprite = sprite_renderer.texture
-
-## Function that decides whether or not this state can be transitioned to
-func state_entry_condition() -> bool:
-	return true
 	
 func _enter_state() -> void:
 	fishing_time + (((randf() * 2) - 1) * fishing_deviation)

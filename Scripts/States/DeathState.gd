@@ -1,3 +1,4 @@
+class_name DeathState
 extends State
 
 var sprite_renderer : Sprite2D
@@ -10,9 +11,6 @@ func _ready():
 	get_sprite_renderer()
 	regular_sprite = sprite_renderer.texture
 
-func state_entry_condition() -> bool:
-	return unit.health <= 0
-	
 func _enter_state() -> void:
 	sprite_renderer.texture = GRAVE
 	sprite_renderer.z_index = -1

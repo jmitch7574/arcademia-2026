@@ -3,12 +3,14 @@
 [ext_resource type="Script" uid="uid://cosr4qrn1kb71" path="res://Scripts/Units/Unit.gd" id="1_b3v06"]
 [ext_resource type="Material" uid="uid://dlhhnx45g42ri" path="res://Materials/unit.tres" id="2_30ihb"]
 [ext_resource type="Texture2D" uid="uid://bok2uvx4jdqiy" path="res://Assets/Units/archer.png" id="3_30ihb"]
-[ext_resource type="Script" uid="uid://w8c1iwl35m6i" path="res://Scripts/States/StateMachine.gd" id="4_t6ard"]
+[ext_resource type="Script" uid="uid://w8c1iwl35m6i" path="res://Scripts/States/Types/StateMachine.gd" id="4_t6ard"]
 [ext_resource type="Script" uid="uid://d0byqe8nfg7jb" path="res://Scripts/States/WalkState.gd" id="5_0r5lf"]
 [ext_resource type="Script" uid="uid://bh3fkcxmm5vc" path="res://Scripts/States/ShootProjectile.gd" id="6_b3v06"]
+[ext_resource type="Script" uid="uid://dpqdy6u00wq7" path="res://Scripts/States/StateEntryConditions/Always.gd" id="6_e20kn"]
 [ext_resource type="Script" uid="uid://bdu8lj42wuild" path="res://Scripts/Targeting/ClosestTarget.gd" id="7_22n53"]
 [ext_resource type="PackedScene" uid="uid://b261w0eheva7f" path="res://Scenes/Projectiles/arrow_projectile.tscn" id="7_e20kn"]
 [ext_resource type="PackedScene" uid="uid://b42iaqce3h8w8" path="res://Scenes/unit_audio.tscn" id="8_6oxgn"]
+[ext_resource type="Script" uid="uid://c0gyjbipb4kwj" path="res://Scripts/States/StateEntryConditions/DistanceToTarget.gd" id="9_t6ard"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b3v06"]
 size = Vector2(64, 90)
@@ -29,22 +31,34 @@ metadata/_edit_lock_ = true
 script = ExtResource("4_t6ard")
 states = [NodePath("ArrowState"), NodePath("WalkState")]
 
-[node name="WalkState" type="Node" parent="StateMachine" unique_id=624709180 node_paths=PackedStringArray("target_system", "parent", "sprite")]
+[node name="WalkState" type="Node" parent="StateMachine" unique_id=624709180 node_paths=PackedStringArray("target_system", "parent", "sprite", "entry_condition")]
 script = ExtResource("5_0r5lf")
 target_system = NodePath("../../TargetingSystem")
 parent = NodePath("../..")
 move_speed = 80.0
 sprite = NodePath("../../Sprite")
 interruptible = true
+entry_condition = NodePath("StateConditionAlways")
 
-[node name="ArrowState" type="Node" parent="StateMachine" unique_id=335251380 node_paths=PackedStringArray("target_system", "parent", "sprite")]
+[node name="StateConditionAlways" type="Node" parent="StateMachine/WalkState" unique_id=1614529726]
+script = ExtResource("6_e20kn")
+metadata/_custom_type_script = "uid://dpqdy6u00wq7"
+
+[node name="ArrowState" type="Node" parent="StateMachine" unique_id=335251380 node_paths=PackedStringArray("target_system", "parent", "sprite", "entry_condition")]
 script = ExtResource("6_b3v06")
 target_system = NodePath("../../TargetingSystem")
 parent = NodePath("../..")
 sprite = NodePath("../../Sprite")
 attack_speed = 0.5
-attack_range = 500.0
 projectile = ExtResource("7_e20kn")
+entry_condition = NodePath("StateConditionAttackRange")
+
+[node name="StateConditionAttackRange" type="Node" parent="StateMachine/ArrowState" unique_id=1766482980 node_paths=PackedStringArray("target_system", "unit")]
+script = ExtResource("9_t6ard")
+target_system = NodePath("../../../TargetingSystem")
+attack_range = 200.0
+unit = NodePath("../../..")
+metadata/_custom_type_script = "uid://c0gyjbipb4kwj"
 
 [node name="TargetingSystem" type="Node2D" parent="." unique_id=701804326 node_paths=PackedStringArray("parent")]
 script = ExtResource("7_22n53")

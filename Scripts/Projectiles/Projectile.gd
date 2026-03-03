@@ -9,5 +9,7 @@ var targeting_system : TargetSystem
 
 var source_unit : Unit
 
+signal hit_unit(hurt_unit : Unit)
+
 func _ready() -> void:
 	GameEvents.battle_end.connect(func(winner : PlayerStats.PLAYER): queue_free())
