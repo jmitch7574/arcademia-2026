@@ -2,14 +2,16 @@ class_name State
 extends Node
 
 @export var interruptible : bool
-@export var entry_condition : StateCondition
+var entry_conditions : Array[StateCondition]
 var unit : Unit
 
 signal state_concluded
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+func get_conditions() -> void:
+	entry_conditions = []
+	for node in get_children():
+		if node is StateCondition:
+			entry_conditions.append(node)
 	
 func _enter_state() -> void:
 	pass

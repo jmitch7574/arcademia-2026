@@ -13,6 +13,7 @@ func _ready() -> void:
 	states = states.filter(func(element): return element!=null)
 	
 	for state in states:
+		state.get_conditions()
 		state.state_concluded.connect(on_state_self_ended)
 		state.unit = get_parent()
 	
@@ -27,7 +28,6 @@ func load_global_states() -> void:
 	var shop_condition = StateConditionGameState.new()
 	shop_condition.target_states = [GameStateManager.GAMESTATE.BUY_TIME, GameStateManager.GAMESTATE.PRE_BATTLE] as Array[GameStateManager.GAMESTATE]
 	shop_state.add_child(shop_condition)
-	shop_state.entry_condition = shop_condition
 	shop_state.interruptible = true
 	
 	## Death State
@@ -39,7 +39,6 @@ func load_global_states() -> void:
 	death_condition.unit = get_parent()
 	
 	death_state.add_child(death_condition)
-	death_state.entry_condition = death_condition
 	death_state.interruptible = true
 
 	## Petrified
@@ -83,9 +82,15 @@ func on_state_self_ended() -> void:
 
 func get_next_state() -> State:
 	for state : State in states:
-		if state.entry_condition:
-			if state.entry_condition.check_condition():
-				state.entry_condition.on_state_triggered()
+		if len(state.entry_conditions) > 0:
+			var all_states_met = true
+			for condition in state.entry_conditions:
+				if not condition.check_condition():
+					all_states_met = false
+					break
+			if all_states_met:
+				for condition in state.entry_conditions:
+					condition.on_state_triggered()
 				return state
 		
 
