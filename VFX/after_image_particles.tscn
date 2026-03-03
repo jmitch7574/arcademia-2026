@@ -17,7 +17,8 @@ scale_max = 5.0
 alpha_curve = SubResource("CurveTexture_4ima3")
 
 [node name="AfterImageParticles" type="GPUParticles2D" unique_id=601488713]
+z_index = -1
 texture_filter = 1
-amount = 16
+amount = 32
 texture = ExtResource("1_lp283")
 process_material = SubResource("ParticleProcessMaterial_lp283")

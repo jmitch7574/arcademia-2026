@@ -73,7 +73,6 @@ func swap_state_by_name(newState : String):
 	
 	if current_state and state_node:
 		current_state._exit_state()
-	
 		current_state = state_node
 		state_node._enter_state()
 

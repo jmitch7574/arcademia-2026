@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="UnitResource" format=3 uid="uid://n12bf2mmjkal"]
+
+[ext_resource type="Script" uid="uid://drwphox75l0em" path="res://Scripts/Units/UnitResource.gd" id="1_6fb7g"]
+[ext_resource type="PackedScene" uid="uid://dcg8ar3gk68tq" path="res://Scenes/Units/odin.tscn" id="2_6fb7g"]
+[ext_resource type="Texture2D" uid="uid://be2kxsq7ugde7" path="res://Assets/Units/odin.png" id="3_6fb7g"]
+
+[resource]
+script = ExtResource("1_6fb7g")
+unit_name = "Odin"
+unit_cost = 10
+unit_sprite = ExtResource("3_6fb7g")
+unit_scene = ExtResource("2_6fb7g")
+metadata/_custom_type_script = "uid://drwphox75l0em"

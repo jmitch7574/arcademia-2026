@@ -22,9 +22,10 @@ func _enter_state() -> void:
 	
 	offset_tween.tween_property(sprite, "offset", Vector2(5, 0),  0.25 / attack_speed).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	offset_tween.tween_property(sprite, "offset", Vector2(0, 0),  0.25 / attack_speed).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT).finished.connect(func(): 
-		if target_system.get_target():
-			attack_completed.emit(target_system.get_target())
-			target_system.get_target().take_damage(damage, unit)
+		var target = target_system.get_target()
+		if is_instance_valid(target):
+			attack_completed.emit(target)
+			target.take_damage(damage, unit)
 	)
 	
 	skew_tween.tween_property(sprite, "skew", 0.5,  0.25 / attack_speed).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
